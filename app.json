@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "juazeirolivre-app",
+    "name": "Juazeiro Livre",
     "slug": "juazeirolivre-app",
+    "description": "Uma Juazeiro transparente na palma da sua mão!",
     "platforms": [
       "ios",
       "android",
@@ -13,7 +14,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#3490dc"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,6 +24,11 @@
     ],
     "ios": {
       "supportsTablet": true
+    }
+    ,
+    "android": {
+      "package": "com.juazeirolivre.juazeirolivreapp",
+      "versionCode": 1
     }
   }
 }
