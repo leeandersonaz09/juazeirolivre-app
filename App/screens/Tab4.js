@@ -35,7 +35,7 @@ const Tab4 = () => {
 
 
                     <Card>
-                        <Text style={styles.Tittle}>Orçamentos da Saúde</Text>
+                        <Text style={styles.Tittle}>Orçamento da Saúde</Text>
                         <Text>Em 10 anos, o município de Juazeiro-BA, gastou em saúde o valor de R$ 1.261.621.796,97.</Text>
                         <Text>Entre o ano de 2009 e 2019, o governo federal repassou ao município de Juazeiro-BA, o valor de R$ 888.426.003,66, apenas para a área da saúde.</Text>
                         <Text>Orçamentos de recursos próprios gastos na área da saúde nos últimos 10 anos:</Text>
@@ -103,22 +103,19 @@ const styles = StyleSheet.create({
 
     boxTextContainer: {
         flexDirection: 'row',
+        justifyContent: 'space-between'
+            
 
     },
 
     boxText1: {
-        paddingRight: 50,
-        paddingLeft: "15%",
-        backgroundColor: '#d8d8d8',
-        borderWidth: 1,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+
 
     },
 
     boxText2: {
-        paddingRight: 50,
-        paddingLeft: 50,
-        borderWidth: 1
+ 
 
     },
 
