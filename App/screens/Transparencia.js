@@ -15,14 +15,6 @@ const Transparencia = () => {
                 <Body>
                     <Title>Prefeitura</Title>
                 </Body>
-                <Right>
-                    <Button transparent>
-                        <Icon name='logo-facebook' onPress={()=> Linking.openURL("https://web.facebook.com/cleberjesus31")} />
-                    </Button>
-                    <Button transparent>
-                        <Icon name='more' />
-                    </Button>
-                </Right>
             </Header>
             <Tabs >
                 <Tab heading="Educação">
