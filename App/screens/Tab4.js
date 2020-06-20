@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
+import Card from '../components/Card';
 
 const Tab4 = () => {
 
@@ -28,47 +29,47 @@ const Tab4 = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-
-
             <ScrollView>
+
                 <View style={styles.contentContainer}>
 
 
-                    <Text style={styles.Tittle}>Orçamentos da Saúde</Text>
-                    <View style={styles.boxContainer}>
+                    <Card>
+                        <Text style={styles.Tittle}>Orçamentos da Saúde</Text>
+                        <Text>Em 10 anos, o município de Juazeiro-BA, gastou em saúde o valor de R$ 1.261.621.796,97.</Text>
+                        <Text>Entre o ano de 2009 e 2019, o governo federal repassou ao município de Juazeiro-BA, o valor de R$ 888.426.003,66, apenas para a área da saúde.</Text>
+                        <Text>Orçamentos de recursos próprios gastos na área da saúde nos últimos 10 anos:</Text>
+                        <Text style={styles.ibge}>Fonte: Portal da Educação/Rede Municipal de Juazeiro.</Text>
 
-                    <Text>Em 10 anos, o município de Juazeiro-BA, gastou em saúde o valor de R$ 1.261.621.796,97.</Text>
-                    <Text>Entre o ano de 2009 e 2019, o governo federal repassou ao município de Juazeiro-BA, o valor de R$ 888.426.003,66, apenas para a área da saúde.</Text>
-                    <Text>Orçamentos de recursos próprios gastos na área da saúde nos últimos 10 anos:</Text>
-                    <Text style={styles.ibge}>Fonte: Portal da Educação/Rede Municipal de Juazeiro.</Text>
-                    
-
+                    </Card>
+                    <Card>
                         <View style={styles.boxTextContainer}>
 
                             <Text style={styles.boxText1}>Ano</Text>
                             <Text style={styles.boxText2}>Valor do Orçamento</Text>
 
                         </View>
+                    </Card>
 
-                    </View>
+                    <Card>
+                        <FlatList
+                            data={dataEducacao}
+                            keyExtractor={item => item.key}
+                            renderItem={({ item }) => {
+                                return (
+                                    <>
+                                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginLeft: 5 }}>
+                                            <Text style={{ fontSize: 12, fontWeight: 'bold' }}> {item.ano} </Text>
+                                            <Text style={{ textAlign: 'left' }}>{item.valor}</Text>
+                                        </View>
 
-                    <FlatList
-                        data={dataEducacao}
-                        keyExtractor={item => item.key}
-                        renderItem={({ item }) => {
-                            return (
-                                <>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginLeft:5}}>
-                                        <Text style={{ fontSize: 12, fontWeight: 'bold' }}> {item.ano} </Text>
-                                        <Text style={{ textAlign:'left'}}>{item.valor}</Text>
-                                    </View>
+                                    </>
+                                );
+                            }}
 
-                                </>
-                            );
-                        }}
-
-                    />
-                    <Text style={{fontWeight:'bold', alignSelf:'center', marginTop:15}}>TOTAL GERAL: 373.195.793,31</Text>
+                        />
+                    </Card>
+                    <Text style={{ fontWeight: 'bold', alignSelf: 'center', marginTop: 15 }}>TOTAL GERAL: 373.195.793,31</Text>
                     <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia</Text>
 
 
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     boxContainer: {
         alignContent: 'center',
         alignItems: "center",
-        textAlign:'justify'
+        textAlign: 'justify'
 
     },
 
