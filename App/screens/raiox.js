@@ -6,44 +6,47 @@ import {
     SafeAreaView,
     ScrollView
 } from 'react-native';
-import { Container, Header, Content, Tab, Tabs, Body, Title, Icon, Right, Button } from 'native-base';
+import { Container, Content, Tab, Tabs, Body, Title, Icon, Right, Button } from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
+import Header from '../components/Header';
+import Card from '../components/Card';
 
 const raiox = () => {
 
+    const [data, setData] = useState([
+        { key: '1', text: 'Apenas 17,2% da população trabalha com carteira assinada.'},
+        { key: '2', text: 'O salário médio mensal desses trabalhadores é de 2.1 salários mínimos.'},
+        { key: '3', text: '41,7% da população recebe até meio salário mínimo.'},
+    ]);
+
     return (
         <SafeAreaView style={styles.container}>
+            <Header>
+                <Text style={styles.headerTitle}>Raio-X da Cidade</Text>
+            </Header>
             <Container>
-                <Header>
-                    <Body>
-                        <Title>Emprego e Renda</Title>
-                    </Body>
-                    <Right>
-                        <Button transparent>
-                            <Icon name='logo-facebook' onPress={()=> Linking.openURL("https://web.facebook.com/cleberjesus31")} />
-                        </Button>
-                        <Button transparent>
-                            <Icon name='more' />
-                        </Button>
-                    </Right>
-                </Header>
                 <ScrollView>
                     <View style={styles.contentContainer}>
 
+                            <Text style={styles.Tittle}>Trabalho e rendimento segundo o IBGE</Text>
 
-                        <Text style={styles.Tittle}>Trabalho e rendimento segundo o IBGE</Text>
-                        <View style={styles.boxContainer}>
+                        <FlatList
+                            data={data}
+                            keyExtractor={item => item.key}
+                            renderItem={({ item }) => {
+                                return (
+                                    <>
+                                        <Card>
+                                            <Text style={{ fontSize: 15, }}> {item.text} </Text>
+                                        </Card>
 
-                            <Text>Apenas 17,2% da população trabalha com carteira assinada</Text>
-                            <Text>O salário médio mensal desses trabalhadores é de 2.1 salários mínimos</Text>
-                            <Text>41,7% da população recebe até meio salário mínimo </Text>
+                                    </>
+                                );
+                            }}
 
-
-                        </View>
+                        />
 
                         <Text style={styles.ibge}>Fonte: Instituto Brasileiro de Geografia e Estatística - IBGE</Text>
-
-
                     </View>
                 </ScrollView>
             </Container>
@@ -65,6 +68,14 @@ const styles = StyleSheet.create({
         padding: 15,
 
     },
+
+    headerTitle: {
+        fontSize: 20,
+        fontWeight: "500",
+        color: "#fff",
+        fontWeight: "bold",
+    },
+
 
     boxContainer: {
         alignContent: 'center',
@@ -95,10 +106,10 @@ const styles = StyleSheet.create({
     },
 
     Tittle: {
-        fontSize: 15,
+        fontSize: 20,
+        marginBottom:15,
         fontWeight: 'bold',
         alignSelf: 'center',
-        marginBottom: 10,
     },
 
     ibge: {
