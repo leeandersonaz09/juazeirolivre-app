@@ -10,10 +10,11 @@ console.disableYellowBox = true;
 const Transparencia = () => {
 
     return (
-        <Container>
-            <Header>
-                <Text style={styles.headerTitle}>Prefeitura</Text>
-            </Header>
+        <>
+        <Header>
+            <Text style={styles.headerTitle}>Prefeitura Transparente</Text>
+        </Header>
+
             <Tabs >
                 <Tab heading="Educação">
                     <Tab2 />
@@ -25,7 +26,8 @@ const Transparencia = () => {
                     <Tab4 />
                 </Tab>
             </Tabs>
-        </Container>
+
+        </>
     )
 
 
