@@ -2,6 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import * as Font from 'expo-font';
 import { Ionicons } from "@expo/vector-icons";
 import 'react-native-gesture-handler';
 
@@ -100,7 +101,19 @@ const RootStackScreen = () => {
   
   const [isLoading, setIsLoading] = React.useState(true);
 
+  async function componentDidMount() {
+    await Font.loadAsync({
+      Roboto: require('native-base/Fonts/Roboto.ttf'),
+      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+      ...Ionicons.font,
+    });
+    
+  }
+
   React.useEffect(() => {
+
+    componentDidMount();
+
     setTimeout(() => {
       setIsLoading(!isLoading);
     }, 5000);
