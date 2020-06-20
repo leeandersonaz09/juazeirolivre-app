@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
+import Card from '../components/Card'
 
 const Tab3 = () => {
 
@@ -32,11 +33,11 @@ const Tab3 = () => {
 
             <ScrollView>
                 <View style={styles.contentContainer}>
+                    
+                    <Card>
 
-
-                    <Text style={styles.Tittle}>Orçamentos da Educação</Text>
-                    <View style={styles.boxContainer}>
-
+                        <Text style={styles.Tittle}>Orçamentos da Educação</Text>
+                    
                         <View style={styles.boxTextContainer}>
 
                             <Text style={styles.boxText1}>Ano</Text>
@@ -44,7 +45,7 @@ const Tab3 = () => {
 
                         </View>
 
-                    </View>
+                    </Card>
 
                     <FlatList
                         data={dataEducacao}
@@ -94,22 +95,18 @@ const styles = StyleSheet.create({
 
     boxTextContainer: {
         flexDirection: 'row',
+        justifyContent: 'space-between'
 
     },
 
     boxText1: {
-        paddingRight: 50,
-        paddingLeft: "15%",
-        backgroundColor: '#d8d8d8',
-        borderWidth: 1,
+
         fontWeight: 'bold'
 
     },
 
     boxText2: {
-        paddingRight: 50,
-        paddingLeft: 50,
-        borderWidth: 1
+
 
     },
 
