@@ -7,7 +7,7 @@ function Loading({ navigation }) {
   
   return (
 
-    <View style={{ flex: 1, justifyContent: 'space-around', alignItems: 'center',backgroundColor: '#3490dc' }}>
+    <View style={{ flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
       <StatusBar
         hidden={true}
         translucent={false}
