@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
+import Card from '../components/Card';
 
 const Tab2 = () => {
 
@@ -37,54 +38,76 @@ const Tab2 = () => {
 
             <ScrollView>
                 <View style={styles.contentContainer}>
+                    <Card>
 
-                    <Text style={styles.Tittle}>Educação Municipal em Números </Text>
 
-                    <Text>62 escolas na zona urbana.</Text>
-                    <Text>72 escolas na zona rural.</Text>
-                    <Text>34.437 alunos matriculados em 2018.</Text>
-                    <Text style={styles.ibge}>Fonte: Portal da Educação/Rede Municipal de Juazeiro.</Text>
-                    <Text>35.385 alunos matriculados no Ensino Fundamental em 2018.</Text>
-                    <Text>11.491 alunos matriculados no Ensino Médio em 2018.</Text>
-                    <Text>1.604 professores do Ensino Fundamental em 2018.</Text>
-                    <Text>796 professores do Ensino Médio em 2018.</Text>
-                    <Text style={styles.ibge}>Fonte: Instituto Brasileiro de Geografia e Estatística - IBGE</Text>
 
-                    <Text style={styles.Tittle}>Funcionários Contratados da Educação</Text>
+                        <Text style={styles.Tittle}>Educação Municipal em Números </Text>
 
-                    <View style={styles.boxContainer}>
-                    
-                        <View style={styles.boxTextContainer}>
+                        <Text>62 escolas na zona urbana.</Text>
+                        <Text>72 escolas na zona rural.</Text>
+                        <Text>34.437 alunos matriculados em 2018.</Text>
+                        <Text style={styles.ibge}>Fonte: Portal da Educação/Rede Municipal de Juazeiro.</Text>
+                        <Text>35.385 alunos matriculados no Ensino Fundamental em 2018.</Text>
+                        <Text>11.491 alunos matriculados no Ensino Médio em 2018.</Text>
+                        <Text>1.604 professores do Ensino Fundamental em 2018.</Text>
+                        <Text>796 professores do Ensino Médio em 2018.</Text>
+                        <Text style={styles.ibge}>Fonte: Instituto Brasileiro de Geografia e Estatística - IBGE</Text>
 
-                            <Text style={styles.boxText1}>Profissionais</Text>
-                            <Text style={styles.boxText2}>Quantidade</Text>
+                    </Card>
+                    <Card>
+                        <Text style={styles.Tittle}>Funcionários Contratados da Educação</Text>
+
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', flexBasis: 0, marginHorizontal: 10, marginVertical: 15, }}>
+
+                            <View style={{
+                                backgroundColor: '#3b49b6',
+                                borderWidth: 1,
+                                alignItems: 'center',
+                                paddingHorizontal: 50,
+                                padding: 5,
+                                borderTopLeftRadius: 25,
+                                borderBottomLeftRadius: 25,
+                            }}>
+                                <Text style={{ fontWeight: "bold" }}> Profissionais</Text>
+
+                            </View>
+
+                            <View style={{
+                                borderWidth: 1,
+                                alignItems: 'center',
+                                paddingHorizontal: 50,
+                                padding: 5,
+                                borderTopRightRadius: 25,
+                                borderBottomRightRadius: 25
+                            }}>
+
+                                <Text style={{ fontWeight: "bold" }}>Quantidade</Text>
+
+                            </View>
 
                         </View>
+                        <Card>
+                            <FlatList
+                                data={data}
+                                keyExtractor={item => item.key}
+                                renderItem={({ item }) => {
+                                    return (
+                                        <>
+                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                                <Text style={{ fontSize: 12, fontWeight: 'bold' }}> {item.profissionais} </Text>
+                                                <Text style={{ textAlign: 'left' }}>{item.quantidade}</Text>
+                                            </View>
 
-                    </View>
+                                        </>
+                                    );
+                                }}
 
-                    <FlatList
-                        data={data}
-                        keyExtractor={item => item.key}
-                        renderItem={({ item }) => {
-                            return (
-                                <>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderWidth: 1 }}>
-                                        <View>
-                                            <Text style={{ fontSize: 12, fontWeight: 'bold' }}> {item.profissionais} </Text>
-                                        </View>
-                                        <View style={{alignItems: 'center', alignContent:'center'}}>
-                                            <Text style={{ marginRight: '20%' }}>{item.quantidade}</Text>
-                                        </View>
+                            />
 
-                                    </View>
-
-                                </>
-                            );
-                        }}
-
-                    />
-                    <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia</Text>
+                        </Card>
+                        <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia</Text>
+                    </Card>
 
 
                 </View>
