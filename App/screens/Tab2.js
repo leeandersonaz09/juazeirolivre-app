@@ -64,7 +64,7 @@ const Tab2 = () => {
                                 backgroundColor: '#3b49b6',
                                 borderWidth: 1,
                                 alignItems: 'center',
-                                paddingHorizontal: 50,
+                                paddingHorizontal: 30,
                                 padding: 5,
                                 borderTopLeftRadius: 25,
                                 borderBottomLeftRadius: 25,
@@ -76,7 +76,7 @@ const Tab2 = () => {
                             <View style={{
                                 borderWidth: 1,
                                 alignItems: 'center',
-                                paddingHorizontal: 50,
+                                paddingHorizontal: 30,
                                 padding: 5,
                                 borderTopRightRadius: 25,
                                 borderBottomRightRadius: 25
