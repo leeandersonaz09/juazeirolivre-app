@@ -2,6 +2,19 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+const Tab = createMaterialBottomTabNavigator();
+
+function MyTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
+  );
+}
 import * as Font from 'expo-font';
 import { Ionicons } from "@expo/vector-icons";
 import 'react-native-gesture-handler';
@@ -16,7 +29,7 @@ import Downloads from '../screens/downloads';
 import Loading from "../screens/Loading";
 import { Tabs } from "native-base";
 
-const AppTabs = createBottomTabNavigator();
+const AppTabs = createMaterialBottomTabNavigator();
 const RootStack = createStackNavigator();
 const HomeStack = createStackNavigator();
 
@@ -37,16 +50,20 @@ const HomeStackScreen = () => (
 
 const AppTabsScreen = () => (
 
-  <AppTabs.Navigator>
+  <AppTabs.Navigator 
+  initialRouteName="home"
+  activeColor="#ffcc00"
+  inactiveColor="#fff"
+  barStyle={{ backgroundColor: '#3b49b6' }}>
 
     <AppTabs.Screen
       name="home"
       component={HomeStackScreen}
       options={{
         tabBarLabel: 'Início',
-        tabBarIcon: props => (
-          <Ionicons name="ios-home" size={props.size} color={props.color} />
-        )
+        tabBarIcon: ({ color }) => (
+          <MaterialCommunityIcons name="home" color={color} size={25} />
+        ),
       }}
     />
 
@@ -55,9 +72,9 @@ const AppTabsScreen = () => (
       component={Tab2}
       options={{
         tabBarLabel: 'Transparência',
-        tabBarIcon: props => (
-          <Ionicons name="ios-eye" size={props.size} color={props.color} />
-        )
+        tabBarIcon: ({ color }) => (
+          <MaterialCommunityIcons name="eye" color={color} size={25} />
+        ),
       }}
     />
 
@@ -65,15 +82,10 @@ const AppTabsScreen = () => (
       name="Tab3"
       component={Raiox}
       options={{
-        tabBarLabel: 'Raio-X da Cidade',
-        tabBarIcon: props => (
-
-          <Ionicons
-            name="ios-pulse"
-            size={props.size}
-            color={props.color}
-          />
-        )
+        tabBarLabel: 'Cidade',
+        tabBarIcon: ({ color }) => (
+          <MaterialCommunityIcons name="pulse" color={color} size={26} />
+        ),
       }}
     />
 
@@ -82,14 +94,9 @@ const AppTabsScreen = () => (
       component={Downloads}
       options={{
         tabBarLabel: 'Downloads',
-        tabBarIcon: props => (
-
-          <Ionicons
-            name="md-cloud-download"
-            size={props.size}
-            color={props.color}
-          />
-        )
+        tabBarIcon: ({ color }) => (
+          <MaterialCommunityIcons name="cloud-download" color={color} size={24} />
+        ),
       }}
     />
 
