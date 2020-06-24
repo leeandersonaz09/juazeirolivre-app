@@ -11,14 +11,14 @@ import "firebase/storage";
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-    apiKey: "AIzaSyBqQvrQALBMEvFsIySnMNCmavLXu3RA9WM",
-    authDomain: "descontofacilapp-ca0e7.firebaseapp.com",
-    databaseURL: "https://descontofacilapp-ca0e7.firebaseio.com",
-    projectId: "descontofacilapp-ca0e7",
-    storageBucket: "descontofacilapp-ca0e7.appspot.com",
-    messagingSenderId: "467956470595",
-    appId: "1:467956470595:web:3233efd5114cec398515f6",
-    measurementId: "G-W1L39P5NGW"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  apiKey: "AIzaSyDyGC_SBb3rKwr9aEFtjdbPFI5yOpCeODg",
+  authDomain: "juazeirolivre-3924b.firebaseapp.com",
+  databaseURL: "https://juazeirolivre-3924b.firebaseio.com",
+  projectId: "juazeirolivre-3924b",
+  storageBucket: "juazeirolivre-3924b.appspot.com",
+  messagingSenderId: "404100874604",
+  appId: "1:404100874604:web:8732efb0a73b528d2ef349",
+  measurementId: "G-3L0VYJF8QR"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);

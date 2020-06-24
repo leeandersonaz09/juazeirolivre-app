@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @react-navigation/material-bottom-tabs react-native-paper
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add firebase@7.9.0
 
 PATH: 
   C:\Python38\Scripts\;C:\Python38\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Users\Darllen\AppData\Local\Microsoft\WindowsApps;C:\Users\Darllen\AppData\Local\GitHubDesktop\bin;C:\Users\Darllen\AppData\Roaming\npm;C:\Users\Darllen\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Darllen\AppData\Local\Yarn\bin
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\react\juazeirolivre-app\node_modules\@babel\compat-data\node_modules\.bin'
+  Error: EPERM: operation not permitted, unlink 'C:\react\juazeirolivre-app\node_modules\@callstack\react-theme-provider\lib'
 
 npm manifest: 
   {
