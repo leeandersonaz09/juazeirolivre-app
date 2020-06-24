@@ -4,7 +4,9 @@ import {
     StyleSheet,
     Text,
     SafeAreaView,
-    ScrollView
+    ScrollView,
+    ImageBackground,
+
 } from 'react-native';
 import { Container, Content, Tab, Tabs, Body, Title, Icon, Right, Button } from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
@@ -24,11 +26,21 @@ const raiox = () => {
             <Header>
                 <Text style={styles.headerTitle}>Raio-X da Cidade</Text>
             </Header>
+            <ImageBackground 
+                source={require('../img/carteira_de_trabalho.jpeg')}
+                style={styles.backgrounImage}
+                imageStyle={{borderBottomRightRadius:65}}
+            >
+                <View style={styles.darkOverlay}></View>
+                <View style={styles.imageContainer}>
+                    <Text style={styles.UserGreat}>Trabalho e Rendimento</Text>
+                    <Text style={styles.userText}>Segundo o IBGE</Text>
+                </View>
+
+            </ImageBackground>
             <Container>
                 <ScrollView>
                     <View style={styles.contentContainer}>
-
-                            <Text style={styles.Tittle}>Trabalho e rendimento segundo o IBGE</Text>
 
                         <FlatList
                             data={data}
@@ -62,6 +74,35 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#ffff",
+    },
+    backgrounImage:{
+        width:'100%',
+        height:270,
+        
+    },
+    darkOverlay: {
+        position:'absolute',
+        top:0,
+        right: 0,
+        left:0,
+        height:270,
+        backgroundColor:'#000',
+        opacity:0.2,
+        borderBottomRightRadius:65
+    },
+    imageContainer:{
+        paddingTop:50,
+        paddingLeft:16
+    },
+    UserGreat:{
+        fontSize:38,
+        fontWeight:'bold',
+        color:'white',
+    },
+    userText: {
+        fontSize:16,
+        fontWeight:'normal',
+        color:'white',
     },
 
     contentContainer: {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, StatusBar } from 'react-native';
 import Lottie from 'lottie-react-native';
-import dataloading from '../loaders/24512-moving-mobile.json';
+import dataloading from '../loaders/preloader.json';
 
 function Loading({ navigation }) {
   
@@ -14,7 +14,7 @@ function Loading({ navigation }) {
         animated={true} 
         backgroundColor='#3490dc'
       />
-      <Lottie source={dataloading} style={{ width: 150, height: 150 }} autoPlay loop />
+      <Lottie source={dataloading} style={{ width: 250, height: 250 }} autoPlay loop />
     </View>
 
   );

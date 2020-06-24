@@ -6,7 +6,8 @@ import {
     SafeAreaView,
     ScrollView,
     Linking,
-    StatusBar
+    StatusBar,
+    ImageBackground,
 } from 'react-native';
 import { Container, Content, Tab, Tabs, Body, Title, Icon, Right, Button, Accordion, Card, CardItem } from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
@@ -28,12 +29,20 @@ const download = () => {
                     <Text style={styles.headerTitle}>Downloads</Text>
                 </Header>
                 <ScrollView>
+                <ImageBackground 
+                source={require('../img/Camara.jpg')}
+                style={styles.backgrounImage}
+                imageStyle={{borderBottomRightRadius:65}}
+            >
+                <View style={styles.darkOverlay}></View>
+                <View style={styles.imageContainer}>
+                    <Text style={styles.UserGreat}>Atas das sessões realizadas</Text>
+                    <Text style={styles.userText}>Câmara Municipal de Juazeiro-BA</Text>
+                </View>
 
+            </ImageBackground>
                     <Content padder>
-                        <Card2>
-                            <Text style={styles.Tittle}>Atas das sessões realizadas na Câmara Municipal de Juazeiro-BA</Text>
-                            <Text style={{ alignSelf: 'center', fontSize: 12, paddingBottom: 15 }}>Atas das sessões realizadas na Câmara Municipal de Juazeiro-BA</Text>
-                        </Card2>
+ 
                         <FlatList
                             data={dataArray}
                             keyExtractor={item => item.id}
@@ -75,6 +84,35 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#ffff",
+    },
+    backgrounImage:{
+        width:'100%',
+        height:270,
+        
+    },
+    darkOverlay: {
+        position:'absolute',
+        top:0,
+        right: 0,
+        left:0,
+        height:270,
+        backgroundColor:'#000',
+        opacity:0.2,
+        borderBottomRightRadius:65
+    },
+    imageContainer:{
+        paddingTop:50,
+        paddingLeft:16
+    },
+    UserGreat:{
+        fontSize:38,
+        fontWeight:'bold',
+        color:'white',
+    },
+    userText: {
+        fontSize:16,
+        fontWeight:'normal',
+        color:'white',
     },
     headerTitle: {
         fontSize: 20,

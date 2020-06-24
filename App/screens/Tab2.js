@@ -69,7 +69,7 @@ const Tab2 = () => {
                                 borderTopLeftRadius: 25,
                                 borderBottomLeftRadius: 25,
                             }}>
-                                <Text style={{ fontWeight: "bold" }}> Profissionais</Text>
+                                <Text style={{ fontWeight: "bold", color:'#fff' }}> Profissionais</Text>
 
                             </View>
 
