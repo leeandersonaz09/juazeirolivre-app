@@ -8,32 +8,64 @@ import {
     SafeAreaView,
     ScrollView,
     Share,
+    ActivityIndicator,
+    RefreshControl
 } from 'react-native';
 //import Card from '../components/Card'
-import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
+import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
 import Header from '../components/Header';
 import * as firebase from 'firebase';
 import { FlatList } from 'react-native-gesture-handler';
 
 const Home = () => {
-
+    let onEndReachedCalledDuringMomentum = false;
     const [data, setData] = useState([]);
     const [dataBackup, setdataBackup] = useState([]);
     const [clicked, setClicked] = useState(false);
     const [lines, setLines] = useState(3);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isMoreLoading, setIsMoreLoading] = useState(false);
+    const [lastDoc, setLastDoc] = useState(null);
+
+    const dataRef = firebase.firestore().collection('post');
+
+    useEffect(() => {
+
+        getFirebaseData();
+
+    }, []);
 
     //Get user info from firebase
     const getFirebaseData = async () => {
 
-        await firebase.firestore()
-            .collection('post')
+        setIsLoading(true);
+
+        const snapshot = await dataRef.orderBy('id').limit(3).get();
+
+        if (!snapshot.empty) {
+            letnewPost = [];
+
+            setLastDoc(snapshot.docs[snapshot.docs.length - 1]);
+
+            for (let i = 0; i < snapshot.docs.length; i++) {
+                newPost.push(snapshot.docs[i].data());
+            }
+
+            setData(newPost);
+        } else {
+            setLastDoc(null);
+        }
+
+        setIsLoading(false);
+
+        await dataRef
             .onSnapshot(querySnapshot => {
                 const list = [];
                 querySnapshot.forEach(doc => {
 
                     const { by, data, img, ref, text, tittle } = doc.data();
                     list.push({
-                        key: doc.id,
+                        id: doc.id,
                         by,
                         img,
                         data,
@@ -47,16 +79,55 @@ const Home = () => {
                 setData(list);
 
             });
+
+
+    }
+    const getMore = async () => {
+        if (lastDoc) {
+            setIsMoreLoading(true);
+
+            setTimeout(async () => {
+                let snapshot = await dataRef.orderBy('id').startAfter(lastDoc.data().id).limit(3).get();
+
+                if (!snapshot.empty) {
+                    let newPost = data;
+
+                    setLastDoc(snapshot.docs[snapshot.docs.length - 1]);
+
+                    for (let i = 0; i < snapshot.docs.length; i++) {
+                        newPost.push(snapshot.docs[i].data());
+                    }
+
+                    setData(newPost);
+                    if (snapshot.docs.length < 3) setLastDoc(null);
+                } else {
+                    setLastDoc(null);
+                }
+
+                setIsMoreLoading(false);
+            }, 1000);
+        }
+
+        onEndReachedCalledDuringMomentum = true;
     }
 
+    const onRefresh = () => {
+        setTimeout(() => {
+            getFirebaseData();
+        }, 1000);
+    }
 
+    const renderFooter = () => {
+        if (!isMoreLoading) return true;
 
-    useEffect(() => {
-
-        getFirebaseData();
-
-    });
-
+        return (
+            <ActivityIndicator
+                size='large'
+                color={'#D83E64'}
+                style={{ marginBottom: 10 }}
+            />
+        )
+    }
 
     function showMoreLine() {
 
@@ -89,8 +160,49 @@ const Home = () => {
         }
     };
 
+    const renderList = ({ by, data, img, ref, text, tittle }) => {
+        return (
+            <>
+                <TouchableOpacity onPress={() => showMoreLine()}>
+                    <Card style={{ flex: 0 }}>
+                        <CardItem>
+                            <Left>
+                                <Thumbnail source={require('../../assets/avatar.png')} />
+                                <Body>
+                                    <Text>{by}</Text>
+                                    <Text note>{data}</Text>
+                                </Body>
+                            </Left>
+                        </CardItem>
+
+                        <CardItem>
+                            <Body>
+                                <Text style={{ fontWeight: 'bold', marginBottom: 10 }}>{tittle}</Text>
+                                <Image source={{ uri: img }} style={{ height: 200, width: '100%', flex: 1 }} />
+                                <Text numberOfLines={lines} ellipsizeMode='tail' style={styles.Text}>{text}</Text>
+                                <Text style={{ fontStyle: 'italic', color: "#808080", textAlign: 'center', marginTop: 10 }}>
+                                    {ref}
+                                </Text>
+                            </Body>
+                        </CardItem>
+
+                        <CardItem>
+                            <Left>
+                                <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
+                                    <Icon name="md-share" />
+                                    <Text>Compartilhar</Text>
+                                </Button>
+                            </Left>
+                        </CardItem>
+                    </Card>
+                </TouchableOpacity>
+            </>
+        )
+    }
+
     return (
         <SafeAreaView style={styles.container}>
+
             <Header>
                 <Text style={styles.headerTitle}>Juazeiro Livre</Text>
             </Header>
@@ -102,54 +214,28 @@ const Home = () => {
                 <View style={styles.contentContainer}><Text style={styles.Tittle}>Postagens Recentes</Text>
                     <View style={styles.cardContainer}>
                         <Content>
+                            <FlatList
+                                data={data}
+                                keyExtractor={item => item.id.toString()}
+                                renderItem={({ item }) => renderList(item)}
+                                ListFooterComponent={renderFooter}
+                                refreshControl={
+                                    <RefreshControl
+                                        refreshing={isLoading}
+                                        onRefresh={onRefresh}
+                                    />
+                                }
+                                initialNumToRender={3}
+                                onEndReachedThreshold={0.1}
+                                onMomentumScrollBegin={() => { onEndReachedCalledDuringMomentum = false; }}
+                                onEndReached={() => {
+                                    if (!onEndReachedCalledDuringMomentum && !isMoreLoading) {
+                                        getMore();
+                                    }
+                                }
+                                }
 
-                            <TouchableOpacity onPress={() => showMoreLine()}>
-                                <FlatList
-                                    data={data}
-                                    keyExtractor={item => item.key}
-                                    renderItem={({ item }) => {
-                                        return (
-
-                                            <>
-                                                <Card style={{ flex: 0 }}>
-                                                    <CardItem>
-                                                        <Left>
-                                                            <Thumbnail source={require('../../assets/avatar.png')} />
-                                                            <Body>
-                                                                <Text>{item.by}</Text>
-                                                                <Text note>{item.data}</Text>
-                                                            </Body>
-                                                        </Left>
-                                                    </CardItem>
-
-                                                    <CardItem>
-                                                        <Body>
-                                                            <Text style={{ fontWeight:'bold', marginBottom:10 }}>{item.tittle}</Text>
-                                                            <Image source={{ uri: item.img }} style={{ height: 200, width: '100%', flex: 1 }} />
-                                                            <Text numberOfLines={lines} ellipsizeMode='tail' style={styles.Text}>{item.text}</Text>
-                                                            <Text style={{ fontStyle: 'italic', color: "#808080", textAlign: 'center', marginTop: 10 }}>
-                                                                {item.ref}
-                                                            </Text>
-                                                        </Body>
-                                                    </CardItem>
-
-                                                    <CardItem>
-                                                        <Left>
-                                                            <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
-                                                                <Icon name="md-share" />
-                                                                <Text>Compartilhar</Text>
-                                                            </Button>
-                                                        </Left>
-                                                    </CardItem>
-                                                </Card>
-
-                                            </>
-                                        );
-                                    }}
-
-                                />
-
-                            </TouchableOpacity>
+                            />
                         </Content>
                     </View>
                 </View>
@@ -167,7 +253,7 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: "#ffff",
+        backgroundColor: "#d8d8d8",
     },
     headerTitle: {
         fontSize: 20,
@@ -190,8 +276,8 @@ const styles = StyleSheet.create({
         shadowColor: '#333',
         shadowOpacity: 0.3,
         shadowRadius: 3,
-        elevation: 3,
         paddingTop: 40,
+        backgroundColor: '#fff'
 
 
     },
@@ -212,7 +298,8 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginBottom: 5,
         alignSelf: "center",
-        color: '#3b49b6'
+        color: '#3b49b6',
+        fontSize:20
     },
 
 
@@ -227,9 +314,7 @@ const styles = StyleSheet.create({
     Text: {
         marginTop: 5,
         textAlign: 'justify'
-    }
-
-
+    },
 
 
 })

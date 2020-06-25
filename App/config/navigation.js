@@ -4,8 +4,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import * as firebase from 'firebase';
-import Firebase from '../config/firebase';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -109,11 +107,6 @@ const AppTabsScreen = () => (
 const RootStackScreen = () => {
   
   const [isLoading, setIsLoading] = React.useState(true);
-
-  
-  if (!firebase.apps.length) {
-    firebase.initializeApp(Firebase);
-  }
   
   async function componentDidMount() {
     await Font.loadAsync({
@@ -130,7 +123,8 @@ const RootStackScreen = () => {
 
     setTimeout(() => {
       setIsLoading(!isLoading);
-    }, 4000);
+    }, 5000);
+
   }, []);
 
   return (
