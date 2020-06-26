@@ -18,7 +18,6 @@ function Loading({ navigation }) {
         hidden={true}
         translucent={false}
         animated={true} 
-        backgroundColor='#3490dc'
       />
       <Lottie source={dataloading} style={{ width: 250, height: 250 }} autoPlay loop />
     </View>

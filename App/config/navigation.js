@@ -26,6 +26,7 @@ import Tab3 from "../screens/Tab3";
 import Tab4 from "../screens/Tab4";
 import Raiox from '../screens/raiox';
 import Downloads from '../screens/downloads';
+import DetailsScreen from '../screens/DetailsScreen';
 import Loading from "../screens/Loading";
 import { Tabs } from "native-base";
 
@@ -41,6 +42,10 @@ const HomeStackScreen = () => (
     <HomeStack.Screen
       name="Home"
       component={HomeScreen}
+    />
+    <HomeStack.Screen
+      name="ProductDetails"
+      component={DetailsScreen}
     />
     
   </HomeStack.Navigator>

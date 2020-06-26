@@ -17,13 +17,7 @@ import Header from '../components/Header';
 import * as firebase from 'firebase';
 import { FlatList } from 'react-native-gesture-handler';
 
-import LoadingComponent from '../components/defaultLoading/lottieLoading';
-import Loading1 from '../loaders/13255-loader.json';
-import Loading2 from '../loaders/24512-moving-mobile.json';
-import Loading3 from '../loaders/preloader.json';
-import Loading4 from '../loaders/text-loading.json';
-
-const Home = ({navigation}) => {
+const Home = () => {
 
     const dataRef = firebase.firestore().collection('post');
     let onEndReachedCalledDuringMomentum = false;
@@ -33,41 +27,41 @@ const Home = ({navigation}) => {
     const [lines, setLines] = useState(3);
     const [loading, setLoading] = useState(true); // Set loading to true on component mount
 
-
+    
 
     useEffect(() => {
 
-        const subscriber = dataRef.orderBy('data', 'desc').limit(10)
-            .onSnapshot(querySnapshot => {
-                const list = [];
-                querySnapshot.forEach(doc => {
+        const subscriber = dataRef.orderBy('id').startAfter(lastDoc.data().id).limit(10).get()
+        .onSnapshot(querySnapshot => {
+            const list = [];
+            querySnapshot.forEach(doc => {
 
-                    const { by, data, img, ref, text, tittle } = doc.data();
-                    list.push({
-                        id: doc.id,
-                        by,
-                        img,
-                        data,
-                        ref,
-                        text,
-                        tittle
-                    });
+                const { by, data, img, ref, text, tittle } = doc.data();
+                list.push({
+                    id: doc.id,
+                    by,
+                    img,
+                    data,
+                    ref,
+                    text,
+                    tittle
                 });
-
-                setdataBackup(list);
-                setData(list);
-                setLoading(false);
             });
 
+            setdataBackup(list);
+            setData(list);
+            setLoading(false);
+        });
 
-        // Unsubscribe from events when no longer in use
+       
+         // Unsubscribe from events when no longer in use
         return () => subscriber();
-
+        
 
     }, []);
 
     if (loading) {
-        return <LoadingComponent data={Loading4} />;
+        return <ActivityIndicator style={{alignContent: 'center', alignItems:'center'}} />;
     }
 
     function showMoreLine() {
@@ -101,53 +95,40 @@ const Home = ({navigation}) => {
         }
     };
 
-    const renderList = ({ by, data, img, ref, text, tittle, id }) => {
+    const renderList = ({ by, data, img, ref, text, tittle }) => {
         return (
-            <>       
-            <TouchableOpacity
-    
-                onPress={() => {
-                    navigation.push('ProductDetails', {
-                        id: id,
-                        tittle: tittle,
-                        ref: ref,
-                        img: img,
-                        text: text,
-                    })
-                }}>
-                <Card style={{ flex: 0 }}>
-                    <CardItem>
-                        <Left>
-                            <Thumbnail source={require('../../assets/avatar.png')} />
+            <>
+                    <Card style={{ flex: 0 }}>
+                        <CardItem>
+                            <Left>
+                                <Thumbnail source={require('../../assets/avatar.png')} />
+                                <Body>
+                                    <Text>{by}</Text>
+                                    <Text note>{data}</Text>
+                                </Body>
+                            </Left>
+                        </CardItem>
+
+                        <CardItem>
                             <Body>
-                                <Text>{by}</Text>
-                                <Text note>{data}</Text>
+                                <Text style={{ fontWeight: 'bold', marginBottom: 10 }}>{tittle}</Text>
+                                <Image source={{ uri: img }} style={{ height: 200, width: '100%', flex: 1 }} />
+                                <Text style={styles.Text}>{text}</Text>
+                                <Text style={{ fontStyle: 'italic', color: "#808080", textAlign: 'center', marginTop: 10 }}>
+                                    {ref}
+                                </Text>
                             </Body>
-                        </Left>
-                    </CardItem>
+                        </CardItem>
 
-                    <CardItem>
-                        <Body>
-                            <Text style={{ fontWeight: 'bold', marginBottom: 10 }}>{tittle}</Text>
-                            <Image source={{ uri: img }} style={{ height: 200, width: '100%', flex: 1 }} />
-                            <Text style={styles.Text}>{text}</Text>
-                            <Text style={{ fontStyle: 'italic', color: "#808080", textAlign: 'center', marginTop: 10 }}>
-                                {ref}
-                            </Text>
-                        </Body>
-                    </CardItem>
-
-                    <CardItem>
-                        <Left>
-                            <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
-                                <Icon name="md-share" />
-                                <Text>Compartilhar</Text>
-                            </Button>
-                        </Left>
-                    </CardItem>
-                </Card>
-            </TouchableOpacity>
-
+                        <CardItem>
+                            <Left>
+                                <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
+                                    <Icon name="md-share" />
+                                    <Text>Compartilhar</Text>
+                                </Button>
+                            </Left>
+                        </CardItem>
+                    </Card>
             </>
         )
     }
@@ -170,7 +151,23 @@ const Home = ({navigation}) => {
                                 data={data}
                                 keyExtractor={item => item.id.toString()}
                                 renderItem={({ item }) => renderList(item)}
-                                initialNumToRender={5}
+                                ListFooterComponent={renderFooter}
+                                refreshControl={
+                                    <RefreshControl
+                                        refreshing={isLoading}
+                                        onRefresh={onRefresh}
+                                    />
+                                }
+                                initialNumToRender={3}
+                                onEndReachedThreshold={0.1}
+                                onMomentumScrollBegin={() => { onEndReachedCalledDuringMomentum = false; }}
+                                onEndReached={() => {
+                                    if (!onEndReachedCalledDuringMomentum && !isMoreLoading) {
+                                        getMore();
+                                    }
+                                }
+                                }
+
                             />
                         </Content>
                     </View>
@@ -235,7 +232,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         alignSelf: "center",
         color: '#3b49b6',
-        fontSize: 20
+        fontSize:20
     },
 
 
