@@ -6,9 +6,8 @@ function lottieLoading({data, text, color, tcolor}) {
 
     return (
 
-        <View style={{ flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
+        <View style={{ flex: 1, alignItems: 'center' }}>
             <Lottie source={data} style={{ width: 350, height: 350 }} autoPlay loop />
-            <Text style={{ textAlign: 'center', color: '#ff5b77', fontSize: 12 }}>Aguarde, estamos carregando as informações para você!</Text>
         </View>
 
     );

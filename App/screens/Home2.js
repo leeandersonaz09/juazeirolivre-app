@@ -1,253 +1,344 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import {
-    View,
-    StyleSheet,
-    Image,
-    TouchableOpacity,
-    Alert,
-    SafeAreaView,
-    ScrollView,
-    Share,
-    ActivityIndicator,
-    RefreshControl
+  View,
+  StyleSheet,
+  Text,
+  StatusBar,
+  TextInput,
+  Image,
+  TouchableOpacity,
+  Alert,
+  SafeAreaView,
+  ScrollView
 } from 'react-native';
-//import Card from '../components/Card'
-import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
-import Header from '../components/Header';
+
+//PlusButton Image
+import addImage from '../../assets/plusCategory.png';
+
+//Firebase import 
 import * as firebase from 'firebase';
-import { FlatList } from 'react-native-gesture-handler';
 
-const Home = () => {
+//list product component
+import Product from '../Components/ProductList';
 
-    const dataRef = firebase.firestore().collection('post');
-    let onEndReachedCalledDuringMomentum = false;
-    const [data, setData] = useState([]);
-    const [dataBackup, setdataBackup] = useState([]);
-    const [clicked, setClicked] = useState(false);
-    const [lines, setLines] = useState(3);
-    const [loading, setLoading] = useState(true); // Set loading to true on component mount
+//Lottie Componet to Loading Select
+import LoadingComponent from '../Components/defaultLoading/lottieLoading';
 
-    
+//Lottie Fires 
+import deleteLoading from '../Components/loaders/check.json';
+import HomeLoading from '../Components/loaders/main-feed-page.json'
 
-    useEffect(() => {
+console.disableYellowBox = true;
 
-        const subscriber = dataRef.orderBy('id').startAfter(lastDoc.data().id).limit(10).get()
-        .onSnapshot(querySnapshot => {
-            const list = [];
-            querySnapshot.forEach(doc => {
+export default class Home extends Component {
 
-                const { by, data, img, ref, text, tittle } = doc.data();
-                list.push({
-                    id: doc.id,
-                    by,
-                    img,
-                    data,
-                    ref,
-                    text,
-                    tittle
-                });
-            });
+  constructor(props) {
+    super(props);
 
-            setdataBackup(list);
-            setData(list);
-            setLoading(false);
-        });
-
-       
-         // Unsubscribe from events when no longer in use
-        return () => subscriber();
-        
-
-    }, []);
-
-    if (loading) {
-        return <ActivityIndicator style={{alignContent: 'center', alignItems:'center'}} />;
-    }
-
-    function showMoreLine() {
-
-        if (clicked == false) {
-            setLines(100);
-            setClicked(true)
-        } else {
-            setLines(3);
-            setClicked(false);
-        }
-
-    }
-
-    const shareContent = async () => {
-        try {
-            const result = await Share.share({
-                message: `Por uma Juazeiro livre e transparente, compartilhe a causa, divulge com seus amigos e conhecidos, junte-se a luta e tenha acesso a uma prefeitura mais transparente, justa e acessível para todos! http://www.juazeirolivre.com/`,
-                title: "Por uma Juazeiro Livre e transparente",
-                url: "http://www.juazeirolivre.com/"
-            });
-
-            if (result.action === Share.sharedAction) {
-                alert("Compartilhado com sucesso")
-            } else if (result.action === Share.dismissedAction) {
-                // dismissed
-                alert("Cancelado ou erro!")
-            }
-        } catch (error) {
-            alert(error.message);
-        }
+    this.state = {
+      query: null,
+      loading: false,
+      data: [],
+      whatoading: 1,
+      barIcon: 'https://img.icons8.com/ios/100/000000/search--v1.png'
     };
 
-    const renderList = ({ by, data, img, ref, text, tittle }) => {
-        return (
-            <>
-                    <Card style={{ flex: 0 }}>
-                        <CardItem>
-                            <Left>
-                                <Thumbnail source={require('../../assets/avatar.png')} />
-                                <Body>
-                                    <Text>{by}</Text>
-                                    <Text note>{data}</Text>
-                                </Body>
-                            </Left>
-                        </CardItem>
+    this.dataBackup = [];
+  }
 
-                        <CardItem>
-                            <Body>
-                                <Text style={{ fontWeight: 'bold', marginBottom: 10 }}>{tittle}</Text>
-                                <Image source={{ uri: img }} style={{ height: 200, width: '100%', flex: 1 }} />
-                                <Text style={styles.Text}>{text}</Text>
-                                <Text style={{ fontStyle: 'italic', color: "#808080", textAlign: 'center', marginTop: 10 }}>
-                                    {ref}
-                                </Text>
-                            </Body>
-                        </CardItem>
+  //add item to wallet 
+  handledeleteItembyId = async (id) => {
 
-                        <CardItem>
-                            <Left>
-                                <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
-                                    <Icon name="md-share" />
-                                    <Text>Compartilhar</Text>
-                                </Button>
-                            </Left>
-                        </CardItem>
-                    </Card>
-            </>
-        )
-    }
+    this.setState({ whatoading: 2 });
+    this.setState({ loading: true });
 
-    return (
-        <SafeAreaView style={styles.container}>
+    await firebase.firestore()
+      .collection("products")
+      .doc(id)
+      .delete().then(() => {
+        setTimeout(() => {
+          this.setState({ loading: false });
+        },
+          300);
+        console.log("Document successfully deleted!");
+      }).catch(function (error) {
+        console.error("Error removing document: ", error);
+      });
+  }
 
-            <Header>
-                <Text style={styles.headerTitle}>Juazeiro Livre</Text>
-            </Header>
-            <ScrollView>
-                <Image
-                    style={styles.headerImage}
-                    source={require('../../assets/home-img.png')}
-                />
-                <View style={styles.contentContainer}><Text style={styles.Tittle}>Postagens Recentes</Text>
-                    <View style={styles.cardContainer}>
-                        <Content>
-                            <FlatList
-                                data={data}
-                                keyExtractor={item => item.id.toString()}
-                                renderItem={({ item }) => renderList(item)}
-                                ListFooterComponent={renderFooter}
-                                refreshControl={
-                                    <RefreshControl
-                                        refreshing={isLoading}
-                                        onRefresh={onRefresh}
-                                    />
-                                }
-                                initialNumToRender={3}
-                                onEndReachedThreshold={0.1}
-                                onMomentumScrollBegin={() => { onEndReachedCalledDuringMomentum = false; }}
-                                onEndReached={() => {
-                                    if (!onEndReachedCalledDuringMomentum && !isMoreLoading) {
-                                        getMore();
-                                    }
-                                }
-                                }
-
-                            />
-                        </Content>
-                    </View>
-                </View>
-            </ScrollView>
-
-        </SafeAreaView>
+  //Alert to confirm add item to wallet
+  addItemWalletById(id) {
+    Alert.alert(
+      'Deseja excuir o cupom?',
+      'Esta ação não pode ser desfeita!',
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        { text: 'Confirmar', onPress: () => this.handledeleteItembyId(id) },
+      ],
+      { cancelable: false }
     )
 
+  }
 
+  //Get user info from firebase
+  getFirebaseData = async () => {
+
+    await firebase.firestore()
+      .collection('products')
+      .onSnapshot(querySnapshot => {
+        const list = [];
+        querySnapshot.forEach(doc => {
+          const { descricao, img, produto, valor } = doc.data();
+          list.push({
+            id: doc.id,
+            descricao,
+            img,
+            produto,
+            valor
+          });
+
+        });
+        this.dataBackup = list;
+
+        this.setState({
+          data: list,
+        })
+
+        if (this.loading) {
+          this.setState({
+            loading: false
+          })
+        }
+      });
+  }
+
+  //Mount component 
+  componentDidMount() {
+    console.log(firebase.auth().currentUser.photoURL)
+    var Unmount;
+
+    Unmount = this.getFirebaseData().then(() => {
+      this.setState({ whatoading: 1 });
+      this.setState({ loading: true });
+      setTimeout(() => {
+        this.setState({ loading: false });
+      },
+        2000);
+    }
+    );
+
+    this.componentWillUnmount(Unmount)
+  }
+
+
+  componentWillUnmount(Unmount) {
+    Unmount;
+  }
+
+  //SearchBar working 
+  filterItem = event => {
+
+    //Armazena texto do input search
+    var text = event.nativeEvent.text;
+    if (text == '') {
+      this.setState({
+        barIcon: 'https://img.icons8.com/ios/100/000000/search--v1.png'
+      })
+    } else {
+      this.setState({
+        barIcon: 'https://img.icons8.com/ios/50/000000/left.png'
+      })
+    }
+
+    this.setState({
+      query: text,
+    });
+
+    const newData = this.dataBackup.filter(item => {
+      const itemData = `${item.produto.toUpperCase()} ${item.descricao.toUpperCase()} ${item.valor.toUpperCase()}`;
+      const textData = text.toUpperCase();
+
+      return itemData.indexOf(textData) > -1;
+    });
+
+    this.setState({
+      data: newData,
+    });
+
+  };
+
+  searchIconBack = () => {
+
+    if (this.state.barIcon == 'https://img.icons8.com/ios/50/000000/left.png') {
+      this.setState({
+        barIcon: 'https://img.icons8.com/ios/100/000000/search--v1.png',
+        query: null
+      })
+      this.getFirebaseData();
+    }
+
+  }
+
+  _loadingView() {
+    return <LoadingComponent data={HomeLoading} />
+  }
+
+
+  _renderItens() {
+
+    const { navigation } = this.props;
+
+    return (
+      <View style={styles.ProductContainer}>
+
+        {this.state.data.map(data =>
+          <TouchableOpacity
+            onLongPress={() => this.addItemWalletById(data.id)}
+            onPress={() => {
+              navigation.push('ProductDetails', {
+                itemId: data.id,
+                itemName: data.produto,
+                itemPrice: data.valor,
+                itemImg: data.img,
+                itemDescription: data.descricao,
+              })
+            }}>
+            <Product key={data.id} data={data} />
+          </TouchableOpacity>
+        )}
+      </View>
+    )
+  }
+
+  //Render 
+  render() {
+    const { navigation } = this.props;
+
+    return (
+      <SafeAreaView style={styles.container}>
+
+        <StatusBar barStyle="light-content" backgroundColor="#ff5b77" />
+
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Desconto Fácil App</Text>
+        </View>
+
+        <ScrollView>
+          <View style={styles.header}>
+            <View style={styles.SectionStyle}>
+              <TouchableOpacity onPress={() => this.searchIconBack()}>
+                <Image
+                  //We are showing the Image from online
+                  source={{ uri: this.state.barIcon }}
+                  //Image Style
+                  style={styles.ImageStyle}
+                />
+              </TouchableOpacity>
+              <TextInput
+                underlineColorAndroid="transparent"
+                placeholder="O que procura..."
+                placeholderTextColor="gray"
+                value={this.state.query}
+                onChange={this.filterItem.bind(this)}
+                style={styles.input}
+              />
+            </View>
+          </View>
+          {this.state.loading ? this._loadingView() : this._renderItens()
+
+          }
+
+        </ScrollView>
+
+        <TouchableOpacity style={styles.addButton} onPress={() => navigation.push('addProducts')}>
+          <View style={styles.ViewiButton}>
+            <Image style={styles.Image} source={addImage} />
+          </View>
+        </TouchableOpacity>
+
+      </SafeAreaView>
+    );
+  }
 }
 
-export default Home;
-
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f8f8fa",
+  },
+  ProductContainer: {
+    padding: 15,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  header: {
+    height: 60,
+    width: '100%',
+    backgroundColor: '#ff5b77',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: "500",
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  input: {
+    height: 40,
+    width: '90%',
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    padding: 5,
+    paddingLeft: 10,
+  },
+  SectionStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    height: 40,
+    borderRadius: 20,
+    margin: 10,
+  },
 
-    container: {
-        flex: 1,
-        backgroundColor: "#d8d8d8",
-    },
-    headerTitle: {
-        fontSize: 20,
-        fontWeight: "500",
-        color: "#fff",
-        fontWeight: "bold",
-    },
+  ImageStyle: {
+    padding: 10,
+    margin: 5,
+    height: 25,
+    width: 25,
+    resizeMode: 'stretch',
+    alignItems: 'center',
+  },
 
-    headerImage: {
-        width: "100%",
-        height: 200,
-        borderBottomRightRadius: 30,
-        borderBottomLeftRadius: 30
-    },
-
-    contentContainer: {
-        borderTopStartRadius: 40,
-        borderTopEndRadius: 40,
-        shadowOffset: { width: 1, height: 1 },
-        shadowColor: '#333',
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
-        paddingTop: 40,
-        backgroundColor: '#fff'
-
-
-    },
-    cardContainer: {
-        marginTop: 15,
-        marginHorizontal: 15,
-    },
-
-    avatarImage: {
-        width: 120,
-        height: 120,
-        borderWidth: 2,
-        borderColor: '#3490dc',
-        borderRadius: 150
-    },
-
-    Tittle: {
-        fontWeight: "bold",
-        marginBottom: 5,
-        alignSelf: "center",
-        color: '#3b49b6',
-        fontSize:20
-    },
+  Image: {
+    width: 20,
+    height: 23,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  addButton: {
+    position: 'absolute',
+    backgroundColor: '#ff5b77',
+    elevation: 4,
+    borderRadius: 100,
+    height: 57,
+    width: 58,
+    right: 15,
+    bottom: 30,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+});
 
 
-    subTittle: {
-        fontWeight: 'bold',
-        fontStyle: "italic",
-        textAlign: "justify",
-        marginTop: 10
-
-    },
-
-    Text: {
-        marginTop: 5,
-        textAlign: 'justify'
-    },
 
 
-})
+
+
+
+
+
+

@@ -21,7 +21,7 @@ import LoadingComponent from '../components/defaultLoading/lottieLoading';
 import Loading1 from '../loaders/13255-loader.json';
 import Loading2 from '../loaders/24512-moving-mobile.json';
 import Loading3 from '../loaders/preloader.json';
-import Loading4 from '../loaders/text-loading.json';
+import Loading from '../loaders/progress-bar.json';
 
 const Home = ({navigation}) => {
 
@@ -67,7 +67,7 @@ const Home = ({navigation}) => {
     }, []);
 
     if (loading) {
-        return <LoadingComponent data={Loading4} />;
+        return <LoadingComponent data={Loading} />;
     }
 
     function showMoreLine() {
@@ -103,7 +103,7 @@ const Home = ({navigation}) => {
 
     const renderList = ({ by, data, img, ref, text, tittle, id }) => {
         return (
-            <>       
+            <><ScrollView>       
             <TouchableOpacity
     
                 onPress={() => {
@@ -147,7 +147,7 @@ const Home = ({navigation}) => {
                     </CardItem>
                 </Card>
             </TouchableOpacity>
-
+            </ScrollView>
             </>
         )
     }
