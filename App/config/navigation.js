@@ -4,21 +4,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
-const Tab = createMaterialBottomTabNavigator();
-
-function MyTabs() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
-    </Tab.Navigator>
-  );
-}
 import * as Font from 'expo-font';
 import { Ionicons } from "@expo/vector-icons";
 import 'react-native-gesture-handler';
-
 //import de telas 
 import HomeScreen from "../screens/Home";
 import Tab2 from "../screens/Transparencia";
@@ -28,7 +16,6 @@ import Raiox from '../screens/raiox';
 import Downloads from '../screens/downloads';
 import DetailsScreen from '../screens/DetailsScreen';
 import Loading from "../screens/Loading";
-import { Tabs } from "native-base";
 
 const AppTabs = createMaterialBottomTabNavigator();
 const RootStack = createStackNavigator();

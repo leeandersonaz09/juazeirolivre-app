@@ -12,7 +12,7 @@ import {
     RefreshControl
 } from 'react-native';
 //import Card from '../components/Card'
-import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
+import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Container } from 'native-base';
 import Header from '../components/Header';
 import * as firebase from 'firebase';
 import { FlatList } from 'react-native-gesture-handler';
@@ -21,28 +21,25 @@ import LoadingComponent from '../components/defaultLoading/lottieLoading';
 import Loading1 from '../loaders/13255-loader.json';
 import Loading2 from '../loaders/24512-moving-mobile.json';
 import Loading3 from '../loaders/preloader.json';
-import Loading from '../loaders/progress-bar.json';
+import Loading from '../loaders/spinner.json';
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
 
     const dataRef = firebase.firestore().collection('post');
     let onEndReachedCalledDuringMomentum = false;
     const [data, setData] = useState([]);
     const [dataBackup, setdataBackup] = useState([]);
-    const [clicked, setClicked] = useState(false);
-    const [lines, setLines] = useState(3);
     const [loading, setLoading] = useState(true); // Set loading to true on component mount
 
 
+    const getPost = async () =>{
 
-    useEffect(() => {
-
-        const subscriber = dataRef.orderBy('data', 'desc').limit(10)
+        await dataRef.orderBy('data', 'desc').limit(10)
             .onSnapshot(querySnapshot => {
                 const list = [];
                 querySnapshot.forEach(doc => {
 
-                    const { by, data, img, ref, text, tittle } = doc.data();
+                    const { by, data, img, ref, text, tittle, avatar } = doc.data();
                     list.push({
                         id: doc.id,
                         by,
@@ -50,36 +47,36 @@ const Home = ({navigation}) => {
                         data,
                         ref,
                         text,
-                        tittle
+                        tittle,
+                        avatar
                     });
                 });
 
                 setdataBackup(list);
                 setData(list);
-                setLoading(false);
+                setLoading(false)
             });
+    }
 
-
+    useEffect(() => {
+       
+        setLoading(true);
+        const subscriber = getPost();
         // Unsubscribe from events when no longer in use
-        return () => subscriber();
+        return () => subscriber;
 
 
     }, []);
 
-    if (loading) {
-        return <LoadingComponent data={Loading} />;
+    //Old Load componet
+    /*
+    if (!loading) {
+         return <View style={styles.loading}><ActivityIndicator size='large' /></View>
     }
+    */
 
-    function showMoreLine() {
-
-        if (clicked == false) {
-            setLines(100);
-            setClicked(true)
-        } else {
-            setLines(3);
-            setClicked(false);
-        }
-
+    const LoadingAnimation=()=>{
+        return <LoadingComponent data={Loading} />;
     }
 
     const shareContent = async () => {
@@ -101,53 +98,55 @@ const Home = ({navigation}) => {
         }
     };
 
-    const renderList = ({ by, data, img, ref, text, tittle, id }) => {
+    const renderList = ({ by, data, img, ref, text, tittle, id, avatar }) => {
         return (
-            <><ScrollView>       
-            <TouchableOpacity
-    
-                onPress={() => {
-                    navigation.push('ProductDetails', {
-                        id: id,
-                        tittle: tittle,
-                        ref: ref,
-                        img: img,
-                        text: text,
-                    })
-                }}>
-                <Card style={{ flex: 0 }}>
-                    <CardItem>
-                        <Left>
-                            <Thumbnail source={require('../../assets/avatar.png')} />
+            <>
+                <TouchableOpacity
+
+                    onPress={() => {
+                        navigation.push('ProductDetails', {
+                            id: id,
+                            tittle: tittle,
+                            ref: ref,
+                            img: img,
+                            text: text,
+                            data: data,
+                            avatar: avatar
+                        })
+                    }}>
+                    <Card style={{ flex: 0 }}>
+                        <CardItem>
+                            <Left>
+                                <Thumbnail source={{uri:avatar}} />
+                                <Body>
+                                    <Text>{by}</Text>
+                                    <Text note>{data}</Text>
+                                </Body>
+                            </Left>
+                        </CardItem>
+
+                        <CardItem>
                             <Body>
-                                <Text>{by}</Text>
-                                <Text note>{data}</Text>
+                                <Text style={{ fontWeight: 'bold', marginBottom: 10 }}>{tittle}</Text>
+                                <Image source={{ uri: img }} style={{ height: 200, width: '100%', flex: 1 }} />
+                                <Text style={styles.Text}>{text}</Text>
+                                <Text style={{ fontStyle: 'italic', color: "#808080", textAlign: 'center', marginTop: 10 }}>
+                                    {ref}
+                                </Text>
                             </Body>
-                        </Left>
-                    </CardItem>
+                        </CardItem>
 
-                    <CardItem>
-                        <Body>
-                            <Text style={{ fontWeight: 'bold', marginBottom: 10 }}>{tittle}</Text>
-                            <Image source={{ uri: img }} style={{ height: 200, width: '100%', flex: 1 }} />
-                            <Text style={styles.Text}>{text}</Text>
-                            <Text style={{ fontStyle: 'italic', color: "#808080", textAlign: 'center', marginTop: 10 }}>
-                                {ref}
-                            </Text>
-                        </Body>
-                    </CardItem>
+                        <CardItem>
+                            <Left>
+                                <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
+                                    <Icon name="md-share" />
+                                    <Text>Compartilhar</Text>
+                                </Button>
+                            </Left>
+                        </CardItem>
+                    </Card>
+                </TouchableOpacity>
 
-                    <CardItem>
-                        <Left>
-                            <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
-                                <Icon name="md-share" />
-                                <Text>Compartilhar</Text>
-                            </Button>
-                        </Left>
-                    </CardItem>
-                </Card>
-            </TouchableOpacity>
-            </ScrollView>
             </>
         )
     }
@@ -169,14 +168,12 @@ const Home = ({navigation}) => {
                             <FlatList
                                 data={data}
                                 keyExtractor={item => item.id.toString()}
-                                renderItem={({ item }) => renderList(item)}
-                                initialNumToRender={5}
+                                renderItem={({ item }) => loading ? LoadingAnimation() : renderList(item) }
                             />
                         </Content>
                     </View>
                 </View>
             </ScrollView>
-
         </SafeAreaView>
     )
 
@@ -197,7 +194,15 @@ const styles = StyleSheet.create({
         color: "#fff",
         fontWeight: "bold",
     },
-
+    loading: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     headerImage: {
         width: "100%",
         height: 200,

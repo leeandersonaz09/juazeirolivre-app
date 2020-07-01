@@ -1,18 +1,16 @@
 import React, { Component, useEffect, useState } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   TouchableOpacity,
   Image,
   Alert,
   ScrollView,
   FlatList,
-  Button,
   StatusBar
 } from 'react-native';
 import Header from '../components/Header';
-
+import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 function DetailsScreen({ route, navigation }) {
 
   /* 2. Get the param */
@@ -21,40 +19,58 @@ function DetailsScreen({ route, navigation }) {
   const { text } = route.params;
   const { ref } = route.params;
   const { img } = route.params;
+  const { avatar } = route.params;
+  const { by } = route.params;
+  const { data } = route.params;
 
   async function clickEventListener() {
 
   }
 
   return (
-    <View style={styles.container}>
-
-      <StatusBar barStyle="light-content" backgroundColor="#ff5b77" />
+    <Container style={styles.container}>
 
       <Header>
-                <Text style={styles.headerTitle}>Juazeiro Livre</Text>
-        </Header>
-
+        <Text style={styles.headerTitle}>Juazeiro Livre</Text>
+      </Header>
       <ScrollView>
-        
-        <View style={styles.productContainer}>
-          <Image resizeMode="contain" style={styles.productImg} source={{ uri: img }} />
-          <Text style={styles.name}>{(tittle)}</Text>
-          <Text style={styles.price}>{(ref)}</Text>
-          <Text style={styles.description}>{(text)}</Text>
-        </View>
+        <Content>
+          <Card>
+            <CardItem>
+              <Left>
+                <Thumbnail source={{ uri: avatar }} />
+                <Body>
+                  <Text>{by}</Text>
+                  <Text note>{data}</Text>
+                </Body>
+              </Left>
+            </CardItem>
+            <Text style={{ fontWeight: 'bold', marginBottom: 10, textAlign: 'center' }}>{tittle}</Text>
+            <CardItem cardBody>
+              <Image source={{ uri: img }} style={{ height: 200, width: null, flex: 1 }} />
+            </CardItem>
 
-        <View style={styles.separator}></View>
-        
-        <View style={styles.addToCarContainer}>
-          <TouchableOpacity style={styles.shareButton} onPress={clickEventListener}>
-            <Text style={styles.shareButtonText}>Sair</Text>
-          </TouchableOpacity>
-        </View>
+            <Body>
+              <Text style={styles.Text}>{text}</Text>
+              <Text style={{ fontStyle: 'italic', color: "#808080", textAlign: 'center', marginTop: 10 }}>
+                "{ref}"
+              </Text>
+              <CardItem>
+                <Left>
+                  <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
+                    <Icon name="md-share" />
+                    <Text>Compartilhar</Text>
+                  </Button>
+                </Left>
+              </CardItem>
+            </Body>
+
+          </Card>
+        </Content>
 
       </ScrollView>
 
-    </View>
+    </Container>
   );
 }
 
@@ -64,71 +80,23 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
   },
-  header: {
-    height: 60,
-    width: '100%',
-    backgroundColor: '#ff5b77',
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-  },
   headerTitle: {
     fontSize: 20,
     fontWeight: "500",
     color: "#fff",
     fontWeight: "bold",
   },
-  productContainer:{ 
-    alignItems: 'center', 
-    marginHorizontal: 30,
-    marginTop:20,
-    alignContent:'space-between'
+  Img: {
+    width: '100%',
+    height: 400
   },
-  productImg: {
-    width: 200,
-    height: 200,
-  },
-  name: {
-    fontSize: 28,
-    color: "#696969",
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop:5
-  },
-  price: {
-    marginTop: 10,
-    fontSize: 18,
-    color: "green",
-    fontWeight: 'bold'
-  },
-  description: {
-    textAlign: 'center',
-    marginTop: 10,
-    color: "#696969",
-  },
-  separator: {
-    height: 2,
-    backgroundColor: "#eeeeee",
-    marginTop: 20,
-    marginHorizontal: 30
-  },
-  shareButton: {
-    marginTop: 10,
-    height: 45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 30,
-    backgroundColor: "#ff5b77",
-    marginTop:100
-  },
-  shareButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-  },
-  addToCarContainer: {
-    marginHorizontal: 30
-  }
+  avatarImage: {
+    width: 120,
+    height: 120,
+    borderWidth: 2,
+    borderColor: '#3490dc',
+    borderRadius: 150
+},
 });
 
 export default DetailsScreen;

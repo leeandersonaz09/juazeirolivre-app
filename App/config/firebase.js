@@ -11,14 +11,14 @@ import "firebase/storage";
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-  apiKey: "AIzaSyDyGC_SBb3rKwr9aEFtjdbPFI5yOpCeODg",
-  authDomain: "juazeirolivre-3924b.firebaseapp.com",
-  databaseURL: "https://juazeirolivre-3924b.firebaseio.com",
-  projectId: "juazeirolivre-3924b",
-  storageBucket: "juazeirolivre-3924b.appspot.com",
-  messagingSenderId: "404100874604",
-  appId: "1:404100874604:web:8732efb0a73b528d2ef349",
-  measurementId: "G-3L0VYJF8QR"
+  apiKey: "AIzaSyC5v3m_YmeKBbm-18QJtml1mBQR5lx-hiY",
+  authDomain: "juazeirolivreapp.firebaseapp.com",
+  databaseURL: "https://juazeirolivreapp.firebaseio.com",
+  projectId: "juazeirolivreapp",
+  storageBucket: "juazeirolivreapp.appspot.com",
+  messagingSenderId: "96007020999",
+  appId: "1:96007020999:web:ea4b2ce923743cd4f9f9e2",
+  measurementId: "G-XMB4HW6972"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
