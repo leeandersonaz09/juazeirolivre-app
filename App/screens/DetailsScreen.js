@@ -8,6 +8,7 @@ import {
   ScrollView,
   FlatList,
   StatusBar,
+  Share,
   Dimensions
 } from 'react-native';
 const dimensions = Dimensions.get('window');
@@ -36,9 +37,9 @@ function DetailsScreen({ route, navigation }) {
   const shareContent = async () => {
     try {
         const result = await Share.share({
-            message: text + ` Acesse: http://www.juazeirolivre.com/`,
+            message: text + img,
             title: tittle,
-            url: "http://www.juazeirolivre.com/"
+            url: img
         });
 
         if (result.action === Share.sharedAction) {

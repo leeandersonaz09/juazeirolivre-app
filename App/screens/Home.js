@@ -29,9 +29,9 @@ const Home = ({ navigation }) => {
     const [loading, setLoading] = useState(true); // Set loading to true on component mount
 
 
-    const getPost = async () => {
-        setLoading(true);
-        await dataRef.orderBy('data', 'desc').limit(10)
+    useEffect(() => {
+        if (loading) LoadingAnimation();
+        const subscriber = dataRef.orderBy('data', 'desc').limit(10)
             .onSnapshot(querySnapshot => {
 
                 const list = [];
@@ -51,13 +51,8 @@ const Home = ({ navigation }) => {
 
                 setdataBackup(list);
                 setData(list);
-                setLoading(false)
+                setLoading(false);
             });
-    }
-
-    useEffect(() => {
-        if (loading) LoadingAnimation();
-        const subscriber = getPost();
         // Unsubscribe from events when no longer in use
         return ()=> subscriber;
 
