@@ -7,10 +7,16 @@ import {
   Alert,
   ScrollView,
   FlatList,
-  StatusBar
+  StatusBar,
+  Dimensions
 } from 'react-native';
-import Header from '../components/Header';
-import { Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
+const dimensions = Dimensions.get('window');
+const imageHeight = Math.round(dimensions.width * 9 / 16);
+const imageWidth = dimensions.width;
+//import Header from '../components/Header';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
+
+
 function DetailsScreen({ route, navigation }) {
 
   /* 2. Get the param */
@@ -23,49 +29,77 @@ function DetailsScreen({ route, navigation }) {
   const { by } = route.params;
   const { data } = route.params;
 
-  async function clickEventListener() {
-
+  const backHome=()=> {
+    navigation.navigate('Home');
   }
+
+  const shareContent = async () => {
+    try {
+        const result = await Share.share({
+            message: text + ` Acesse: http://www.juazeirolivre.com/`,
+            title: tittle,
+            url: "http://www.juazeirolivre.com/"
+        });
+
+        if (result.action === Share.sharedAction) {
+            alert("Compartilhado com sucesso")
+        } else if (result.action === Share.dismissedAction) {
+            // dismissed
+            alert("Cancelado ou erro!")
+        }
+    } catch (error) {
+        alert(error.message);
+    }
+};
 
   return (
     <Container style={styles.container}>
-
       <Header>
-        <Text style={styles.headerTitle}>Juazeiro Livre</Text>
+      <StatusBar barStyle="light-content" backgroundColor="#3f51b5" />
+      <Left>
+            <Button transparent onPress={backHome}>
+              <Icon name='arrow-back' />
+              <Text>Back</Text>
+            </Button>
+          </Left>
+          <Body>
+          <Text style={styles.headerTitle}>Juazeiro Livre</Text>
+          </Body>
+       
       </Header>
       <ScrollView>
         <Content>
-          <Card>
-            <CardItem>
-              <Left>
-                <Thumbnail source={{ uri: avatar }} />
-                <Body>
-                  <Text>{by}</Text>
-                  <Text note>{data}</Text>
-                </Body>
-              </Left>
-            </CardItem>
-            <Text style={{ fontWeight: 'bold', marginBottom: 10, textAlign: 'center' }}>{tittle}</Text>
-            <CardItem cardBody>
-              <Image source={{ uri: img }} style={{ height: 200, width: null, flex: 1 }} />
-            </CardItem>
 
-            <Body>
-              <Text style={styles.Text}>{text}</Text>
-              <Text style={{ fontStyle: 'italic', color: "#808080", textAlign: 'center', marginTop: 10 }}>
-                "{ref}"
+          <CardItem>
+            <Left>
+              <Thumbnail source={{ uri: avatar }} />
+              <Body>
+                <Text>{by}</Text>
+                <Text note>{data}</Text>
+              </Body>
+            </Left>
+          </CardItem>
+          <Text style={{ fontWeight: 'bold', marginBottom: 10, textAlign: 'center', fontSize: 20 }}>{tittle}</Text>
+          <CardItem cardBody>
+            <Image resizeMode={'cover'} source={{ uri: img }} style={styles.Img} />
+          </CardItem>
+
+          <Body>
+            <Text style={styles.Text}>{text}</Text>
+            <Text style={styles.Ref}>
+              "{ref}"
               </Text>
-              <CardItem>
-                <Left>
-                  <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
-                    <Icon name="md-share" />
-                    <Text>Compartilhar</Text>
-                  </Button>
-                </Left>
-              </CardItem>
-            </Body>
+            <CardItem>
+            <Left>
+              <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
+                <Icon name="md-share" />
+                <Text>Compartilhar</Text>
+              </Button>
+            </Left>
+            </CardItem>
+          </Body>
 
-          </Card>
+
         </Content>
 
       </ScrollView>
@@ -87,16 +121,33 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   Img: {
-    width: '100%',
-    height: 400
+    height: imageHeight, 
+    width: imageWidth
   },
   avatarImage: {
-    width: 120,
-    height: 120,
+    width: 150,
+    height: 150,
     borderWidth: 2,
     borderColor: '#3490dc',
     borderRadius: 150
-},
+  },
+  Text: {
+    textAlign: 'justify',
+    alignContent:'center',
+    marginTop:10,
+    marginBottom:15,
+    marginHorizontal:10,
+    fontSize: 18,
+
+  },
+  Ref: {
+    fontStyle: 'italic',
+    color: "#808080",
+    textAlign: 'center',
+    fontSize: 18,
+    marginHorizontal:10,
+    marginBottom: 10
+  }
 });
 
 export default DetailsScreen;

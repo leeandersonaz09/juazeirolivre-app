@@ -1,12 +1,14 @@
 import React from "react";
+import 'react-native-gesture-handler';
+//import navigators
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+//icons and fonts
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import * as Font from 'expo-font';
 import { Ionicons } from "@expo/vector-icons";
-import 'react-native-gesture-handler';
+import * as Font from 'expo-font';
 //import de telas 
 import HomeScreen from "../screens/Home";
 import Tab2 from "../screens/Transparencia";
@@ -16,15 +18,17 @@ import Raiox from '../screens/raiox';
 import Downloads from '../screens/downloads';
 import DetailsScreen from '../screens/DetailsScreen';
 import Loading from "../screens/Loading";
-
+//instancing navigators
 const AppTabs = createMaterialBottomTabNavigator();
 const RootStack = createStackNavigator();
 const HomeStack = createStackNavigator();
 
+//stack navigator Home
 const HomeStackScreen = () => (
   <HomeStack.Navigator
     screenOptions={{
-      headerShown: false
+      headerShown: false,
+      animationEnabled: false 
     }}>
     <HomeStack.Screen
       name="Home"
@@ -95,7 +99,7 @@ const AppTabsScreen = () => (
   </AppTabs.Navigator>
 );
 
-
+//Root Navigator
 const RootStackScreen = () => {
   
   const [isLoading, setIsLoading] = React.useState(true);
@@ -111,19 +115,21 @@ const RootStackScreen = () => {
 
   React.useEffect(() => {
 
-    componentDidMount();
+    const promisse = componentDidMount();
 
     setTimeout(() => {
       setIsLoading(!isLoading);
     }, 5000);
+
+    return promisse;
 
   }, []);
 
   return (
     <RootStack.Navigator
       headerMode="none"
-      screenOptions={{ animationEnabled: false }}
-
+      screenOptions={{ animationEnabled: true 
+      }}
     >
       {isLoading ? (
         <RootStack.Screen name="Loading" component={Loading} />

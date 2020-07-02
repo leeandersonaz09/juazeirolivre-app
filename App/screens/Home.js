@@ -18,9 +18,6 @@ import * as firebase from 'firebase';
 import { FlatList } from 'react-native-gesture-handler';
 
 import LoadingComponent from '../components/defaultLoading/lottieLoading';
-import Loading1 from '../loaders/13255-loader.json';
-import Loading2 from '../loaders/24512-moving-mobile.json';
-import Loading3 from '../loaders/preloader.json';
 import Loading from '../loaders/spinner.json';
 
 const Home = ({ navigation }) => {
@@ -32,13 +29,13 @@ const Home = ({ navigation }) => {
     const [loading, setLoading] = useState(true); // Set loading to true on component mount
 
 
-    const getPost = async () =>{
-
+    const getPost = async () => {
+        setLoading(true);
         await dataRef.orderBy('data', 'desc').limit(10)
             .onSnapshot(querySnapshot => {
+
                 const list = [];
                 querySnapshot.forEach(doc => {
-
                     const { by, data, img, ref, text, tittle, avatar } = doc.data();
                     list.push({
                         id: doc.id,
@@ -59,11 +56,10 @@ const Home = ({ navigation }) => {
     }
 
     useEffect(() => {
-       
-        setLoading(true);
+        if (loading) LoadingAnimation();
         const subscriber = getPost();
         // Unsubscribe from events when no longer in use
-        return () => subscriber;
+        return ()=> subscriber;
 
 
     }, []);
@@ -75,7 +71,7 @@ const Home = ({ navigation }) => {
     }
     */
 
-    const LoadingAnimation=()=>{
+    const LoadingAnimation = () => {
         return <LoadingComponent data={Loading} />;
     }
 
@@ -101,23 +97,22 @@ const Home = ({ navigation }) => {
     const renderList = ({ by, data, img, ref, text, tittle, id, avatar }) => {
         return (
             <>
-                <TouchableOpacity
-
-                    onPress={() => {
-                        navigation.push('ProductDetails', {
+                <TouchableOpacity onPress={() => {
+                        navigation.navigate('ProductDetails', {
                             id: id,
                             tittle: tittle,
                             ref: ref,
                             img: img,
                             text: text,
                             data: data,
-                            avatar: avatar
+                            avatar: avatar,
+                            by: by
                         })
                     }}>
                     <Card style={{ flex: 0 }}>
                         <CardItem>
                             <Left>
-                                <Thumbnail source={{uri:avatar}} />
+                                <Thumbnail source={{ uri: avatar }} />
                                 <Body>
                                     <Text>{by}</Text>
                                     <Text note>{data}</Text>
@@ -128,7 +123,7 @@ const Home = ({ navigation }) => {
                         <CardItem>
                             <Body>
                                 <Text style={{ fontWeight: 'bold', marginBottom: 10 }}>{tittle}</Text>
-                                <Image source={{ uri: img }} style={{ height: 200, width: '100%', flex: 1 }} />
+                                <Image resizeMode={'cover'} source={{ uri: img }} style={{ height: 200, width: '100%' }} />
                                 <Text style={styles.Text}>{text}</Text>
                                 <Text style={{ fontStyle: 'italic', color: "#808080", textAlign: 'center', marginTop: 10 }}>
                                     {ref}
@@ -157,23 +152,22 @@ const Home = ({ navigation }) => {
             <Header>
                 <Text style={styles.headerTitle}>Juazeiro Livre</Text>
             </Header>
-            <ScrollView>
+            <Content>
                 <Image
                     style={styles.headerImage}
                     source={require('../../assets/home-img.png')}
                 />
                 <View style={styles.contentContainer}><Text style={styles.Tittle}>Postagens Recentes</Text>
                     <View style={styles.cardContainer}>
-                        <Content>
-                            <FlatList
-                                data={data}
-                                keyExtractor={item => item.id.toString()}
-                                renderItem={({ item }) => loading ? LoadingAnimation() : renderList(item) }
-                            />
-                        </Content>
+
+                        <FlatList
+                            data={data}
+                            keyExtractor={item => item.id.toString()}
+                            renderItem={({ item }) => loading ? LoadingAnimation() : renderList(item)}
+                        />
                     </View>
                 </View>
-            </ScrollView>
+            </Content>
         </SafeAreaView>
     )
 
@@ -186,7 +180,7 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: "#d8d8d8",
+        backgroundColor: "#fff",
     },
     headerTitle: {
         fontSize: 20,
@@ -205,12 +199,12 @@ const styles = StyleSheet.create({
     },
     headerImage: {
         width: "100%",
-        height: 200,
-        borderBottomRightRadius: 30,
-        borderBottomLeftRadius: 30
+        height: 300,
     },
 
     contentContainer: {
+        position: 'relative',
+        left: 0, top: -50,
         borderTopStartRadius: 40,
         borderTopEndRadius: 40,
         shadowOffset: { width: 1, height: 1 },
