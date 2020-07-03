@@ -72,7 +72,7 @@ const Tab2 = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-
+            
             <ScrollView>
                 <View style={styles.contentContainer}>
                     <Card>
