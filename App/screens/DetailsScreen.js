@@ -43,7 +43,7 @@ function DetailsScreen({ route, navigation }) {
         });
 
         if (result.action === Share.sharedAction) {
-            alert("Compartilhado com sucesso")
+           
         } else if (result.action === Share.dismissedAction) {
             // dismissed
             alert("Cancelado ou erro!")

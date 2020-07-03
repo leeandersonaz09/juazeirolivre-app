@@ -14,13 +14,15 @@ import {
     Dimensions
 } from 'react-native';
 //import Card from '../components/Card'
-import { Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Container } from 'native-base';
+import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
+import { Content, CardItem, Thumbnail, Button, Text, Icon, Left, Right, Body, Container } from 'native-base';
 import Header from '../components/Header';
 import * as firebase from 'firebase';
 import { FlatList } from 'react-native-gesture-handler';
 const { height, width } = Dimensions.get('window')
 import LoadingComponent from '../components/defaultLoading/lottieLoading';
 import Loading from '../loaders/13255-loader.json';
+import { set } from 'react-native-reanimated';
 
 const Home = ({ navigation }) => {
 
@@ -32,6 +34,7 @@ const Home = ({ navigation }) => {
     const [dataBackup, setdataBackup] = useState([]);
     const [loading, setLoading] = useState(true);
     const [pageSize, setpageSize] = useState(5);
+    const [liked, setLiked] = useState(false);
 
     useEffect(() => {
 
@@ -56,7 +59,7 @@ const Home = ({ navigation }) => {
                 const list = [];
                 querySnapshot.forEach(doc => {
                     console.log(list)
-                    const { by, data, img, ref, text, tittle, avatar } = doc.data();
+                    const { by, data, img, ref, text, tittle, avatar,like } = doc.data();
                     list.push({
                         id: doc.id,
                         by,
@@ -65,7 +68,8 @@ const Home = ({ navigation }) => {
                         ref,
                         text,
                         tittle,
-                        avatar
+                        avatar,
+                        like
                     });
                 });
                 console.log('data obj' + list)
@@ -80,6 +84,22 @@ const Home = ({ navigation }) => {
 
     }
 
+    const giveLike =async(id, like)=>{
+    
+        liked ? setLiked(false) : setLiked(true);
+        var sum = liked ? like - 1 : like + 1;
+        
+        await firebase.firestore().collection('post').doc(id).update({
+            like: sum,
+        })
+        .then(ref => {
+            console.log(ref);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+
     const loadMore = () => {
         var items = pageSize + 5;
         setpageSize(items);
@@ -89,18 +109,17 @@ const Home = ({ navigation }) => {
         return <LoadingComponent data={Loading} />;
     }
     //SearchBar working 
-    const filterItem = (value) => {
-
-        //Armazena texto do input search
-        var text = value;
-
+    const filterItem = (event) => {
+        var text = event.nativeEvent.text
+        console.log(text);
+    
         if (text == '') {
             setbarIcon('https://img.icons8.com/ios/100/000000/search--v1.png');
         } else {
             setbarIcon('https://img.icons8.com/ios/50/000000/left.png');
         }
 
-        setQuery(text)
+        setQuery(text);
 
         const newData = dataBackup.filter(item => {
             const itemData = `${item.data.toUpperCase()} ${item.tittle.toUpperCase()} ${item.text.toUpperCase()}`;
@@ -110,6 +129,7 @@ const Home = ({ navigation }) => {
         });
 
         setData(newData);
+     
     };
 
     const searchIconBack = () => {
@@ -131,17 +151,17 @@ const Home = ({ navigation }) => {
             });
 
             if (result.action === Share.sharedAction) {
-                alert("Compartilhado com sucesso")
+                console.log('sucesso')
             } else if (result.action === Share.dismissedAction) {
                 // dismissed
-                alert("Cancelado ou erro!")
+                alert("Ocorreu um erro!")
             }
         } catch (error) {
             alert(error.message);
         }
     };
 
-    const renderList = ({ by, data, img, ref, text, tittle, id, avatar }) => {
+    const renderList = ({ by, data, img, ref, text, tittle, id, avatar, like }) => {
         return (
             <>
                 <TouchableOpacity activeOpacity={0.8} onPress={() => {
@@ -156,7 +176,7 @@ const Home = ({ navigation }) => {
                         by: by
                     })
                 }}>
-                    <Card style={{ flex: 0 }}>
+                    <Card style={{ borderWidth: 1, borderColor: "#d8d8d8", marginBottom: 10 }}>
                         <CardItem>
                             <Left>
                                 <Thumbnail source={{ uri: avatar }} />
@@ -166,28 +186,38 @@ const Home = ({ navigation }) => {
                                 </Body>
                             </Left>
                         </CardItem>
+                        <Card.Cover source={{ uri: img }} />
+                        <Card.Content>
 
-                        <CardItem>
+
+                            <Title>{tittle}</Title>
+
                             <Body>
-                                <Text style={{ fontWeight: 'bold', marginBottom: 10 }}>{tittle}</Text>
-                                <Image source={{ uri: img }} style={{ flex: 1, height: 300, width: '100%', resizeMode: 'contain' }} />
                                 <Text style={styles.Text}>{text}</Text>
                                 <Text style={{ fontStyle: 'italic', color: "#808080", textAlign: 'center', marginTop: 10 }}>
                                     {ref}
                                 </Text>
 
                             </Body>
-                        </CardItem>
 
+                        </Card.Content>
                         <CardItem>
                             <Left>
+                                <Button transparent  onPress={() => giveLike(id, like)}>
+                                    <Icon active name="thumbs-up" style={{fontSize: 28}}/>
+                                    <Text>{ like ? like : '0' }</Text>
+                                </Button>
+                            </Left>
+                            <Right>
                                 <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
                                     <Icon name="md-share" />
                                     <Text>Compartilhar</Text>
                                 </Button>
-                            </Left>
+                            </Right>
                         </CardItem>
+
                     </Card>
+
                 </TouchableOpacity>
 
             </>
@@ -216,9 +246,9 @@ const Home = ({ navigation }) => {
                             placeholder="O que procura..."
                             placeholderTextColor="gray"
                             value={query}
-                            onChange={(event) => {
-                                setQuery(event.value);
-                                filterItem(event.target.value);
+                            onChange={(value) => { 
+                                filterItem(value);
+                                //filterItem(event.target.value);
                             }}
                             style={styles.input}
                         />
@@ -271,16 +301,22 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center',
-      },
-      input: {
+        shadowOffset: {width:1, height:1},
+        shadowColor:'#333',
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+        elevation:1
+    },
+
+    input: {
         height: 40,
         width: '90%',
         backgroundColor: '#fff',
         borderRadius: 20,
         padding: 5,
         paddingLeft: 10,
-      },
-      SectionStyle: {
+    },
+    SectionStyle: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
@@ -288,16 +324,16 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 20,
         margin: 10,
-      },
-    
-      ImageStyle: {
+    },
+
+    ImageStyle: {
         padding: 10,
         margin: 5,
         height: 25,
         width: 25,
         resizeMode: 'stretch',
         alignItems: 'center',
-      },
+    },
 
     loading: {
         position: 'absolute',
@@ -317,8 +353,8 @@ const styles = StyleSheet.create({
     contentContainer: {
         position: 'relative',
         left: 0, top: -50,
-        borderTopStartRadius: 40,
-        borderTopEndRadius: 40,
+        borderTopStartRadius: 30,
+        borderTopEndRadius: 30,
         shadowOffset: { width: 1, height: 1 },
         shadowColor: '#333',
         shadowOpacity: 0.3,
@@ -330,7 +366,7 @@ const styles = StyleSheet.create({
     },
     cardContainer: {
         marginTop: 15,
-        marginHorizontal: 15,
+
     },
 
     avatarImage: {
