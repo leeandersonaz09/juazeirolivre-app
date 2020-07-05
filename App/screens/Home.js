@@ -58,7 +58,7 @@ const Home = ({ navigation }) => {
 
                 const list = [];
                 querySnapshot.forEach(doc => {
-                    console.log(list)
+                
                     const { by, data, img, ref, text, tittle, avatar,like } = doc.data();
                     list.push({
                         id: doc.id,

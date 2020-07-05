@@ -9,14 +9,21 @@ import {
   FlatList,
   StatusBar,
   Share,
+  Modal,
+  Animated,
   Dimensions
 } from 'react-native';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
+import { PinchGestureHandler, State } from 'react-native-gesture-handler';
+import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
+//Dimensins get
 const dimensions = Dimensions.get('window');
 const imageHeight = Math.round(dimensions.width * 9 / 16);
 const imageWidth = dimensions.width;
+const { width } = Dimensions.get('window');
 //import Header from '../components/Header';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 
+const scale = new Animated.Value(1);
 
 function DetailsScreen({ route, navigation }) {
 
@@ -29,81 +36,137 @@ function DetailsScreen({ route, navigation }) {
   const { avatar } = route.params;
   const { by } = route.params;
   const { data } = route.params;
+  const [dialog, setDialog] = useState(null)
 
-  const backHome=()=> {
+  const onZoomEvent = Animated.event(
+    [
+      {
+        nativeEvent: { scale: scale }
+      }
+    ],
+    {
+      useNativeDriver: true
+    }
+  )
+
+  const logOutZoomState = (event, gestureState, zoomableViewEventObject) => {
+    console.log(`Zoomed from ${zoomableViewEventObject.lastZoomLevel} to  ${zoomableViewEventObject.zoomLevel}`);
+  };
+
+  const onZoomStateChange = event => {
+    if (event.nativeEvent.oldState === State.ACTIVE) {
+      Animated.spring(scale, {
+        toValue: 1,
+        useNativeDriver: true
+      }).start()
+    }
+  }
+
+  const backHome = () => {
     navigation.navigate('Home');
   }
 
   const shareContent = async () => {
     try {
-        const result = await Share.share({
-            message: text + img,
-            title: tittle,
-            url: img
-        });
+      const result = await Share.share({
+        message: text + img,
+        title: tittle,
+        url: img
+      });
 
-        if (result.action === Share.sharedAction) {
-           
-        } else if (result.action === Share.dismissedAction) {
-            // dismissed
-            alert("Cancelado ou erro!")
-        }
+      if (result.action === Share.sharedAction) {
+
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+        alert("Cancelado ou erro!")
+      }
     } catch (error) {
-        alert(error.message);
+      alert(error.message);
     }
-};
+  };
 
   return (
     <Container style={styles.container}>
       <Header>
-      <StatusBar barStyle="light-content" backgroundColor="#3f51b5" />
-      <Left>
-            <Button transparent onPress={backHome}>
-              <Icon name='arrow-back' />
-              <Text>Back</Text>
-            </Button>
-          </Left>
-          <Body>
+        <StatusBar barStyle="light-content" backgroundColor="#3f51b5" />
+        <Left>
+          <Button transparent onPress={backHome}>
+            <Icon name='arrow-back' />
+            <Text>Back</Text>
+          </Button>
+        </Left>
+        <Body>
           <Text style={styles.headerTitle}>Juazeiro Livre</Text>
-          </Body>
-       
+        </Body>
+
       </Header>
-      <ScrollView>
-        <Content>
 
-          <CardItem>
-            <Left>
-              <Thumbnail source={{ uri: avatar }} />
-              <Body>
-                <Text>{by}</Text>
-                <Text note>{data}</Text>
-              </Body>
-            </Left>
-          </CardItem>
-          <Text style={{ fontWeight: 'bold', marginBottom: 10, textAlign: 'center', fontSize: 20 }}>{tittle}</Text>
+      <Content>
+
+        <CardItem>
+          <Left>
+            <Thumbnail source={{ uri: avatar }} />
+            <Body>
+              <Text>{by}</Text>
+              <Text note>{data}</Text>
+            </Body>
+          </Left>
+        </CardItem>
+        <Text style={{ fontWeight: 'bold', marginBottom: 10, textAlign: 'center', fontSize: 20 }}>{tittle}</Text>
+        <View style={styles.zoomWrapper}>
           <CardItem cardBody>
-            <Image resizeMode={'cover'} source={{ uri: img }} style={styles.Img} />
+            <ReactNativeZoomableView
+              maxZoom={1.5}
+              minZoom={0.5}
+              zoomStep={0.5}
+              initialZoom={1}
+              bindToBorders={true}
+              onZoomAfter={logOutZoomState}
+              style={styles.zoomableView}
+            >
+              <PinchGestureHandler
+                onGestureEvent={onZoomEvent}
+                onHandlerStateChange={onZoomStateChange}>
+                <Animated.Image resizeMode="contain" source={{ uri: img }} style={styles.Img} />
+              </PinchGestureHandler>
+            </ReactNativeZoomableView>
           </CardItem>
-
-          <Body>
-            <Text style={styles.Text}>{text}</Text>
-            <Text style={styles.Ref}>
-              "{ref}"
+        </View>
+        <Body>
+          <Text style={styles.Text}>{text}</Text>
+          <Text style={styles.Ref}>
+            "{ref}"
               </Text>
-            <CardItem>
+          <CardItem>
             <Left>
               <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
                 <Icon name="md-share" />
                 <Text>Compartilhar</Text>
               </Button>
             </Left>
-            </CardItem>
-          </Body>
+          </CardItem>
+        </Body>
 
 
-        </Content>
+      </Content>
 
-      </ScrollView>
+
+      <Modal visible={dialog !== null} animated>
+        <View style={styles.modalContainer}>
+       
+
+        <Image resizeMode="contain" source={dialog!== null ? { uri: img }: null} style={styles.Img} />
+
+   
+          <Left>
+            <Button transparent onPress={() => setDialog(null)}>
+              <Icon name='arrow-back' />
+              <Text>Back</Text>
+            </Button>
+          </Left>
+
+        </View>
+      </Modal>
 
     </Container>
   );
@@ -122,8 +185,19 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   Img: {
-    height: imageHeight, 
-    width: imageWidth
+    flex: 1,
+    width: width,
+    height: 200,
+    transform: [{ scale: scale }],
+
+  },
+  zoomWrapper: {
+    flex: 1,
+    overflow: 'hidden',
+  },
+  zoomableView: {
+    padding: 10,
+    backgroundColor: '#fff',
   },
   avatarImage: {
     width: 150,
@@ -134,10 +208,10 @@ const styles = StyleSheet.create({
   },
   Text: {
     textAlign: 'justify',
-    alignContent:'center',
-    marginTop:10,
-    marginBottom:15,
-    marginHorizontal:10,
+    alignContent: 'center',
+    marginTop: 10,
+    marginBottom: 15,
+    marginHorizontal: 10,
     fontSize: 18,
 
   },
@@ -146,7 +220,7 @@ const styles = StyleSheet.create({
     color: "#808080",
     textAlign: 'center',
     fontSize: 18,
-    marginHorizontal:10,
+    marginHorizontal: 10,
     marginBottom: 10
   }
 });

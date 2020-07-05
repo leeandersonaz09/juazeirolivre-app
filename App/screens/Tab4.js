@@ -31,7 +31,7 @@ const Tab4 = () => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
-            <ImageBackground
+                <ImageBackground
                     source={require('../img/stethoscope-dollar-banknotes_1150-18243.jpg')}
                     style={styles.backgrounImage}
                     imageStyle={{ borderBottomRightRadius: 65 }}
@@ -47,8 +47,8 @@ const Tab4 = () => {
 
 
                     <Card>
-            
-                        <Text style={{textAlign:'justify'}}>Em 10 anos, o município de Juazeiro-BA, gastou em saúde o valor de R$ 1.261.621.796,97.</Text>
+
+                        <Text style={{ textAlign: 'justify' }}>Em 10 anos, o município de Juazeiro-BA, gastou em saúde o valor de R$ 1.261.621.796,97.</Text>
                         <Text>Entre o ano de 2009 e 2019, o governo federal repassou ao município de Juazeiro-BA, o valor de R$ 888.426.003,66, apenas para a área da saúde.</Text>
                         <Text>Orçamentos de recursos próprios gastos na área da saúde nos últimos 10 anos:</Text>
                         <Text style={styles.ibge}>Fonte: Portal da Educação/Rede Municipal de Juazeiro.</Text>
@@ -71,7 +71,7 @@ const Tab4 = () => {
                                 return (
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginLeft: 5 }}>
-                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color:'#f56' }}> {item.ano} </Text>
+                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color: '#f56' }}> {item.ano} </Text>
                                             <Text style={{ textAlign: 'left' }}>{item.valor}</Text>
                                         </View>
 
@@ -101,34 +101,34 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffff",
     },
 
-    backgrounImage:{
-        width:'100%',
-        height:240,
-        
+    backgrounImage: {
+        width: '100%',
+        height: 240,
+
     },
     darkOverlay: {
-        position:'absolute',
-        top:0,
+        position: 'absolute',
+        top: 0,
         right: 0,
-        left:0,
-        height:240,
-        backgroundColor:'#000',
-        opacity:0.2,
-        borderBottomRightRadius:65
+        left: 0,
+        height: 240,
+        backgroundColor: '#000',
+        opacity: 0.2,
+        borderBottomRightRadius: 65
     },
-    imageContainer:{
-        paddingTop:50,
-        paddingLeft:16
+    imageContainer: {
+        paddingTop: 50,
+        paddingLeft: 16
     },
-    UserGreat:{
-        fontSize:38,
-        fontWeight:'bold',
-        color:'white',
+    UserGreat: {
+        fontSize: 38,
+        fontWeight: 'bold',
+        color: 'white',
     },
     userText: {
-        fontSize:16,
-        fontWeight:'normal',
-        color:'white',
+        fontSize: 16,
+        fontWeight: 'normal',
+        color: 'white',
     },
 
     contentContainer: {
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     boxTextContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between'
-            
+
 
     },
 
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     },
 
     boxText2: {
- 
+
 
     },
 
