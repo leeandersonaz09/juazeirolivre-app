@@ -4,7 +4,8 @@ import {
     StyleSheet,
     Text,
     SafeAreaView,
-    ScrollView
+    ScrollView,
+    ImageBackground
 } from 'react-native';
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
@@ -32,11 +33,21 @@ const Tab3 = () => {
 
 
             <ScrollView>
+                <ImageBackground
+                    source={require('../img/money-1632055_960_720.webp')}
+                    style={styles.backgrounImage}
+                    imageStyle={{ borderBottomRightRadius: 65 }}
+                >
+                    <View style={styles.darkOverlay}></View>
+                    <View style={styles.imageContainer}>
+                        <Text style={styles.UserGreat}>Orçamentos da Educação</Text>
+                        <Text style={styles.userText}>Segundo o Tribunal de Contas da Bahia</Text>
+                    </View>
+
+                </ImageBackground>
                 <View style={styles.contentContainer}>
 
                     <Card>
-
-                        <Text style={styles.Tittle}>Orçamentos da Educação</Text>
 
                         <View style={styles.boxTextContainer}>
 
@@ -54,7 +65,7 @@ const Tab3 = () => {
                                 return (
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
-                                            <Text style={{ fontSize: 12, fontWeight: 'bold' }}> {item.ano} </Text>
+                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color:'#f56' }}> {item.ano} </Text>
                                             <Text style={{ textAlign: 'left' }}>{item.valor}</Text>
                                         </View>
 
@@ -80,11 +91,42 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: "#ffff",
+        backgroundColor: "#fff",
+    },
+
+    backgrounImage:{
+        width:'100%',
+        height:240,
+        
+    },
+    darkOverlay: {
+        position:'absolute',
+        top:0,
+        right: 0,
+        left:0,
+        height:240,
+        backgroundColor:'#000',
+        opacity:0.2,
+        borderBottomRightRadius:65
+    },
+    imageContainer:{
+        paddingTop:50,
+        paddingLeft:16
+    },
+    UserGreat:{
+        fontSize:38,
+        fontWeight:'bold',
+        color:'white',
+    },
+    userText: {
+        fontSize:16,
+        fontWeight:'normal',
+        color:'white',
     },
 
     contentContainer: {
         padding: 15,
+        elevation:1
 
     },
 

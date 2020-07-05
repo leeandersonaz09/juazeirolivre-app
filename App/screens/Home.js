@@ -32,7 +32,7 @@ const Home = ({ navigation }) => {
     const [query, setQuery] = useState(null);
     const [barIcon, setbarIcon] = useState('https://img.icons8.com/ios/100/000000/search--v1.png');
     const [dataBackup, setdataBackup] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [pageSize, setpageSize] = useState(5);
     const [liked, setLiked] = useState(false);
 

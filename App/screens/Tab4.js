@@ -4,6 +4,7 @@ import {
     StyleSheet,
     Text,
     SafeAreaView,
+    ImageBackground,
     ScrollView
 } from 'react-native';
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
@@ -30,12 +31,23 @@ const Tab4 = () => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
+            <ImageBackground
+                    source={require('../img/stethoscope-dollar-banknotes_1150-18243.jpg')}
+                    style={styles.backgrounImage}
+                    imageStyle={{ borderBottomRightRadius: 65 }}
+                >
+                    <View style={styles.darkOverlay}></View>
+                    <View style={styles.imageContainer}>
+                        <Text style={styles.UserGreat}>Orçamentos da Saúde</Text>
+                        <Text style={styles.userText}>Segundo o Tribunal de Contas da Bahia</Text>
+                    </View>
 
+                </ImageBackground>
                 <View style={styles.contentContainer}>
 
 
                     <Card>
-                        <Text style={styles.Tittle}>Orçamento da Saúde</Text>
+            
                         <Text style={{textAlign:'justify'}}>Em 10 anos, o município de Juazeiro-BA, gastou em saúde o valor de R$ 1.261.621.796,97.</Text>
                         <Text>Entre o ano de 2009 e 2019, o governo federal repassou ao município de Juazeiro-BA, o valor de R$ 888.426.003,66, apenas para a área da saúde.</Text>
                         <Text>Orçamentos de recursos próprios gastos na área da saúde nos últimos 10 anos:</Text>
@@ -59,7 +71,7 @@ const Tab4 = () => {
                                 return (
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginLeft: 5 }}>
-                                            <Text style={{ fontSize: 12, fontWeight: 'bold' }}> {item.ano} </Text>
+                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color:'#f56' }}> {item.ano} </Text>
                                             <Text style={{ textAlign: 'left' }}>{item.valor}</Text>
                                         </View>
 
@@ -87,6 +99,36 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#ffff",
+    },
+
+    backgrounImage:{
+        width:'100%',
+        height:240,
+        
+    },
+    darkOverlay: {
+        position:'absolute',
+        top:0,
+        right: 0,
+        left:0,
+        height:240,
+        backgroundColor:'#000',
+        opacity:0.2,
+        borderBottomRightRadius:65
+    },
+    imageContainer:{
+        paddingTop:50,
+        paddingLeft:16
+    },
+    UserGreat:{
+        fontSize:38,
+        fontWeight:'bold',
+        color:'white',
+    },
+    userText: {
+        fontSize:16,
+        fontWeight:'normal',
+        color:'white',
     },
 
     contentContainer: {
