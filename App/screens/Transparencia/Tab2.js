@@ -15,7 +15,7 @@ import {
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
 import { DataTable } from 'react-native-paper';
 import { FlatList } from 'react-native-gesture-handler';
-import Card from '../components/Card';
+import Card from '../../components/Card';
 
 const Tab2 = () => {
 
@@ -40,7 +40,7 @@ const Tab2 = () => {
             
             <ScrollView>
             <ImageBackground
-                    source={require('../img/digits-4014181_960_720.webp')}
+                    source={require('../../img/digits-4014181_960_720.webp')}
                     style={styles.backgrounImage}
                     imageStyle={{ borderBottomRightRadius: 65 }}
                 >

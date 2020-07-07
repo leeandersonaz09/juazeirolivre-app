@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
-import Card from '../components/Card';
+import Card from '../../components/Card';
 
 const Tab4 = () => {
 
@@ -32,7 +32,7 @@ const Tab4 = () => {
         <SafeAreaView style={styles.container}>
             <ScrollView>
                 <ImageBackground
-                    source={require('../img/stethoscope-dollar-banknotes_1150-18243.jpg')}
+                    source={require('../../img/stethoscope-dollar-banknotes_1150-18243.jpg')}
                     style={styles.backgrounImage}
                     imageStyle={{ borderBottomRightRadius: 65 }}
                 >

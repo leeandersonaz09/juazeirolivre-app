@@ -13,21 +13,23 @@ import {
     RefreshControl,
     Dimensions
 } from 'react-native';
-//import Card from '../components/Card'
-import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
-import { Content, CardItem, Thumbnail, Button, Text, Icon, Left, Right, Body, Container } from 'native-base';
-import Header from '../components/Header';
-import * as firebase from 'firebase';
 import { FlatList } from 'react-native-gesture-handler';
-const { height, width } = Dimensions.get('window')
-import LoadingComponent from '../components/defaultLoading/lottieLoading';
-import Loading from '../loaders/13255-loader.json';
-import { set } from 'react-native-reanimated';
+//import Card from '../components/Card'
+import { Card, Title } from 'react-native-paper';
+import { Content, CardItem, Thumbnail, Button, Text, Icon, Left, Right, Body, Container } from 'native-base';
+import Header from '../../components/Header';
+import * as firebase from 'firebase';
+import LoadingComponent from '../../components/defaultLoading/lottieLoading';
+import Loading from '../../loaders/13255-loader.json';
+const WIDTH = Dimensions.get('screen').width;
+import styles from './styles';
+import Shimmer from '../../components/Shimmer';
+
 
 const Home = ({ navigation }) => {
 
-    const dataRef = firebase.firestore().collection('post');
     let onEndReachedCalledDuringMomentum = false;
+    const dataRef = firebase.firestore().collection('post');
     const [data, setData] = useState([]);
     const [query, setQuery] = useState(null);
     const [barIcon, setbarIcon] = useState('https://img.icons8.com/ios/100/000000/search--v1.png');
@@ -45,12 +47,7 @@ const Home = ({ navigation }) => {
 
     }, []);
 
-    //Old Load componet
-    /*
-    if (!loading) {
-         return <View style={styles.loading}><ActivityIndicator size='large' /></View>
-    }
-    */
+  
     const getData = async () => {
         setLoading(true);
         await dataRef.orderBy('data', 'desc').limit(pageSize)
@@ -58,8 +55,8 @@ const Home = ({ navigation }) => {
 
                 const list = [];
                 querySnapshot.forEach(doc => {
-                
-                    const { by, data, img, ref, text, tittle, avatar,like } = doc.data();
+
+                    const { by, data, img, ref, text, tittle, avatar, like } = doc.data();
                     list.push({
                         id: doc.id,
                         by,
@@ -84,20 +81,20 @@ const Home = ({ navigation }) => {
 
     }
 
-    const giveLike =async(id, like)=>{
-    
+    const giveLike = async (id, like) => {
+
         liked ? setLiked(false) : setLiked(true);
         var sum = liked ? like - 1 : like + 1;
-        
+
         await firebase.firestore().collection('post').doc(id).update({
             like: sum,
         })
-        .then(ref => {
-            console.log(ref);
-        })
-        .catch(error => {
-            console.log(error);
-        });
+            .then(ref => {
+                console.log(ref);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     const loadMore = () => {
@@ -106,13 +103,40 @@ const Home = ({ navigation }) => {
     }
 
     const LoadingAnimation = () => {
-        return <LoadingComponent data={Loading} />;
+        return (
+            <View style={styles.container}>
+                <Card style={{ borderWidth: 0.1, borderColor: "#d8d8d8", marginBottom: 10 }}></Card>
+                <View style={styles.header2}>
+                    <View style={styles.avatar}>
+                        <Shimmer width={60} height={60} />
+                    </View>
+                    <View>
+                        <View style={styles.upperText}>
+                            <Shimmer width={200} height={14} />
+                        </View>
+                        <View style={styles.lowerText}>
+                            <Shimmer width={120} height={14} />
+                        </View>
+                    </View>
+                </View>
+                <Shimmer width={WIDTH} height={140} />
+                <View style={styles.textLine}>
+                    <Shimmer width={'100%'} height={14} />
+                </View>
+                <View style={styles.textLine}>
+                    <Shimmer width={'100%'} height={14} />
+                </View>
+                
+            </View>
+        )
+        //<LoadingComponent data={Loading} />;
     }
-    //SearchBar working 
+
+    //SearchBar 
     const filterItem = (event) => {
         var text = event.nativeEvent.text
         console.log(text);
-    
+
         if (text == '') {
             setbarIcon('https://img.icons8.com/ios/100/000000/search--v1.png');
         } else {
@@ -129,7 +153,7 @@ const Home = ({ navigation }) => {
         });
 
         setData(newData);
-     
+
     };
 
     const searchIconBack = () => {
@@ -143,6 +167,7 @@ const Home = ({ navigation }) => {
     }
 
     const shareContent = async () => {
+
         try {
             const result = await Share.share({
                 message: `Por uma Juazeiro livre e transparente, compartilhe a causa, divulge com seus amigos e conhecidos, junte-se a luta e tenha acesso a uma prefeitura mais transparente, justa e acessível para todos! http://www.juazeirolivre.com/`,
@@ -159,6 +184,7 @@ const Home = ({ navigation }) => {
         } catch (error) {
             alert(error.message);
         }
+
     };
 
     const renderList = ({ by, data, img, ref, text, tittle, id, avatar, like }) => {
@@ -177,6 +203,7 @@ const Home = ({ navigation }) => {
                     })
                 }}>
                     <Card style={{ borderWidth: 1, borderColor: "#d8d8d8", marginBottom: 10 }}>
+
                         <CardItem>
                             <Left>
                                 <Thumbnail source={{ uri: avatar }} />
@@ -203,9 +230,9 @@ const Home = ({ navigation }) => {
                         </Card.Content>
                         <CardItem>
                             <Left>
-                                <Button transparent  onPress={() => giveLike(id, like)}>
-                                    <Icon active name="thumbs-up" style={{fontSize: 28}}/>
-                                    <Text>{ like ? like : '0' }</Text>
+                                <Button transparent onPress={() => giveLike(id, like)}>
+                                    <Icon active name="thumbs-up" style={{ fontSize: 28 }} />
+                                    <Text>{like ? like : '0'}</Text>
                                 </Button>
                             </Left>
                             <Right>
@@ -246,7 +273,7 @@ const Home = ({ navigation }) => {
                             placeholder="O que procura..."
                             placeholderTextColor="gray"
                             value={query}
-                            onChange={(value) => { 
+                            onChange={(value) => {
                                 filterItem(value);
                                 //filterItem(event.target.value);
                             }}
@@ -256,7 +283,7 @@ const Home = ({ navigation }) => {
                 </View>
                 <Image
                     style={styles.headerImage}
-                    source={require('../../assets/home-img.png')}
+                    source={require('../../../assets/home-img.png')}
                 />
                 <View style={styles.contentContainer}><Text style={styles.Tittle}>Postagens Recentes</Text>
                     <View style={styles.cardContainer}>
@@ -280,124 +307,3 @@ const Home = ({ navigation }) => {
 }
 
 export default Home;
-
-const styles = StyleSheet.create({
-
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-    },
-    headerTitle: {
-        fontSize: 20,
-        fontWeight: "500",
-        color: "#fff",
-        fontWeight: "bold",
-    },
-
-    header: {
-        height: 60,
-        width: '100%',
-        backgroundColor: '#3f51b5',
-        justifyContent: 'center',
-        alignContent: 'center',
-        alignItems: 'center',
-        shadowOffset: {width:1, height:1},
-        shadowColor:'#333',
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
-        elevation:1
-    },
-
-    input: {
-        height: 40,
-        width: '90%',
-        backgroundColor: '#fff',
-        borderRadius: 20,
-        padding: 5,
-        paddingLeft: 10,
-    },
-    SectionStyle: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        height: 40,
-        borderRadius: 20,
-        margin: 10,
-    },
-
-    ImageStyle: {
-        padding: 10,
-        margin: 5,
-        height: 25,
-        width: 25,
-        resizeMode: 'stretch',
-        alignItems: 'center',
-    },
-
-    loading: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-
-    headerImage: {
-        width: "100%",
-        height: 300,
-    },
-
-    contentContainer: {
-        position: 'relative',
-        left: 0, top: -50,
-        borderTopStartRadius: 30,
-        borderTopEndRadius: 30,
-        shadowOffset: { width: 1, height: 1 },
-        shadowColor: '#333',
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
-        paddingTop: 40,
-        backgroundColor: '#fff'
-
-
-    },
-    cardContainer: {
-        marginTop: 15,
-
-    },
-
-    avatarImage: {
-        width: 120,
-        height: 120,
-        borderWidth: 2,
-        borderColor: '#3490dc',
-        borderRadius: 150
-    },
-
-    Tittle: {
-        fontWeight: "bold",
-        marginBottom: 5,
-        alignSelf: "center",
-        color: '#3b49b6',
-        fontSize: 20
-    },
-
-
-    subTittle: {
-        fontWeight: 'bold',
-        fontStyle: "italic",
-        textAlign: "justify",
-        marginTop: 10
-
-    },
-
-    Text: {
-        marginTop: 5,
-        textAlign: 'justify'
-    },
-
-
-})

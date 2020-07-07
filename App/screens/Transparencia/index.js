@@ -4,7 +4,7 @@ import { Container, Left, Body, Right, Button, Icon, Title, Tabs, Tab } from 'na
 import Tab2 from './Tab2';
 import Tab3 from './Tab3';
 import Tab4 from './Tab4';
-import Header from '../components/Header';
+import Header from '../../components/Header';
 console.disableYellowBox = true;
 
 const Transparencia = () => {

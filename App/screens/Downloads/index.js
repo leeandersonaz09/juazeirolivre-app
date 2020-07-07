@@ -11,8 +11,7 @@ import {
 } from 'react-native';
 import { Container, Content, Tab, Tabs, Body, Title, Icon, Right, Button, Accordion, Card, CardItem } from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
-import Card2 from '../components/Card';
-import Header from '../components/Header';
+import Header from '../../components/Header';
 
 const dataArray = [
     { id: '1', title: "Atas do ano de 2017", url: "https://0201.nccdn.net/1_2/000/000/144/700/ATAS-DAS-SESS--ES---2017.zip", content: 'Faça aqui o download das atas do ano de 2017' },
@@ -30,7 +29,7 @@ const download = () => {
                 </Header>
                 <ScrollView>
                 <ImageBackground 
-                source={require('../img/Camara.jpg')}
+                source={require('../../img/Camara.jpg')}
                 style={styles.backgrounImage}
                 imageStyle={{borderBottomRightRadius:65}}
             >

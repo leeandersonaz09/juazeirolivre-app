@@ -3,7 +3,6 @@ import 'react-native-gesture-handler';
 //import navigators
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 //icons and fonts
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -11,11 +10,9 @@ import { Ionicons } from "@expo/vector-icons";
 import * as Font from 'expo-font';
 //import de telas 
 import HomeScreen from "../screens/Home";
-import Tab2 from "../screens/Transparencia";
-import Tab3 from "../screens/Tab3";
-import Tab4 from "../screens/Tab4";
-import Raiox from '../screens/raiox';
-import Downloads from '../screens/downloads';
+import Transparencia from "../screens/Transparencia";
+import Raiox from '../screens/Raiox';
+import Downloads from '../screens/Downloads';
 import DetailsScreen from '../screens/DetailsScreen';
 import Loading from "../screens/Loading";
 //instancing navigators
@@ -53,7 +50,7 @@ const AppTabsScreen = () => (
   barStyle={{ backgroundColor: '#3b49b6' }}>
 
     <AppTabs.Screen
-      name="home"
+      name="Tab1"
       component={HomeStackScreen}
       options={{
         tabBarLabel: 'Início',
@@ -65,7 +62,7 @@ const AppTabsScreen = () => (
 
     <AppTabs.Screen
       name="Tab2"
-      component={Tab2}
+      component={Transparencia}
       options={{
         tabBarLabel: 'Transparência',
         tabBarIcon: ({ color }) => (

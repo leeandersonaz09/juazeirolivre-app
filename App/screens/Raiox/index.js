@@ -8,10 +8,10 @@ import {
     ImageBackground,
 
 } from 'react-native';
-import { Container, Content, Tab, Tabs, Body, Title, Icon, Right, Button } from 'native-base';
+import { Container} from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
-import Header from '../components/Header';
-import Card from '../components/Card';
+import Header from '../../components/Header';
+import Card from '../../components/Card';
 
 const raiox = () => {
 
@@ -27,7 +27,7 @@ const raiox = () => {
                 <Text style={styles.headerTitle}>Raio-X da Cidade</Text>
             </Header>
             <ImageBackground 
-                source={require('../img/carteira_de_trabalho.jpeg')}
+                source={require('../../img/carteira_de_trabalho.jpeg')}
                 style={styles.backgrounImage}
                 imageStyle={{borderBottomRightRadius:65}}
             >
