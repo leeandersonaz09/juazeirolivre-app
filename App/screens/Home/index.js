@@ -1,16 +1,11 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     View,
-    StyleSheet,
     Image,
     TouchableOpacity,
-    Alert,
     SafeAreaView,
-    ScrollView,
     Share,
     TextInput,
-    ActivityIndicator,
-    RefreshControl,
     Dimensions
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';

@@ -15,9 +15,11 @@ import Raiox from '../screens/Raiox';
 import Downloads from '../screens/Downloads';
 import DetailsScreen from '../screens/DetailsScreen';
 import Loading from "../screens/Loading";
+import Welcome from "../screens/Welcome";
 //instancing navigators
 const AppTabs = createMaterialBottomTabNavigator();
 const RootStack = createStackNavigator();
+const WelcomeStack = createStackNavigator()
 const HomeStack = createStackNavigator();
 
 //stack navigator Home
@@ -96,6 +98,15 @@ const AppTabsScreen = () => (
   </AppTabs.Navigator>
 );
 
+const WelcomeStackScreen = () => (
+  <WelcomeStack.Navigator    
+  screenOptions={{
+    headerShown: false
+  }}>
+    <WelcomeStack.Screen name="Login" component={Welcome} />
+  </WelcomeStack.Navigator>
+);
+
 //Root Navigator
 const RootStackScreen = () => {
   
@@ -131,7 +142,7 @@ const RootStackScreen = () => {
       {isLoading ? (
         <RootStack.Screen name="Loading" component={Loading} />
       ) : (
-        <RootStack.Screen name="AppTabsScreen" component={AppTabsScreen} />
+        <RootStack.Screen name="AppTabsScreen" component={WelcomeStackScreen} />
       )}
 
     </RootStack.Navigator>

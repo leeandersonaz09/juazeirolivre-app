@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState } from 'react';
 import {
   StyleSheet,
   View,
-  TouchableOpacity,
+  SafeAreaView,
   Image,
   Alert,
   ScrollView,
@@ -21,6 +21,7 @@ const dimensions = Dimensions.get('window');
 const imageHeight = Math.round(dimensions.width * 9 / 16);
 const imageWidth = dimensions.width;
 const { width } = Dimensions.get('window');
+import { general, fonts, colors} from '../../styles';
 //import Header from '../components/Header';
 
 const scale = new Animated.Value(1);
@@ -86,9 +87,10 @@ function DetailsScreen({ route, navigation }) {
   };
 
   return (
-    <Container style={styles.container}>
-      <Header>
-        <StatusBar barStyle="light-content" backgroundColor="#3f51b5" />
+    <SafeAreaView style={styles.container}>
+    <Container>
+      <Header >
+      <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
         <Left>
           <Button transparent onPress={backHome}>
             <Icon name='arrow-back' />
@@ -169,15 +171,14 @@ function DetailsScreen({ route, navigation }) {
       </Modal>
 
     </Container>
+    </SafeAreaView>
   );
 }
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
+  ...general,
+  
   headerTitle: {
     fontSize: 20,
     fontWeight: "500",
