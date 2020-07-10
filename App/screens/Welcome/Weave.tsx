@@ -188,7 +188,7 @@ export default ({
 
   return (
 
-    <Svg style={StyleSheet.absoluteFill}>
+  <Svg {...{ width, height }} style={StyleSheet.absoluteFill}>
     <Defs>
       <ClipPath id="mask">
         <AnimatedPath {...{ d }} />
