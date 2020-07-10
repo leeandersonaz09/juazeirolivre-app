@@ -83,7 +83,7 @@ export default () => {
         source={assets[0]}
         title1="Online"
         title2="Gambling"
-        color="black"
+        color="white"
       />
       <PanGestureHandler {...gestureHandler}>
         <Animated.View style={StyleSheet.absoluteFill}>
