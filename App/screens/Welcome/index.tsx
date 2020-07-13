@@ -3,6 +3,7 @@ import { View, StyleSheet, Dimensions } from "react-native";
 import {interpolateColor, useScrollHandler } from "react-native-redash";
 
 import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
+
 import Subslide from "./Subslide";
 import Dot from '../../components/Dot';
 
