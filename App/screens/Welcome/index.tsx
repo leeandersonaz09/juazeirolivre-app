@@ -60,7 +60,7 @@ const slides = [
         picture: require("./assets/03.png")
     },
     {
-        title: "Preparado?",
+        title: "Preparado",
         subtitle: "Vamos começar?",
         description: "Agora, vamos começar a o novo aplicativo, Juazeiro livre! Se curtiu, nos siga nas redes sociais...Let's Go!",
         color: "#FFDDDD",

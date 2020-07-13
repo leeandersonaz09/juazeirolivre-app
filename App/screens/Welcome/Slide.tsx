@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, Text, Dimensions, Image } from "react-native";
-import Animated from "react-native-reanimated";
 
 const { width, height } = Dimensions.get("window");
 export const SLIDE_HEIGHT = 0.61 * height;
@@ -17,10 +16,12 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 80,
-        lineHeight: 80,
+        fontSize: 70,
+        lineHeight: 70,
         //fontFamily: "SFProText-Bold",
         color: "#ffff",
+        shadowColor:"#d8d8d8",
+        shadowOpacity: 0.5,
         textAlign: "center"
 
     },
@@ -32,7 +33,8 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFillObject,
         width: undefined,
         height: undefined,
-        borderBottomRightRadius: BORDER_RADIUS , 
+        borderBottomRightRadius: BORDER_RADIUS,
+        borderBottomLeftRadius: -BORDER_RADIUS, 
     }
 
 })
