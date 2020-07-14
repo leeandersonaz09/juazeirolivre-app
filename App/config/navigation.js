@@ -126,14 +126,16 @@ const RootStackScreen = () => {
         console.log(err)
       } else {
         const result = JSON.parse(value) // boolean false
+        
+        if(result == null){
+          setisNew(true);
+        }else{
+          setisNew(false);
+        }
       }
     })
 
-    if(result == null){
-      setisNew(true);
-    }else{
-      setisNew(false);
-    }
+    
 
   }
 
