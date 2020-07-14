@@ -1,4 +1,5 @@
 import React from "react";
+import { AsyncStorage, useState, useEffect} from "react-native";
 import 'react-native-gesture-handler';
 //import navigators
 import { NavigationContainer } from "@react-navigation/native";
@@ -16,6 +17,8 @@ import Downloads from '../screens/Downloads';
 import DetailsScreen from '../screens/DetailsScreen';
 import Loading from "../screens/Loading";
 import Welcome from "../screens/Welcome";
+//para novos uruários serem redirecionados para tela welcome
+const MY_STORAGE_KEY = '@juazeirolivre-app:isNew';
 //instancing navigators
 const AppTabs = createMaterialBottomTabNavigator();
 const RootStack = createStackNavigator();
@@ -110,18 +113,36 @@ const WelcomeStackScreen = () => (
 //Root Navigator
 const RootStackScreen = () => {
   
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [fontsLoaded, setfontsLoaded] = useState(false);
+  const [isnew, setisNew] = useState(null);
+
+  const loadFonts = async () => {
+    await Font.loadAsync({
+      Roboto: require('native-base/Fonts/Roboto.ttf'),
+      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+      ...Ionicons.font,
+    });
+
+    setfontsLoaded(true);
+
+    const result = await AsyncStorage.getItem(MY_STORAGE_KEY);
+
+    if(result == null){
+      await AsyncStorage.setItem(MY_STORAGE_KEY, false);
+      setisNew(true);
+    }else{
+      setisNew(false);
+    }
+
+  }
+
+  useEffect(() => {
+
+    if(!fontsLoaded) {
+      loadFonts();
+    }
   
-
-  React.useEffect(() => {
-
-    Font.loadAsync({
-        Roboto: require('native-base/Fonts/Roboto.ttf'),
-        Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-        ...Ionicons.font,
-      });
-      
-   
     setTimeout(() => {
       setIsLoading(!isLoading);
     }, 5000);
@@ -136,8 +157,10 @@ const RootStackScreen = () => {
     >
       {isLoading ? (
         <RootStack.Screen name="Loading" component={Loading} />
+      )  : isnew ? (
+        <RootStack.Screen name="WelcomeStackScreen" component={WelcomeStack} />
       ) : (
-        <RootStack.Screen name="AppTabsScreen" component={WelcomeStackScreen} />
+        <RootStack.Screen name="AppTabsScreen" component={AppTabsScreen} />
       )}
 
     </RootStack.Navigator>
