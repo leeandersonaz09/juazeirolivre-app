@@ -124,6 +124,8 @@ const Welcome = () => {
                                     scroll.current
                                         .getNode()
                                         .scrollTo({ x: width * (index + 1), animated: true })
+                                }else{
+                                    console.log('ESSE É O BOTÃO FINAL')
                                 }
                             }}
                             last={index === (slides.length - 1)}
