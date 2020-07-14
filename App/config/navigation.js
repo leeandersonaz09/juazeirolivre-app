@@ -127,12 +127,16 @@ const RootStackScreen = () => {
     setfontsLoaded(true);
 
     const result = await AsyncStorage.getItem(MY_STORAGE_KEY);
+    console.log('RESULT>>>>>'+ result)
 
     if(!result){
       await AsyncStorage.setItem(MY_STORAGE_KEY, false);
       setisNew(true);
+      console.log('ISNEW>>>>>'+ isnew);
+      const result2 = await AsyncStorage.getItem(MY_STORAGE_KEY);
+      console.log('RESULT 2>>>>>'+ result2)
     }else{
-      setisNew(false);
+     
     }
 
   }
