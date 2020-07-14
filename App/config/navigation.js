@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import { AsyncStorage} from "react-native";
+import React, { useState, useEffect } from "react";
+import { AsyncStorage } from "react-native";
 import 'react-native-gesture-handler';
 //import navigators
 import { NavigationContainer } from "@react-navigation/native";
@@ -30,7 +30,7 @@ const HomeStackScreen = () => (
   <HomeStack.Navigator
     screenOptions={{
       headerShown: false,
-      animationEnabled: false 
+      animationEnabled: false
     }}>
     <HomeStack.Screen
       name="Home"
@@ -40,7 +40,7 @@ const HomeStackScreen = () => (
       name="ProductDetails"
       component={DetailsScreen}
     />
-    
+
   </HomeStack.Navigator>
 );
 
@@ -48,11 +48,11 @@ const HomeStackScreen = () => (
 
 const AppTabsScreen = () => (
 
-  <AppTabs.Navigator 
-  initialRouteName="home"
-  activeColor="#ffcc00"
-  inactiveColor="#fff"
-  barStyle={{ backgroundColor: '#3b49b6' }}>
+  <AppTabs.Navigator
+    initialRouteName="home"
+    activeColor="#ffcc00"
+    inactiveColor="#fff"
+    barStyle={{ backgroundColor: '#3b49b6' }}>
 
     <AppTabs.Screen
       name="Tab1"
@@ -87,7 +87,7 @@ const AppTabsScreen = () => (
       }}
     />
 
-<AppTabs.Screen
+    <AppTabs.Screen
       name="Tab4"
       component={Downloads}
       options={{
@@ -102,20 +102,40 @@ const AppTabsScreen = () => (
 );
 
 const WelcomeStackScreen = () => (
-  <WelcomeStack.Navigator    
-  screenOptions={{
-    headerShown: false
-  }}>
+  <WelcomeStack.Navigator
+    screenOptions={{
+      headerShown: false
+    }}>
     <WelcomeStack.Screen name="Login" component={Welcome} />
   </WelcomeStack.Navigator>
 );
 
 //Root Navigator
 const RootStackScreen = () => {
-  
+
   const [isLoading, setIsLoading] = useState(true);
   const [fontsLoaded, setfontsLoaded] = useState(false);
   const [isnew, setisNew] = useState(null);
+
+
+  const checkIsNewUser = async () => {
+
+    // Retrieves from storage as boolean
+    await AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
+      if (err) {
+        console.log(err)
+      } else {
+        const result = JSON.parse(value) // boolean false
+      }
+    })
+
+    if(result == null){
+      setisNew(true);
+    }else{
+      setisNew(false);
+    }
+
+  }
 
   const loadFonts = async () => {
     await Font.loadAsync({
@@ -126,27 +146,14 @@ const RootStackScreen = () => {
 
     setfontsLoaded(true);
 
-    const result = await AsyncStorage.getItem(MY_STORAGE_KEY);
-    console.log('RESULT>>>>>'+ result)
-
-    if(!result){
-      await AsyncStorage.setItem(MY_STORAGE_KEY, false);
-      setisNew(true);
-      console.log('ISNEW>>>>>'+ isnew);
-      const result2 = await AsyncStorage.getItem(MY_STORAGE_KEY);
-      console.log('RESULT 2>>>>>'+ result2)
-    }else{
-     
-    }
-
   }
 
   useEffect(() => {
 
-    if(!fontsLoaded) {
+    if (!fontsLoaded) {
       loadFonts();
     }
-  
+
     setTimeout(() => {
       setIsLoading(!isLoading);
     }, 5000);
@@ -156,16 +163,17 @@ const RootStackScreen = () => {
   return (
     <RootStack.Navigator
       headerMode="none"
-      screenOptions={{ animationEnabled: true 
+      screenOptions={{
+        animationEnabled: true
       }}
     >
       {isLoading ? (
         <RootStack.Screen name="Loading" component={Loading} />
-      )  : isnew ? (
+      ) : isnew ? (
         <RootStack.Screen name="WelcomeStackScreen" component={WelcomeStack} />
       ) : (
-        <RootStack.Screen name="AppTabsScreen" component={AppTabsScreen} />
-      )}
+            <RootStack.Screen name="AppTabsScreen" component={AppTabsScreen} />
+          )}
 
     </RootStack.Navigator>
   );
