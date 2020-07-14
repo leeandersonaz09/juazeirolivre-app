@@ -115,7 +115,7 @@ const RootStackScreen = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [fontsLoaded, setfontsLoaded] = useState(false);
-  const [isnew, setisNew] = useState(null);
+  const [isnew, setisNew] = useState(true);
 
 
   const checkIsNewUser = async () => {
