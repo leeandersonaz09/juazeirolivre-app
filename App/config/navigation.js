@@ -18,7 +18,7 @@ import DetailsScreen from '../screens/DetailsScreen';
 import Loading from "../screens/Loading";
 import Welcome from "../screens/Welcome";
 //para novos uruários serem redirecionados para tela welcome
-const MY_STORAGE_KEY = '@juazeirolivre-app:isNew';
+const MY_STORAGE_KEY = 'isNewUser';
 //instancing navigators
 const AppTabs = createMaterialBottomTabNavigator();
 const RootStack = createStackNavigator();
