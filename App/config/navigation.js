@@ -128,7 +128,7 @@ const RootStackScreen = () => {
 
     const result = await AsyncStorage.getItem(MY_STORAGE_KEY);
 
-    if(result == null){
+    if(!result){
       await AsyncStorage.setItem(MY_STORAGE_KEY, false);
       setisNew(true);
     }else{
