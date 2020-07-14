@@ -150,6 +150,8 @@ const RootStackScreen = () => {
 
   useEffect(() => {
 
+    if(isnew==null) checkIsNewUser();
+
     if (!fontsLoaded) {
       loadFonts();
     }
