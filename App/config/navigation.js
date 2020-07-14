@@ -115,7 +115,7 @@ const RootStackScreen = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [fontsLoaded, setfontsLoaded] = useState(false);
-  const [isnew, setisNew] = useState(true);
+  const [isnew, setisNew] = useState(null);
 
 
   const checkIsNewUser = async () => {
@@ -148,11 +148,16 @@ const RootStackScreen = () => {
 
     setfontsLoaded(true);
 
+    const result = await AsyncStorage.getItem(MY_STORAGE_KEY);
+
+    if(result == null){
+      setisNew(true);
+    }
   }
 
   useEffect(() => {
 
-    if(isnew==null) checkIsNewUser();
+    
 
     if (!fontsLoaded) {
       loadFonts();
