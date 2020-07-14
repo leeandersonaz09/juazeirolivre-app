@@ -18,7 +18,7 @@ import DetailsScreen from '../screens/DetailsScreen';
 import Loading from "../screens/Loading";
 import Welcome from "../screens/Welcome";
 //para novos uruários serem redirecionados para tela welcome
-const MY_STORAGE_KEY = 'isNewUser';
+const MY_STORAGE_KEY = 'WelcomeFirst';
 //instancing navigators
 const AppTabs = createMaterialBottomTabNavigator();
 const RootStack = createStackNavigator();
@@ -118,23 +118,8 @@ const RootStackScreen = () => {
   const [isnew, setisNew] = useState(null);
 
 
-  const checkIsNewUser = async () => {
-
-    // Retrieves from storage as boolean
-    await AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
-      if (err) {
-        console.log(err)
-      } else {
-        const result = JSON.parse(value) // boolean false
-        console.log('RESULT>>>'+result)
-      }
-    })
-
-    
-
-  }
-
   const loadFonts = async () => {
+    
     await Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
@@ -143,20 +128,21 @@ const RootStackScreen = () => {
 
     setfontsLoaded(true);
 
-     // Retrieves from storage as boolean
-     await AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
+    // Retrieves from storage as boolean
+    await AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
       if (err) {
         console.log(err)
       } else {
-        const result = value;
-        console.log('RESULT>>>'+result)
+        const result = JSON.parse(value) // boolean false
+        result ? setisNew(false) : setisNew(true);
       }
     })
+
   }
 
   useEffect(() => {
 
-    
+
 
     if (!fontsLoaded) {
       loadFonts();
