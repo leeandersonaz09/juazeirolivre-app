@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         fontSize: 70,
         lineHeight: 70,
         //fontFamily: "SFProText-Bold",
-        color: "#ffff",
+        color: "#FFD700",
         shadowColor:"#d8d8d8",
         shadowOpacity: 0.5,
         textAlign: "center"

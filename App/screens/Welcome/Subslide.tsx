@@ -48,7 +48,7 @@ const Subslide = ({ description, subtitle, last, onPress }: SubslideProps) => {
             <Text style={styles.subtitle}>{subtitle}</Text>
             <Text style={styles.description}>{description}</Text>
             <Button
-             label={last ? "Vamos começar?" : "próximo" } 
+             label={last ? "Vamos começar?" : "Próximo" } 
              variant={last ? "primary" : "default"}
              {...{ onPress }}
              />
