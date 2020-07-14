@@ -148,7 +148,7 @@ const RootStackScreen = () => {
       if (err) {
         console.log(err)
       } else {
-        const result = JSON.parse(value) // boolean false
+        const result = value;
         console.log('RESULT>>>'+result)
       }
     })
