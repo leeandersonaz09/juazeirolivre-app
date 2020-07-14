@@ -126,12 +126,7 @@ const RootStackScreen = () => {
         console.log(err)
       } else {
         const result = JSON.parse(value) // boolean false
-
-        if(result == null){
-          setisNew(true);
-        }else{
-          setisNew(false);
-        }
+        console.log('RESULT>>>'+result)
       }
     })
 
@@ -148,11 +143,15 @@ const RootStackScreen = () => {
 
     setfontsLoaded(true);
 
-    const result = await AsyncStorage.getItem(MY_STORAGE_KEY);
-
-    if(result == null){
-      setisNew(true);
-    }
+     // Retrieves from storage as boolean
+     await AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
+      if (err) {
+        console.log(err)
+      } else {
+        const result = JSON.parse(value) // boolean false
+        console.log('RESULT>>>'+result)
+      }
+    })
   }
 
   useEffect(() => {
