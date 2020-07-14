@@ -126,7 +126,7 @@ const RootStackScreen = () => {
         console.log(err)
       } else {
         const result = JSON.parse(value) // boolean false
-        
+
         if(result == null){
           setisNew(true);
         }else{
@@ -174,7 +174,7 @@ const RootStackScreen = () => {
       {isLoading ? (
         <RootStack.Screen name="Loading" component={Loading} />
       ) : isnew ? (
-        <RootStack.Screen name="WelcomeStackScreen" component={WelcomeStack} />
+        <RootStack.Screen name="WelcomeStackScreen" component={WelcomeStackScreen} />
       ) : (
             <RootStack.Screen name="AppTabsScreen" component={AppTabsScreen} />
           )}
