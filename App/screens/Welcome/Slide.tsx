@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
         width: undefined,
         height: undefined,
         borderBottomRightRadius: BORDER_RADIUS,
-        borderBottomLeftRadius: -BORDER_RADIUS, 
     }
 
 })

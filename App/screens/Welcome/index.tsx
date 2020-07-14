@@ -43,7 +43,7 @@ const slides = [
         title: "Novidade",
         subtitle: "Juazeiro na palma da mão!",
         description: "Um aplicativo totalmente desenhado para você obter de forma fácil, o acesso a informação e transparencia do município de Juazeiro.",
-        color: "#BFEAF5",
+        color: "#BEECC4",
         picture: require("./assets/01.png")
     },
     {
