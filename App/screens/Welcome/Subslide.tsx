@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text, Dimensions, AsyncStorage } from "react-native";
 import Button from "../../components/Button";
+
 const MY_STORAGE_KEY = 'WelcomeFirst';
 
 const { height } = Dimensions.get("window");

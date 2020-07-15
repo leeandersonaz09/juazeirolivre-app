@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, StatusBar } from 'react-native'
-import {colors}from '../../styles';
+import {colors} from '../../styles';
 
 export default function Header(props) {
 
