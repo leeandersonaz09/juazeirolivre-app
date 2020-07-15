@@ -134,7 +134,7 @@ const RootStackScreen = () => {
         console.log(err)
       } else {
         const result = JSON.parse(value) // boolean false
-        result ? setisNew(false) : setisNew(true);
+        result ? setisNew(true) : setisNew(true);
       }
     })
 

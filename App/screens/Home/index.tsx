@@ -23,7 +23,6 @@ import Shimmer from '../../components/Shimmer';
 
 const Home = ({ navigation }) => {
 
-    let onEndReachedCalledDuringMomentum = false;
     const dataRef = firebase.firestore().collection('post');
     const [data, setData] = useState([]);
     const [query, setQuery] = useState(null);

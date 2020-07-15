@@ -37,24 +37,26 @@ const styles = StyleSheet.create({
    
 })
 
-const submit = async () =>{
-    console.log('FUNCIONA');
-    // Saves to storage as a JSON-string
-   // await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false));
-    navigation.navigate('Home');
 
-}
 
 interface SubslideProps {
     subtitle: string;
     description: string;
     last?: boolean;
     onPress: () => void;
+    
 }
 
 const Subslide = ({ description, subtitle, last, onPress }: SubslideProps) => {
 
-   
+    const submit = async ({ navigation }) => {
+        navigation.navigate('Home');
+        console.log('FUNCIONA');
+        // Saves to storage as a JSON-string
+       await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false));
+    
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.subtitle}>{subtitle}</Text>
@@ -62,7 +64,7 @@ const Subslide = ({ description, subtitle, last, onPress }: SubslideProps) => {
             <Button
              label={last ? "Vamos começar?" : "Próximo" } 
              variant={last ? "primary" : "default"}
-             {... last ? { onPress: submit } : {onPress}}
+             {... last ? { onPress: submit} : {onPress}}
              />
         </View>
     );
