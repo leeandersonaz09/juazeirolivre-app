@@ -1,18 +1,13 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import {
     View,
     StyleSheet,
     Text,
-    StatusBar,
-    TextInput,
-    Image,
-    TouchableOpacity,
-    Alert,
+
     SafeAreaView,
     ImageBackground,
     ScrollView
 } from 'react-native';
-import { Container, Header, Content, Tab, Tabs } from 'native-base';
 import { DataTable } from 'react-native-paper';
 import { FlatList } from 'react-native-gesture-handler';
 import Card from '../../components/Card';

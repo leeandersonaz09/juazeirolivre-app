@@ -107,6 +107,7 @@ const WelcomeStackScreen = () => (
       headerShown: false
     }}>
     <WelcomeStack.Screen name="Login" component={Welcome} />
+    <WelcomeStack.Screen name="Home" component={HomeStackScreen} />
   </WelcomeStack.Navigator>
 );
 
@@ -166,8 +167,8 @@ const RootStackScreen = () => {
       ) : isnew ? (
         <RootStack.Screen name="WelcomeStackScreen" component={WelcomeStackScreen} />
       ) : (
-            <RootStack.Screen name="AppTabsScreen" component={AppTabsScreen} />
-          )}
+          <RootStack.Screen name="AppTabsScreen" component={AppTabsScreen} />
+        )}
 
     </RootStack.Navigator>
   );

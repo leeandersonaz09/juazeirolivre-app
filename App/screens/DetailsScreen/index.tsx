@@ -1,12 +1,9 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
   SafeAreaView,
   Image,
-  Alert,
-  ScrollView,
-  FlatList,
   StatusBar,
   Share,
   Modal,
@@ -17,11 +14,8 @@ import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Ic
 import { PinchGestureHandler, State } from 'react-native-gesture-handler';
 import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
 //Dimensins get
-const dimensions = Dimensions.get('window');
-const imageHeight = Math.round(dimensions.width * 9 / 16);
-const imageWidth = dimensions.width;
 const { width } = Dimensions.get('window');
-import { general, fonts, colors} from '../../styles';
+import { general, colors} from '../../styles';
 //import Header from '../components/Header';
 
 const scale = new Animated.Value(1);

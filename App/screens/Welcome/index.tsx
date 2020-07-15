@@ -79,10 +79,10 @@ const Welcome = ({navigation}) => {
     });
 
     const submit = async () => {
-        navigation.navigate('Home');
+        //navigation.navigate('Home');
         console.log('FUNCIONA');
         // Saves to storage as a JSON-string
-       await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false));
+       //await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true));
     
     }
     
@@ -129,10 +129,14 @@ const Welcome = ({navigation}) => {
                         <Subslide
                             key={index}
                             onPress={() => {
-                                index === (slides.length - 1) ? {...{submit}} : if(scroll.current) {
+                                
+                                if (scroll.current) {
                                     scroll.current
                                         .getNode()
                                         .scrollTo({ x: width * (index + 1), animated: true })
+                                }
+                                if (index === (slides.length - 1)) {
+                                    submit();
                                 }
                             }}
                             last={index === (slides.length - 1)}
