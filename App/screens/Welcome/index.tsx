@@ -45,28 +45,44 @@ const slides = [
         subtitle: "Juazeiro na palma da mão!",
         description: "Um aplicativo totalmente desenhado para você obter de forma fácil, o acesso a informação e transparencia do município de Juazeiro.",
         color: "#BEECC4",
-        picture: require("./assets/01.png")
+        picture: {
+            src: require("./assets/01.png"),
+            width: 2513,
+            height: 3583,
+        },
     },
     {
         title: "Feed",
         subtitle: "Um feed de notícias",
         description: "Você terá um feed de notícias na sua tela inicial para poder se manter sempre atualizado sobre nossas novidades.",
         color: "#BEECC4",
-        picture: require("./assets/02.png")
+        picture: {
+            src: require("./assets/02.png"),
+            width: 2513,
+            height: 3583,
+        },
     },
     {
         title: "Criador",
         subtitle: "Cléber de Jesus",
         description: "Um cidadão, professor e amigo que queria uma Juazeiro melhor e mais transparente para todos, que deu a cara tapa para tornar isso possível.",
         color: "#FFE4D9",
-        picture: require("./assets/03.png")
+        picture: {
+            src: require("./assets/03.png"),
+            width: 2513,
+            height: 3583,
+        },
     },
     {
         title: "Preparado",
         subtitle: "Vamos começar?",
         description: "Agora, vamos começar a o novo aplicativo, Juazeiro livre! Se curtiu, nos siga nas redes sociais...Let's Go!",
         color: "#FFDDDD",
-        picture: require("./assets/04.png")
+        picture: {
+            src: require("./assets/04.png"),
+            width: 2513,
+            height: 3583,
+        },
     }
 ]
 
