@@ -54,7 +54,7 @@ const Subslide = ({ description, subtitle, last, onPress }: SubslideProps) => {
             <Button
              label={last ? "Vamos começar?" : "Próximo" } 
              variant={last ? "primary" : "default"}
-             {... last? { onPress: ()=> submit } : {onPress}}
+             {... last ? { onPress: submit } : {onPress}}
              />
         </View>
     );
