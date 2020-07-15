@@ -33,6 +33,10 @@ const styles = StyleSheet.create({
    
 })
 
+const submit = () =>{
+    console.log('FUNCIONA');
+}
+
 interface SubslideProps {
     subtitle: string;
     description: string;
@@ -50,7 +54,7 @@ const Subslide = ({ description, subtitle, last, onPress }: SubslideProps) => {
             <Button
              label={last ? "Vamos começar?" : "Próximo" } 
              variant={last ? "primary" : "default"}
-             {...{ onPress }}
+             {... last? { onPress: ()=> submit } : {onPress}}
              />
         </View>
     );
