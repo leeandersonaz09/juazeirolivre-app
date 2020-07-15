@@ -1,6 +1,8 @@
 import React from "react";
 import { View, StyleSheet, Text, Dimensions, AsyncStorage } from "react-native";
 import Button from "../../components/Button";
+import navigation from "../../config/navigation";
+import { Tabs } from "native-base";
 
 const MY_STORAGE_KEY = 'WelcomeFirst';
 
@@ -38,7 +40,8 @@ const styles = StyleSheet.create({
 const submit = async () =>{
     console.log('FUNCIONA');
     // Saves to storage as a JSON-string
-    await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false));
+   // await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false));
+    navigation.navigate('Home');
 
 }
 
