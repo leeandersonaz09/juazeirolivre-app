@@ -1,8 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text, Dimensions, AsyncStorage } from "react-native";
 import Button from "../../components/Button";
-import navigation from "../../config/navigation";
-import { Tabs } from "native-base";
 
 const MY_STORAGE_KEY = 'WelcomeFirst';
 
@@ -48,7 +46,7 @@ interface SubslideProps {
 }
 
 const Subslide = ({ description, subtitle, last, onPress }: SubslideProps) => {
-
+/*
     const submit = async ({ navigation }) => {
         navigation.navigate('Home');
         console.log('FUNCIONA');
@@ -56,7 +54,7 @@ const Subslide = ({ description, subtitle, last, onPress }: SubslideProps) => {
        await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false));
     
     }
-
+*/
     return (
         <View style={styles.container}>
             <Text style={styles.subtitle}>{subtitle}</Text>
@@ -64,7 +62,7 @@ const Subslide = ({ description, subtitle, last, onPress }: SubslideProps) => {
             <Button
              label={last ? "Vamos começar?" : "Próximo" } 
              variant={last ? "primary" : "default"}
-             {... last ? { onPress: submit} : {onPress}}
+             {... /*last ? { onPress: submit} :*/ {onPress}}
              />
         </View>
     );

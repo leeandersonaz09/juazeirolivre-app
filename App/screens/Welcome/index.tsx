@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions, AsyncStorage } from "react-native";
 import {interpolateColor, useScrollHandler } from "react-native-redash";
 
 import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
@@ -9,6 +9,7 @@ import Dot from '../../components/Dot';
 
 import Animated, { multiply, divide } from "react-native-reanimated";
 const { width } = Dimensions.get("window");
+const MY_STORAGE_KEY = 'WelcomeFirst';
 
 const styles = StyleSheet.create({
     container: {
@@ -69,7 +70,7 @@ const slides = [
     }
 ]
 
-const Welcome = () => {
+const Welcome = ({navigation}) => {
     const scroll = useRef<Animated.ScrollView>(null);
     const { scrollHandler, x } = useScrollHandler();
     const backgroundColor = interpolateColor(x, {
@@ -77,6 +78,14 @@ const Welcome = () => {
         outputRange: slides.map(slide => slide.color),
     });
 
+    const submit = async () => {
+        navigation.navigate('Home');
+        console.log('FUNCIONA');
+        // Saves to storage as a JSON-string
+       await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false));
+    
+    }
+    
     return (
         <View style={styles.container}>
             <Animated.View style={[styles.slider, { backgroundColor }]}>
@@ -120,7 +129,7 @@ const Welcome = () => {
                         <Subslide
                             key={index}
                             onPress={() => {
-                                if (scroll.current) {
+                                index === (slides.length - 1) ? {...{submit}} : if(scroll.current) {
                                     scroll.current
                                         .getNode()
                                         .scrollTo({ x: width * (index + 1), animated: true })
