@@ -1,6 +1,7 @@
 import React from "react";
-import { View, StyleSheet, Text, Dimensions } from "react-native";
+import { View, StyleSheet, Text, Dimensions, AsyncStorage } from "react-native";
 import Button from "../../components/Button";
+const MY_STORAGE_KEY = 'WelcomeFirst';
 
 const { height } = Dimensions.get("window");
 export const SLIDE_HEIGHT = 0.61 * height;
@@ -33,8 +34,11 @@ const styles = StyleSheet.create({
    
 })
 
-const submit = () =>{
+const submit = async () =>{
     console.log('FUNCIONA');
+    // Saves to storage as a JSON-string
+    await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true));
+
 }
 
 interface SubslideProps {
