@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 const submit = async () =>{
     console.log('FUNCIONA');
     // Saves to storage as a JSON-string
-    await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true));
+    await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false));
 
 }
 
