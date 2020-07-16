@@ -124,6 +124,8 @@ const RootStackScreen = () => {
     await Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+      SFProDisplay_bold: require("../styles/fonts/SFProDisplay_Bold.ttf"),
+      SFProDisplay_regular: require("../styles/fonts/SFProDisplay_Regular.ttf"),
       ...Ionicons.font,
     });
 
@@ -142,8 +144,6 @@ const RootStackScreen = () => {
   }
 
   useEffect(() => {
-
-
 
     if (!fontsLoaded) {
       loadFonts();

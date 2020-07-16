@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text, Dimensions, Image, ImageRequireSource } from "react-native";
+import { View, StyleSheet, Text, Dimensions} from "react-native";
 
 const { width, height } = Dimensions.get("window");
 export const SLIDE_HEIGHT = 0.61 * height;
@@ -11,40 +11,26 @@ const styles = StyleSheet.create({
     },
     tittleContainer: {
         height: 100,
+        fontFamily: "SFProDisplay_bold",
         justifyContent: "center",
 
     },
 
     title: {
-        fontSize: 70,
+        fontSize: 50,
         lineHeight: 70,
-        //fontFamily: "SFProText-Bold",
-        color: "#FFD700",
-        shadowColor:"#d8d8d8",
-        shadowOpacity: 0.5,
+        fontFamily: "SFProDisplay_bold",
+        color: "#ffff",
         textAlign: "center"
-
     },
-    underlay: {
-        ...StyleSheet.absoluteFillObject,
-        justifyContent: "flex-end",
-        alignItems: "center",
-    },
-   
-
 })
 
 interface SlideProps {
     title: string;
     right?: boolean;
-    picture: {
-        src: ImageRequireSource;
-        width: number;
-        height: number;
-    };
 }
 
-const Slide = ({ title, right, picture }: SlideProps) => {
+const Slide = ({ title, right }: SlideProps) => {
 
     const transform = [
         { translateY: (SLIDE_HEIGHT - 100) / 2 },
@@ -54,12 +40,6 @@ const Slide = ({ title, right, picture }: SlideProps) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.underlay}>
-                <Image source={picture.src} style={{
-                    width: width - BORDER_RADIUS,
-                    height: ((width - BORDER_RADIUS) * picture.height ) / picture.width
-                }} />
-            </View>
             <View style={[styles.tittleContainer, { transform }]}>
                 <Text style={styles.title}>{title}</Text>
             </View>

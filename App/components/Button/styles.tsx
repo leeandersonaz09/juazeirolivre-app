@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
        alignItems: "center"
     },
     label: {
-        //fontFamily:"SFProText-Regular",
+        fontFamily:"SFProDisplay_regular",
         fontSize: 15,
         textAlign:"center"
     }

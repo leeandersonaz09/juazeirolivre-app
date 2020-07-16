@@ -1,21 +1,28 @@
 import React, { useRef } from "react";
-import { View, StyleSheet, Dimensions, AsyncStorage } from "react-native";
-import {interpolateColor, useScrollHandler } from "react-native-redash";
+import { View, StyleSheet, Dimensions, AsyncStorage, Image } from "react-native";
+import { interpolateColor, useScrollHandler } from "react-native-redash";
 
 import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
 
 import Subslide from "./Subslide";
 import Dot from '../../components/Dot';
 
-import Animated, { multiply, divide } from "react-native-reanimated";
+import Animated, { multiply, divide, interpolate, Extrapolate } from "react-native-reanimated";
 const { width } = Dimensions.get("window");
 const MY_STORAGE_KEY = 'WelcomeFirst';
 
 const styles = StyleSheet.create({
+    
     container: {
         flex: 1,
         backgroundColor: "#ffff",
-
+    },
+    underlay: {
+        ...StyleSheet.absoluteFillObject,
+        justifyContent: "flex-end",
+        alignItems: "center",
+        borderBottomRightRadius: BORDER_RADIUS,
+        overflow: "hidden",
     },
     slider: {
         height: SLIDE_HEIGHT,
@@ -34,59 +41,60 @@ const styles = StyleSheet.create({
     footerContent: {
         flex: 1,
         backgroundColor: "#ffff",
-        
+
         borderTopLeftRadius: BORDER_RADIUS
-    }
+    },
+
 })
 
 const slides = [
     {
-        title: "Novidade",
+        title: "Juazeiro Livre",
         subtitle: "Juazeiro na palma da mão!",
-        description: "Um aplicativo totalmente desenhado para você obter de forma fácil, o acesso a informação e transparencia do município de Juazeiro.",
-        color: "#BEECC4",
+        description: "Um aplicativo idealizado pelo professor Cléber Souza de Jesus, para dar acesso a informação com transparencia sobre o município de Juazeiro.",
+        color: "#BFEAF5",
         picture: {
             src: require("./assets/01.png"),
-            width: 2513,
-            height: 3583,
+            width: 2160,
+            height: 2517,
         },
     },
     {
         title: "Feed",
-        subtitle: "Um feed de notícias",
+        subtitle: "Feed de notícias",
         description: "Você terá um feed de notícias na sua tela inicial para poder se manter sempre atualizado sobre nossas novidades.",
         color: "#BEECC4",
         picture: {
             src: require("./assets/02.png"),
-            width: 2513,
-            height: 3583,
+            width: 2160,
+            height: 2517,
         },
     },
     {
-        title: "Criador",
-        subtitle: "Cléber de Jesus",
-        description: "Um cidadão, professor e amigo que queria uma Juazeiro melhor e mais transparente para todos, que deu a cara tapa para tornar isso possível.",
+        title: "Transparência",
+        subtitle: "Gastos da Prefeitura",
+        description: "Gastos da prefeitura. Mais transparência e informação na palma da mão do cidadão de Juazeiro!",
         color: "#FFE4D9",
         picture: {
             src: require("./assets/03.png"),
-            width: 2513,
-            height: 3583,
+            width: 2160,
+            height: 2517,
         },
     },
     {
         title: "Preparado",
         subtitle: "Vamos começar?",
-        description: "Agora, vamos começar a o novo aplicativo, Juazeiro livre! Se curtiu, nos siga nas redes sociais...Let's Go!",
+        description: "Agora, vamos aplicativo Juazeiro livre! Nos siga nas redes sociais... Let's Go!",
         color: "#FFDDDD",
         picture: {
             src: require("./assets/04.png"),
-            width: 2513,
-            height: 3583,
+            width: 2160,
+            height: 2517,
         },
     }
 ]
 
-const Welcome = ({navigation}) => {
+const Welcome = ({ navigation }) => {
     const scroll = useRef<Animated.ScrollView>(null);
     const { scrollHandler, x } = useScrollHandler();
     const backgroundColor = interpolateColor(x, {
@@ -98,13 +106,34 @@ const Welcome = ({navigation}) => {
         //navigation.navigate('Home');
         console.log('FUNCIONA');
         // Saves to storage as a JSON-string
-       //await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true));
-    
+        //await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true));
+
     }
-    
+
     return (
         <View style={styles.container}>
             <Animated.View style={[styles.slider, { backgroundColor }]}>
+                {slides.map(({ picture }, index) => {
+                    const opacity = interpolate(x, {
+                        inputRange: [
+                            (index - 0.5) * width,
+                            index * width,
+                            (index + 0.5) * width,
+                        ],
+                        outputRange: [0, 1, 0],
+                        extrapolate: Extrapolate.CLAMP,
+                    })
+                    return (
+                        <Animated.View style={[styles.underlay, {opacity}]} key={index}>
+                            <Image source={picture.src} style={{
+                                width: width - BORDER_RADIUS,
+                                height: ((width - BORDER_RADIUS) * picture.height) / picture.width
+                            }}
+                            />
+                        </Animated.View>
+                    );
+                })}
+
                 <Animated.ScrollView
                     ref={scroll}
                     horizontal
@@ -133,34 +162,34 @@ const Welcome = ({navigation}) => {
                             />
                         ))}
                     </View>
-               <Animated.View style={{
-                            flex: 1,
-                            flexDirection:'row',
-                            width: width * slides.length,
-                            transform: [{ translateX: multiply(x, -1) }]
-                        }
+                    <Animated.View style={{
+                        flex: 1,
+                        flexDirection: 'row',
+                        width: width * slides.length,
+                        transform: [{ translateX: multiply(x, -1) }]
+                    }
                     }>
-                        
-                    {slides.map(({ description, subtitle }, index) => (
-                        <Subslide
-                            key={index}
-                            onPress={() => {
-                                
-                                if (scroll.current) {
-                                    scroll.current
-                                        .getNode()
-                                        .scrollTo({ x: width * (index + 1), animated: true })
-                                }
-                                if (index === (slides.length - 1)) {
-                                    submit();
-                                }
-                            }}
-                            last={index === (slides.length - 1)}
-                            {...{ description, subtitle }}
-                        />
-                    ))}
 
-               </Animated.View>
+                        {slides.map(({ description, subtitle }, index) => (
+                            <Subslide
+                                key={index}
+                                onPress={() => {
+
+                                    if (scroll.current) {
+                                        scroll.current
+                                            .getNode()
+                                            .scrollTo({ x: width * (index + 1), animated: true })
+                                    }
+                                    if (index === (slides.length - 1)) {
+                                        submit();
+                                    }
+                                }}
+                                last={index === (slides.length - 1)}
+                                {...{ description, subtitle }}
+                            />
+                        ))}
+
+                    </Animated.View>
                 </View>
             </View>
         </View>
