@@ -28,7 +28,7 @@
     ,
     "android": {
       "package": "com.juazeirolivre.juazeirolivreapp",
-      "versionCode": 1
+      "versionCode": 1.5
     }
   }
 }
