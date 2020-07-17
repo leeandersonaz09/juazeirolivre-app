@@ -6,7 +6,7 @@ import {
     SafeAreaView,
     Share,
     TextInput,
-    Dimensions
+    Dimensions, AsyncStorage
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 //import Card from '../components/Card'
@@ -19,9 +19,27 @@ import Loading from '../../loaders/13255-loader.json';
 const WIDTH = Dimensions.get('screen').width;
 import styles from './styles';
 import Shimmer from '../../components/Shimmer';
+import { StackParamList } from '../../config/navigation';
+import { StackNavigationProp } from '@react-navigation/stack';
+const MY_STORAGE_KEY = 'LikeGived';
 
+interface RenderListProps {
+    by: string;
+    data: string;
+    img: string;
+    ref: string;
+    text: string;
+    tittle: string;
+    id: number;
+    avatar: number;
+    like: boolean;
+}
 
-const Home = ({ navigation }) => {
+type Props = {
+    navigation: StackNavigationProp<StackParamList, 'Details'>;
+}
+
+const Home: React.FC<Props> = ({ navigation }) => {
 
     const dataRef = firebase.firestore().collection('post');
     const [data, setData] = useState([]);
@@ -41,9 +59,20 @@ const Home = ({ navigation }) => {
 
     }, []);
 
-  
+
     const getData = async () => {
         setLoading(true);
+
+        // Retrieves from storage as boolean
+        await AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
+            if (err) {
+                console.log(err)
+            } else {
+                const result = JSON.parse(value) // boolean false
+                setLiked(result);
+            }
+        })
+
         await dataRef.orderBy('data', 'desc').limit(pageSize)
             .onSnapshot(querySnapshot => {
 
@@ -76,9 +105,11 @@ const Home = ({ navigation }) => {
     }
 
     const giveLike = async (id, like) => {
+        var sum;
 
-        liked ? setLiked(false) : setLiked(true);
-        var sum = liked ? like - 1 : like + 1;
+        sum = liked ? await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false)).then(() => {
+            like - 1;
+        }) : await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true)).then(like + 1);
 
         await firebase.firestore().collection('post').doc(id).update({
             like: sum,
@@ -120,7 +151,7 @@ const Home = ({ navigation }) => {
                 <View style={styles.textLine}>
                     <Shimmer width={'100%'} height={14} />
                 </View>
-                
+
             </View>
         )
         //<LoadingComponent data={Loading} />;
@@ -181,11 +212,11 @@ const Home = ({ navigation }) => {
 
     };
 
-    const renderList = ({ by, data, img, ref, text, tittle, id, avatar, like }) => {
+    const renderList = ({ by, data, img, ref, text, tittle, id, avatar, like }: RenderListProps) => {
         return (
             <>
                 <TouchableOpacity activeOpacity={0.8} onPress={() => {
-                    navigation.navigate('ProductDetails', {
+                    navigation.navigate('Details', {
                         id: id,
                         tittle: tittle,
                         ref: ref,

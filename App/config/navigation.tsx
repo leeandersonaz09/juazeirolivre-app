@@ -37,7 +37,7 @@ const HomeStackScreen = () => (
       component={HomeScreen}
     />
     <HomeStack.Screen
-      name="ProductDetails"
+      name="Details"
       component={DetailsScreen}
     />
 
@@ -106,8 +106,8 @@ const WelcomeStackScreen = () => (
     screenOptions={{
       headerShown: false
     }}>
-    <WelcomeStack.Screen name="Login" component={Welcome} />
-    <WelcomeStack.Screen name="Home" component={HomeStackScreen} />
+    <WelcomeStack.Screen name="Welcome" component={Welcome} />
+    <WelcomeStack.Screen name="Tabs" component={AppTabsScreen} />
   </WelcomeStack.Navigator>
 );
 
@@ -180,4 +180,11 @@ export default () => {
       <RootStackScreen />
     </NavigationContainer>
   );
+};
+
+export type StackParamList = {
+  Home: undefined;
+  Details: undefined;
+  Welcome: undefined;
+  Tabs: undefined;
 };

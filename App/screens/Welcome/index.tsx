@@ -8,11 +8,13 @@ import Subslide from "./Subslide";
 import Dot from '../../components/Dot';
 
 import Animated, { multiply, divide, interpolate, Extrapolate } from "react-native-reanimated";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { StackParamList } from "../../config/navigation";
 const { width } = Dimensions.get("window");
 const MY_STORAGE_KEY = 'WelcomeFirst';
 
 const styles = StyleSheet.create({
-    
+
     container: {
         flex: 1,
         backgroundColor: "#ffff",
@@ -93,8 +95,12 @@ const slides = [
         },
     }
 ]
+type Props = {
+  navigation: StackNavigationProp<StackParamList, 'Tabs'>;  
+}
 
-const Welcome = ({ navigation }) => {
+const Welcome: React.FC<Props> = ({ navigation }) => {
+    
     const scroll = useRef<Animated.ScrollView>(null);
     const { scrollHandler, x } = useScrollHandler();
     const backgroundColor = interpolateColor(x, {
@@ -103,7 +109,7 @@ const Welcome = ({ navigation }) => {
     });
 
     const submit = async () => {
-        //navigation.navigate('Home');
+        navigation.navigate('Tabs');
         console.log('FUNCIONA');
         // Saves to storage as a JSON-string
         //await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true));
@@ -124,7 +130,7 @@ const Welcome = ({ navigation }) => {
                         extrapolate: Extrapolate.CLAMP,
                     })
                     return (
-                        <Animated.View style={[styles.underlay, {opacity}]} key={index}>
+                        <Animated.View style={[styles.underlay, { opacity }]} key={index}>
                             <Image source={picture.src} style={{
                                 width: width - BORDER_RADIUS,
                                 height: ((width - BORDER_RADIUS) * picture.height) / picture.width
@@ -170,24 +176,31 @@ const Welcome = ({ navigation }) => {
                     }
                     }>
 
-                        {slides.map(({ description, subtitle }, index) => (
-                            <Subslide
-                                key={index}
-                                onPress={() => {
+                        {slides.map(({ description, subtitle }, index) => {
+                            const last = index === slides.length - 1;
+                            return (
+                                (
+                                    <Subslide
+                                        key={index}
+                                        onPress={() => {
 
-                                    if (scroll.current) {
-                                        scroll.current
-                                            .getNode()
-                                            .scrollTo({ x: width * (index + 1), animated: true })
-                                    }
-                                    if (index === (slides.length - 1)) {
-                                        submit();
-                                    }
-                                }}
-                                last={index === (slides.length - 1)}
-                                {...{ description, subtitle }}
-                            />
-                        ))}
+                                            if (last) {
+                                                submit();
+                                            } else {
+                                                scroll.current
+                                                ?.getNode()
+                                                .scrollTo({ x: width * (index + 1), animated: true })
+                                            }
+
+
+                                        }}
+
+                                        {...{ description, subtitle, last }}
+                                    />
+                                )
+                            )
+                        }
+                        )}
 
                     </Animated.View>
                 </View>
