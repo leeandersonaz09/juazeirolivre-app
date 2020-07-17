@@ -63,16 +63,6 @@ const Home: React.FC<Props> = ({ navigation }) => {
     const getData = async () => {
         setLoading(true);
 
-        // Retrieves from storage as boolean
-        await AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
-            if (err) {
-                console.log(err)
-            } else {
-                const result = JSON.parse(value) // boolean false
-                setLiked(result);
-            }
-        })
-
         await dataRef.orderBy('data', 'desc').limit(pageSize)
             .onSnapshot(querySnapshot => {
 
@@ -105,11 +95,27 @@ const Home: React.FC<Props> = ({ navigation }) => {
     }
 
     const giveLike = async (id, like) => {
+    
         var sum;
+         // Retrieves from storage as boolean
+         await AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
+            if (err) {
+                console.log(err)
+            } else {
+                const result = JSON.parse(value) // boolean false
+                setLiked(result);
 
-        sum = liked ? await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false)).then(() => {
-            like - 1;
-        }) : await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true)).then(like + 1);
+                if (result == false) {
+                    AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true));
+                    sum = like + 1;
+                } else {
+                    if (like > 0) {
+                        AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false));
+                        sum = like - 1;
+                    } 
+                }
+            }
+        })
 
         await firebase.firestore().collection('post').doc(id).update({
             like: sum,
