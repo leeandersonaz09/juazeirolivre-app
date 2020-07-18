@@ -56,7 +56,7 @@ const slides = [
         description: "Um aplicativo idealizado pelo professor Cléber Souza de Jesus, para dar acesso a informação com transparência sobre o município de Juazeiro.",
         color: "#BFEAF5",
         picture: {
-            src: require("./assets/01.png"),
+            src: require("./assets/01.webp"),
             width: 2160,
             height: 2517,
         },
@@ -67,7 +67,7 @@ const slides = [
         description: "Você terá um feed de notícias na sua tela inicial para poder se manter sempre atualizado sobre nossas novidades.",
         color: "#BEECC4",
         picture: {
-            src: require("./assets/02.png"),
+            src: require("./assets/02.webp"),
             width: 2160,
             height: 2517,
         },
@@ -78,7 +78,7 @@ const slides = [
         description: "Gastos da prefeitura. Mais transparência e informação na palma da mão do cidadão de Juazeiro!",
         color: "#FFE4D9",
         picture: {
-            src: require("./assets/03.png"),
+            src: require("./assets/03.webp"),
             width: 2160,
             height: 2517,
         },
@@ -89,7 +89,7 @@ const slides = [
         description: "Agora, vamos aplicativo Juazeiro livre! Nos siga nas redes sociais... Let's Go!",
         color: "#FFDDDD",
         picture: {
-            src: require("./assets/04.png"),
+            src: require("./assets/04.webp"),
             width: 2160,
             height: 2517,
         },

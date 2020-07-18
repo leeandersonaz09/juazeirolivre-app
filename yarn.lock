@@ -1579,19 +1579,6 @@
     wcwidth "^1.0.1"
     ws "^1.1.0"
 
-"@react-native-community/masked-view@0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.6.tgz#c7f2ac187c1f25aa8c30d11baa8f4398eca3bb84"
-  integrity sha512-PpMoeXwPUoldCRKDuSi+zK5rT+sJTW6ri6RdGPkSKRzU77Q1d9IaR0O5IKvBj0XSdL3p+dcOa05gk35aGDffBQ==
-
-"@react-navigation/bottom-tabs@^5.5.2":
-  version "5.5.2"
-  resolved "https://registry.yarnpkg.com/@react-navigation/bottom-tabs/-/bottom-tabs-5.5.2.tgz#b3d95e2a05eba47f7aa34fb9f2331ddede0ee4d5"
-  integrity sha512-unopBnv8i3hcjhp2qdhgSwF6GFnhkdtPwGbvJMOG8Na19oPscT8UQDUbHZKs9wiJMk2Q0usEz2PbFh8GQGAf7w==
-  dependencies:
-    color "^3.1.2"
-    react-native-iphone-x-helper "^1.2.1"
-
 "@react-navigation/core@^3.7.6":
   version "3.7.6"
   resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-3.7.6.tgz#e0244fcdc22937825b252197f70308bbe5709c58"
@@ -3155,21 +3142,6 @@ expo-av@~8.1.0:
     lodash "^4.17.15"
     nullthrows "^1.1.0"
 
-expo-battery@~2.1.0:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/expo-battery/-/expo-battery-2.1.1.tgz#dfd2cd466d2142796234f1a331e2fbe88bdf7176"
-  integrity sha512-vHBn/P1Da1O9I29z2qpEp4Gqk1sw34WSheIMV4rU4kbQPg0VWHwE0EyX21OMdNdFeObqZjL/Sv2NMEZ4dXN5eg==
-  dependencies:
-    fbjs "1.0.0"
-
-expo-camera@~8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/expo-camera/-/expo-camera-8.2.0.tgz#9c849f0dc409e1fe6ee886f479e0ee0050b6d386"
-  integrity sha512-wGVqQVVR4YCkHuI7u+qloI1p2UbYwpU8hs0IEM+1Th4JQekAPUEfOmJI6ZHGj36El8f87ghRed2MXzOssn4hHg==
-  dependencies:
-    lodash "^4.6.0"
-    prop-types "^15.6.0"
-
 expo-constants@~9.0.0:
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-9.0.0.tgz#35c600079ee91d38fe4f56375caae6e90f122fdd"
@@ -3194,19 +3166,6 @@ expo-font@~8.1.0:
   dependencies:
     fbjs "1.0.0"
     fontfaceobserver "^2.1.0"
-
-expo-gl-cpp@~8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/expo-gl-cpp/-/expo-gl-cpp-8.1.0.tgz#537ff7702db5b71d68f8128c033627cfa363c911"
-  integrity sha512-LFc+R+0HVBxSk+9gCVQm5wmKCdmUfdqzq9ReYYg2b74+ZN3zvBGCLCOFI0R5YyReaUb7aCpAk+SqvG6X0b3D4w==
-
-expo-gl@~8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/expo-gl/-/expo-gl-8.1.0.tgz#1dd25bbfd239fa223aa7074dd6cccd7cc044e75f"
-  integrity sha512-aCkS7uCR1apD6WH7qqbpRJTie4qQyWClGj7LQ67B3Mm6jNyfOS4OvxxS5Y980lFZWmePguCWzft0c0/bMGTdMw==
-  dependencies:
-    expo-gl-cpp "~8.1.0"
-    prop-types "^15.7.2"
 
 expo-haptics@~8.1.0:
   version "8.1.0"
