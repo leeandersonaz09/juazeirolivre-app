@@ -9,7 +9,6 @@ import {
     Dimensions, AsyncStorage
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-//import Card from '../components/Card'
 import { Card, Title } from 'react-native-paper';
 import { Content, CardItem, Thumbnail, Button, Text, Icon, Left, Right, Body } from 'native-base';
 import Header from '../../components/Header';
