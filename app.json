@@ -29,7 +29,7 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#3490dc",
-        "foregroundImage": "./assets/splash.png"
+        "foregroundImage": "./assets/ForegroudImage.png"
       },
       "package": "com.juazeirolivre.juazeirolivreapp",
       "versionCode": 1
