@@ -109,10 +109,11 @@ const Welcome: React.FC<Props> = ({ navigation }) => {
     });
 
     const submit = async () => {
-        navigation.navigate('Tabs');
-        console.log('FUNCIONA');
         // Saves to storage as a JSON-string
-        //await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true));
+        await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true))
+        .then(()=>{ 
+            navigation.navigate('Tabs');
+        });
 
     }
 

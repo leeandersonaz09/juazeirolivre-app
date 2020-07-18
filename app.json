@@ -5,10 +5,10 @@
     "description": "Uma Juazeiro transparente na palma da sua mão!",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
-    "version": "2.1.0",
+    "version": "1.2.0",
+    "sdkVersion": "37.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -27,6 +27,10 @@
     }
     ,
     "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#3490dc",
+        "foregroundImage": "./assets/splash.png"
+      },
       "package": "com.juazeirolivre.juazeirolivreapp",
       "versionCode": 1
     }

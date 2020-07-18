@@ -3,7 +3,6 @@ import {
     View,
     StyleSheet,
     Text,
-
     SafeAreaView,
     ImageBackground,
     ScrollView
@@ -68,7 +67,6 @@ const Tab2 = () => {
 
                         <DataTable>
                             <DataTable.Header>
-
                                 <DataTable.Title>Profissionais</DataTable.Title>
                                 <DataTable.Title numeric>Quantidade</DataTable.Title>
                             </DataTable.Header>
@@ -139,22 +137,6 @@ const styles = StyleSheet.create({
         fontSize:16,
         fontWeight:'normal',
         color:'white',
-    },
-
-    header: {
-        height: 60,
-        width: '100%',
-        backgroundColor: '#0000ff',
-        justifyContent: 'center',
-        alignContent: 'center',
-        alignItems: 'center',
-    },
-
-    headerTitle: {
-        fontSize: 20,
-        fontWeight: "500",
-        color: "#fff",
-        fontWeight: "bold",
     },
 
     boxContainer: {

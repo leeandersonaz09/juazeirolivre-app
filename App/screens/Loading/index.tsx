@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View, StatusBar } from 'react-native';
 import Lottie from 'lottie-react-native';
 import dataloading from '../../loaders/24512-moving-mobile.json';

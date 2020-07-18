@@ -11,7 +11,7 @@ import {
 import { FlatList } from 'react-native-gesture-handler';
 //import Card from '../components/Card'
 import { Card, Title } from 'react-native-paper';
-import { Content, CardItem, Thumbnail, Button, Text, Icon, Left, Right, Body, Container } from 'native-base';
+import { Content, CardItem, Thumbnail, Button, Text, Icon, Left, Right, Body } from 'native-base';
 import Header from '../../components/Header';
 import * as firebase from 'firebase';
 import LoadingComponent from '../../components/defaultLoading/lottieLoading';
@@ -48,7 +48,6 @@ const Home: React.FC<Props> = ({ navigation }) => {
     const [dataBackup, setdataBackup] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pageSize, setpageSize] = useState(5);
-    const [liked, setLiked] = useState(false);
 
     useEffect(() => {
 
@@ -82,7 +81,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
                         like
                     });
                 });
-                console.log('data obj' + list)
+                
                 setdataBackup(list);
                 setData(list);
                 setTimeout(() => {
@@ -103,7 +102,6 @@ const Home: React.FC<Props> = ({ navigation }) => {
                 console.log(err)
             } else {
                 const result = JSON.parse(value) // boolean false
-                setLiked(result);
 
                 if (result == false) {
                     AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true));
@@ -160,7 +158,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
 
             </View>
         )
-        //<LoadingComponent data={Loading} />;
+        
     }
 
     //SearchBar 
@@ -207,7 +205,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
             });
 
             if (result.action === Share.sharedAction) {
-                console.log('sucesso')
+             
             } else if (result.action === Share.dismissedAction) {
                 // dismissed
                 alert("Ocorreu um erro!")

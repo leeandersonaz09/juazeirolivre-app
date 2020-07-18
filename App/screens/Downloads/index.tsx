@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React from 'react';
 import {
     View,
     StyleSheet,
@@ -6,10 +6,9 @@ import {
     SafeAreaView,
     ScrollView,
     Linking,
-    StatusBar,
     ImageBackground,
 } from 'react-native';
-import { Container, Content, Tab, Tabs, Body, Title, Icon, Right, Button, Accordion, Card, CardItem } from 'native-base';
+import { Container, Content, Card, CardItem, Body } from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
 import Header from '../../components/Header';
 

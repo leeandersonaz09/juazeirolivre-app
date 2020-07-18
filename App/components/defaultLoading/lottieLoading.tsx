@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import Lottie from 'lottie-react-native';
 
 function lottieLoading({data, text, color, tcolor}) {
