@@ -3,9 +3,10 @@ import { general, fonts } from '../../styles';
 
 const styles = StyleSheet.create({
 
-    //Geral
-    ...general,
-
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+      },
     //Shimmer
     header2: {
         flexDirection: 'row',
@@ -19,7 +20,6 @@ const styles = StyleSheet.create({
 
     headerTitle: {
         fontSize: fonts.headerTittle,
-        fontWeight: "500",
         color: "#fff",
         fontWeight: "bold",
     },

@@ -6,7 +6,6 @@ import {
   Image,
   StatusBar,
   Share,
-  Modal,
   Animated,
   Dimensions
 } from 'react-native';
@@ -15,7 +14,7 @@ import { PinchGestureHandler, State } from 'react-native-gesture-handler';
 import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
 //Dimensins get
 const { width } = Dimensions.get('window');
-import { general, colors} from '../../styles';
+import { general, colors } from '../../styles';
 //import Header from '../components/Header';
 
 const scale = new Animated.Value(1);
@@ -82,109 +81,72 @@ function DetailsScreen({ route, navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-    <Container>
-      <Header >
-      <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
-        <Left>
-          <Button transparent onPress={backHome}>
-            <Icon name='arrow-back' />
-            <Text>Back</Text>
-          </Button>
-        </Left>
-        <Body>
-          <Text style={styles.headerTitle}>Juazeiro Livre</Text>
-        </Body>
-
-      </Header>
-
-      <Content>
-
-        <CardItem>
+      <Container>
+        <Header >
+          <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
           <Left>
-            <Thumbnail source={{ uri: avatar }} />
-            <Body>
-              <Text>{by}</Text>
-              <Text note>{data}</Text>
-            </Body>
-          </Left>
-        </CardItem>
-        <Text style={{ fontWeight: 'bold', marginBottom: 10, textAlign: 'center', fontSize: 20 }}>{tittle}</Text>
-        <View style={styles.zoomWrapper}>
-          <CardItem cardBody>
-            <ReactNativeZoomableView
-              maxZoom={1.5}
-              minZoom={0.5}
-              zoomStep={0.5}
-              initialZoom={1}
-              bindToBorders={true}
-              onZoomAfter={logOutZoomState}
-              style={styles.zoomableView}
-            >
-              <PinchGestureHandler
-                onGestureEvent={onZoomEvent}
-                onHandlerStateChange={onZoomStateChange}>
-                <Animated.Image resizeMode="contain" source={{ uri: img }} style={styles.Img} />
-              </PinchGestureHandler>
-            </ReactNativeZoomableView>
-          </CardItem>
-        </View>
-        <Body>
-          <Text style={styles.Text}>{text}</Text>
-          <Text style={styles.Ref}>
-            "{ref}"
-              </Text>
-          <CardItem>
-            <Left>
-              <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
-                <Icon name="md-share" />
-                <Text>Compartilhar</Text>
-              </Button>
-            </Left>
-          </CardItem>
-        </Body>
-
-
-      </Content>
-
-
-      <Modal visible={dialog !== null} animated>
-        <View style={styles.modalContainer}>
-       
-
-        <Image resizeMode="contain" source={dialog!== null ? { uri: img }: null} style={styles.Img} />
-
-   
-          <Left>
-            <Button transparent onPress={() => setDialog(null)}>
+            <Button transparent onPress={backHome}>
               <Icon name='arrow-back' />
               <Text>Back</Text>
             </Button>
           </Left>
+          <Body>
+            <Text style={styles.headerTitle}>Juazeiro Livre</Text>
+          </Body>
+
+        </Header>
+        <View style={styles.zoomWrapper}>
+          <Image
+              style={styles.image}
+              source={{ uri: img }}
+              resizeMode="contain"
+            />
 
         </View>
-      </Modal>
 
-    </Container>
+        <Content>
+
+          <CardItem>
+            <Left>
+              <Thumbnail source={{ uri: avatar }} />
+              <Body>
+                <Text>{by}</Text>
+                <Text note>{data}</Text>
+              </Body>
+            </Left>
+          </CardItem>
+          <Text style={{ fontWeight: 'bold', marginBottom: 10, textAlign: 'center', fontSize: 20 }}>{tittle}</Text>
+
+          <Body>
+            <Text style={styles.Text}>{text}</Text>
+            <Text style={styles.Ref}>
+              "{ref}"
+              </Text>
+            <CardItem>
+              <Left>
+                <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
+                  <Icon name="md-share" />
+                  <Text>Compartilhar</Text>
+                </Button>
+              </Left>
+            </CardItem>
+          </Body>
+        </Content>
+      </Container>
     </SafeAreaView>
   );
 }
 
 
 const styles = StyleSheet.create({
-  ...general,
-  
+  container: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
   headerTitle: {
     fontSize: 20,
-    fontWeight: "500",
     color: "#fff",
     fontWeight: "bold",
-  },
-  Img: {
-    flex: 1,
-    width: width,
-    height: 200,
-    transform: [{ scale: scale }],
-
   },
   zoomWrapper: {
     flex: 1,
@@ -193,6 +155,12 @@ const styles = StyleSheet.create({
   zoomableView: {
     padding: 10,
     backgroundColor: '#fff',
+  },
+  image: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    marginBottom: 10,
   },
   avatarImage: {
     width: 150,
