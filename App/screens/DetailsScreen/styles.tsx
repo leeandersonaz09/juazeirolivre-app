@@ -1,56 +1,66 @@
-import { StyleSheet } from 'react-native';
-import { general, fonts } from '../../styles';
+import { StyleSheet, Dimensions } from 'react-native';
+import { colors } from '../../styles';
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
       },
-
-    headerTitle: {
+    //Shimmer
+      headerTitle: {
         fontSize: 20,
-
-        color: "#fff",
+        color: colors.white,
         fontWeight: "bold",
+        fontFamily: "SFProDisplay_bold",
     },
-    Img: {
+    tittle: {
+        fontWeight: 'bold',
+        marginBottom: 20,
+        textAlign: 'center',
+        fontSize: 20,
+        fontFamily: "SFProDisplay_bold",
+    },
+      Img: {
         flex: 1,
         width: width,
-        height: 200,
-    },
-    zoomWrapper: {
+          height: 200,
+        marginBottom:20
+      },
+      zoomWrapper: {
         flex: 1,
-        overflow: 'hidden',
-    },
-    zoomableView: {
+    
+      },
+      zoomableView: {
         padding: 10,
-        backgroundColor: '#fff',
-    },
-    avatarImage: {
+        backgroundColor: colors.white,
+      },
+      avatarImage: {
         width: 150,
         height: 150,
         borderWidth: 2,
         borderColor: '#3490dc',
         borderRadius: 150
-    },
-    Text: {
+      },
+      Text: {
         textAlign: 'justify',
         alignContent: 'center',
         marginTop: 10,
         marginBottom: 15,
         marginHorizontal: 10,
+        fontFamily: "SFProDisplay_regular",
         fontSize: 18,
-
-    },
+    
+      },
     Ref: {
         fontStyle: 'italic',
         color: "#808080",
         textAlign: 'center',
+        fontFamily: "SFProDisplay_regular",
         fontSize: 18,
         marginHorizontal: 10,
         marginBottom: 10
-    }
+    },
 });
 
 export default styles;
