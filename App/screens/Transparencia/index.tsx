@@ -4,6 +4,7 @@ import { Tabs, Tab, TabHeading, Icon } from 'native-base';
 import Tab2 from './Tab2';
 import Tab3 from './Tab3';
 import Tab4 from './Tab4';
+import {colors} from '../../styles'
 import Header from '../../components/Header';
 console.disableYellowBox = true;
 
@@ -16,13 +17,13 @@ const Transparencia = () => {
         </Header>
 
             <Tabs >
-            <Tab heading={ <TabHeading><Icon name="book" /><Text>Educação</Text></TabHeading>}>
+                <Tab heading={<TabHeading><Icon style={styles.TabIcon}  name="md-school" /><Text style={styles.TabText} >Educação</Text></TabHeading>}>
                     <Tab2 />
                 </Tab>
-                <Tab heading={ <TabHeading><Icon name="logo-usd" /><Text>Orçamento</Text></TabHeading>}>
+                <Tab heading={ <TabHeading><Icon style={styles.TabIcon}  name="logo-usd" /><Text style={styles.TabText} >Orçamento</Text></TabHeading>}>
                     <Tab3 />
                 </Tab>
-                <Tab heading={ <TabHeading><Icon name="ios-medkit" /><Text>Saúde</Text></TabHeading>}>
+                <Tab heading={ <TabHeading><Icon style={styles.TabIcon} name="ios-medkit" /><Text style={styles.TabText} >Saúde</Text></TabHeading>}>
                     <Tab4 />
                 </Tab>
             </Tabs>
@@ -41,8 +42,15 @@ const styles = StyleSheet.create({
 
     headerTitle: {
         fontSize: 20,
-        color: "#fff",
+        color: colors.white,
         fontWeight: "bold",
     },
+    TabText: {
+        color: colors.white,
+    },
+    TabIcon: {
+        padding: 10,
+        color: colors.yellow,
+    }
 
 })

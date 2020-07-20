@@ -248,7 +248,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
                             <Title>{tittle}</Title>
 
                             <Body>
-                                <Text style={styles.Text}>{text}</Text>
+                                <Text numberOfLines={3} style={styles.Text}>{text}</Text>
                                 <Text style={{ fontStyle: 'italic', color: "#808080", textAlign: 'center', marginTop: 10 }}>
                                     {ref}
                                 </Text>
