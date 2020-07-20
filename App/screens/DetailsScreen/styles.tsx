@@ -3,11 +3,14 @@ import { general, fonts } from '../../styles';
 
 const styles = StyleSheet.create({
 
-    ...general,
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+      },
 
     headerTitle: {
         fontSize: 20,
-        fontWeight: "500",
+
         color: "#fff",
         fontWeight: "bold",
     },
@@ -15,8 +18,6 @@ const styles = StyleSheet.create({
         flex: 1,
         width: width,
         height: 200,
-        transform: [{ scale: scale }],
-
     },
     zoomWrapper: {
         flex: 1,
