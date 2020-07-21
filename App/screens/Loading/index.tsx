@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, StatusBar } from 'react-native';
+import { View, StatusBar, Text } from 'react-native';
 import Lottie from 'lottie-react-native';
 import dataloading from '../../loaders/24512-moving-mobile.json';
 import * as firebase from 'firebase';
 import Firebase from '../../config/firebase';
+import {colors} from '../../styles';
 
 function Loading({ navigation }) {
   
@@ -20,6 +21,7 @@ function Loading({ navigation }) {
         animated={true} 
       />
       <Lottie source={dataloading} style={{ width: 250, height: 250 }} autoPlay loop />
+      <Text style={{color: colors.primary, fontFamily:"SFProDisplay_bold", fontWeight:'bold', fontSize:12, marginTop:40}}>Aguarde enquanto arrumamos tudo para você!</Text>
     </View>
 
   );

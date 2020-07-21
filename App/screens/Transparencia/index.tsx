@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, SafeAreaView } from 'react-native';
 import { Tabs, Tab, TabHeading, Icon } from 'native-base';
 import Tab2 from './Tab2';
 import Tab3 from './Tab3';
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 20,
         color: colors.white,
+        marginTop:25,
         fontWeight: "bold",
     },
     TabText: {
