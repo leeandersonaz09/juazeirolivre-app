@@ -1,12 +1,11 @@
 import React from 'react';
-import {View, StyleSheet, StatusBar } from 'react-native'
+import {View, StyleSheet} from 'react-native'
 import {colors} from '../../styles';
 
 export default function Header(props) {
 
     return (
         <>
-            <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
             <View style={styles.header}>
                 {props.children}
             </View>

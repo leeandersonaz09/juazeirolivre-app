@@ -15,7 +15,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#3490dc"
+      "backgroundColor": "#3f51b5"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -29,12 +29,16 @@
     ,
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#3490dc",
+        "backgroundColor": "#3f51b5",
         "foregroundImage": "./assets/ForegroudImage.png"
       },
       "permissions" : [],
       "package": "com.juazeirolivre.juazeirolivreapp",
       "versionCode": 3
+    },
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#3f51b5"
     }
   }
 }

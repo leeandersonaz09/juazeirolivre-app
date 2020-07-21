@@ -120,32 +120,31 @@ const RootStackScreen = () => {
 
 
   const loadFonts = async () => {
-    
+
     await Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
       SFProDisplay_bold: require("../styles/fonts/SFProDisplay_Bold.ttf"),
       SFProDisplay_regular: require("../styles/fonts/SFProDisplay_Regular.ttf"),
       ...Ionicons.font,
+    }).then(() => {
+      setfontsLoaded(true);
+      // Retrieves from storage as boolean
+      AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
+        if (err) {
+          console.log(err)
+        } else {
+          const result = JSON.parse(value) // boolean false
+          result ? setisNew(false) : setisNew(true);
+
+        }
+      })
     });
 
-    setfontsLoaded(true);
-
-    // Retrieves from storage as boolean
-    await AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
-      if (err) {
-        console.log(err)
-      } else {
-        const result = JSON.parse(value) // boolean false
-        result ? setisNew(false) : setisNew(true);
-
-      }
-    })
 
   }
 
   useEffect(() => {
-
     if (!fontsLoaded) {
       loadFonts();
     }
@@ -168,8 +167,8 @@ const RootStackScreen = () => {
       ) : isnew ? (
         <RootStack.Screen name="WelcomeStackScreen" component={WelcomeStackScreen} />
       ) : (
-          <RootStack.Screen name="AppTabsScreen" component={AppTabsScreen} />
-        )}
+            <RootStack.Screen name="AppTabsScreen" component={AppTabsScreen} />
+          )}
 
     </RootStack.Navigator>
   );
