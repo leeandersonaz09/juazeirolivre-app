@@ -15,7 +15,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#3f51b5"
+      "backgroundColor": "#3B3B3B"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -29,7 +29,7 @@
     ,
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#3f51b5",
+        "backgroundColor": "#3B3B3B",
         "foregroundImage": "./assets/ForegroudImage.png"
       },
       "permissions" : [],
@@ -38,7 +38,7 @@
     },
     "androidStatusBar": {
       "barStyle": "light-content",
-      "backgroundColor": "#3f51b5"
+      "backgroundColor": "#3B3B3B"
     }
   }
 }

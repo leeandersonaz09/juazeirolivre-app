@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { general, fonts } from '../../styles';
+import { general, fonts, colors } from '../../styles';
 
 const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
       },
     //Shimmer
     header2: {
@@ -20,14 +20,14 @@ const styles = StyleSheet.create({
 
     headerTitle: {
         fontSize: fonts.headerTittle,
-        color: "#fff",
+        color: colors.white,
         fontWeight: "bold",
     },
 
     header: {
         height: 60,
         width: '100%',
-        backgroundColor: '#3f51b5',
+        backgroundColor: colors.primary,
         justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center',
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     input: {
         height: 40,
         width: '90%',
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         borderRadius: 20,
         padding: 5,
         paddingLeft: 10,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         height: 40,
         borderRadius: 20,
         margin: 10,
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 3,
         paddingTop: 40,
-        backgroundColor: '#fff'
+        backgroundColor: colors.white
     },
 
     cardContainer: {
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         width: 120,
         height: 120,
         borderWidth: 2,
-        borderColor: '#3490dc',
+        borderColor: colors.primary,
         borderRadius: 150
     },
 
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginBottom: 5,
         alignSelf: "center",
-        color: '#3b49b6',
+        color: colors.primary,
         fontSize: 20
     },
 

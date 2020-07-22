@@ -17,6 +17,7 @@ import Downloads from '../screens/Downloads';
 import DetailsScreen from '../screens/DetailsScreen';
 import Loading from "../screens/Loading";
 import Welcome from "../screens/Welcome";
+import { colors } from '../styles';
 //para novos uruários serem redirecionados para tela welcome
 const MY_STORAGE_KEY = 'WelcomeFirst';
 //instancing navigators
@@ -52,7 +53,7 @@ const AppTabsScreen = () => (
     initialRouteName="home"
     activeColor="#ffcc00"
     inactiveColor="#fff"
-    barStyle={{ backgroundColor: '#3b49b6' }}>
+    barStyle={{ backgroundColor:colors.primary }}>
 
     <AppTabs.Screen
       name="Tab1"

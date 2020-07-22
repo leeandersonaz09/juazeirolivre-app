@@ -53,7 +53,7 @@ const slides = [
     {
         title: "Juazeiro Livre",
         subtitle: "Juazeiro na palma da mão!",
-        description: "Um aplicativo idealizado pelo professor Cléber Souza de Jesus, para dar acesso a informação com transparência sobre o município de Juazeiro.",
+        description: "Um aplicativo idealizado pelo professor Cléber Jesus, para dar acesso a informação com transparência sobre o município de Juazeiro.",
         color: "#BFEAF5",
         picture: {
             src: require("./assets/01.webp"),
