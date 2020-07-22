@@ -3,7 +3,8 @@ const colors = {
   primary: '#3f51b5',
   gray: '#d8d8d8',
   white: '#fff',
-  yellow: "#ffcc00"
+  yellow: "#ffcc00",
+  black: '#000'
 
 };
 
