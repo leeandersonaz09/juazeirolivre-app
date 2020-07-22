@@ -17,7 +17,7 @@ darkOverlay: {
     right: 0,
     left:0,
     height:270,
-    backgroundColor:'#000',
+    backgroundColor:colors.black,
     opacity:0.2,
     borderBottomRightRadius:65
 },
@@ -33,7 +33,7 @@ UserGreat:{
 userText: {
     fontSize:16,
     fontWeight:'normal',
-    color:'white',
+    color: colors.white,
 },
 
 contentContainer: {
@@ -43,7 +43,7 @@ contentContainer: {
 
 headerTitle: {
     fontSize: 20,
-    color: "#fff",
+    color: colors.white,
     fontWeight: "bold",
 },
 
@@ -63,7 +63,7 @@ boxTextContainer: {
 boxText1: {
     paddingRight: 50,
     paddingLeft: "15%",
-    backgroundColor: '#d8d8d8',
+    backgroundColor: colors.gray,
     borderWidth: 1,
     fontWeight: 'bold'
 
