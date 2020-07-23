@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
     View,
-    StyleSheet,
     Text,
     SafeAreaView,
     ImageBackground,
@@ -9,6 +8,7 @@ import {
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import Card from '../../components/Card';
+import styles from './styles';
 
 const Tab4 = () => {
 
@@ -47,9 +47,10 @@ const Tab4 = () => {
 
                     <Card>
 
-                        <Text style={{ textAlign: 'justify' }}>Em 10 anos, o município de Juazeiro-BA, gastou em saúde o valor de R$ 1.261.621.796,97.</Text>
-                        <Text>Entre o ano de 2009 e 2019, o governo federal repassou ao município de Juazeiro-BA, o valor de R$ 888.426.003,66, apenas para a área da saúde.</Text>
-                        <Text>Orçamentos de recursos próprios gastos na área da saúde nos últimos 10 anos:</Text>
+                        <Text style={{textAlign:'justify'}}>Em 10 anos, o município de Juazeiro-BA, gastou em saúde o valor de R$ 1.261.621.796,97 bilhão.</Text>
+                        <Text style={{textAlign:'justify'}}>No mesmo período, o governo municipal fechou três hospitais: Santa Casa de Misericórdia, Só Baby e Semec.</Text>
+                        <Text style={{textAlign:'justify'}}>Entre o ano de 2009 e 2019, o governo federal repassou ao município de Juazeiro-BA, o valor de R$ 888.426.003,66, apenas para a área da saúde.</Text>
+                        <Text style={{textAlign:'justify'}}>Orçamentos de recursos próprios gastos na área da saúde nos últimos 10 anos:</Text>
                         <Text style={styles.ibge}>Fonte: Portal da Educação/Rede Municipal de Juazeiro.</Text>
 
                     </Card>
@@ -92,89 +93,3 @@ const Tab4 = () => {
 
 }
 export default Tab4;
-
-const styles = StyleSheet.create({
-
-    container: {
-        flex: 1,
-        backgroundColor: "#ffff",
-    },
-
-    backgrounImage: {
-        width: '100%',
-        height: 240,
-
-    },
-    darkOverlay: {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        left: 0,
-        height: 240,
-        backgroundColor: '#000',
-        opacity: 0.2,
-        borderBottomRightRadius: 65
-    },
-    imageContainer: {
-        paddingTop: 50,
-        paddingLeft: 16
-    },
-    UserGreat: {
-        fontSize: 38,
-        fontWeight: 'bold',
-        color: 'white',
-    },
-    userText: {
-        fontSize: 16,
-        fontWeight: 'normal',
-        color: 'white',
-    },
-
-    contentContainer: {
-        padding: 15,
-
-    },
-
-    boxContainer: {
-        alignContent: 'center',
-        alignItems: "center",
-        textAlign: 'justify'
-
-    },
-
-    boxTextContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-
-
-    },
-
-    boxText1: {
-        fontWeight: 'bold',
-
-
-    },
-
-    boxText2: {
-
-
-    },
-
-    Tittle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        alignSelf: 'center',
-        marginBottom: 10,
-    },
-
-    ibge: {
-        fontStyle: 'italic',
-        fontSize: 10,
-        alignSelf: 'center',
-        marginTop: 10,
-        marginBottom: 10
-    },
-
-
-
-})

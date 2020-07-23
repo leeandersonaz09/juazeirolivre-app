@@ -10,6 +10,8 @@ import {
 import { FlatList } from 'react-native-gesture-handler';
 import Card from '../../components/Card';
 
+import styles from './styles';
+
 const Tab2 = () => {
 
     const [dataEducacao, setDataEducacao] = useState([
@@ -66,6 +68,7 @@ const Tab2 = () => {
                         <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia</Text>
                     </Card>
                     <Card>
+                        
                         <Text style={styles.Tittle}>Entre 2009 e 2019 a cidade de Juazeiro recebeu, apenas para educação, R$1.198.074.228,07</Text>
 
                     </Card>
@@ -98,9 +101,12 @@ const Tab2 = () => {
 
                         />
                     </Card>
-                    <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia</Text>
+                    <Text style={{ fontWeight: 'bold', alignSelf: 'center', marginTop: 15 }}>ORÇAMENTO APROVADO PARA 2020: R$ 188.220.380,00</Text>
+                <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia</Text>
+
 
                 </View>
+                
             </ScrollView>
         </SafeAreaView >
     )
@@ -108,89 +114,3 @@ const Tab2 = () => {
 
 }
 export default Tab2;
-
-const styles = StyleSheet.create({
-
-    container: {
-        flex: 1,
-        backgroundColor: "#ffff",
-    },
-
-    contentContainer: {
-        padding: 15,
-
-    },
-    backgrounImage: {
-        width: '100%',
-        height: 240,
-
-    },
-    darkOverlay: {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        left: 0,
-        height: 240,
-        backgroundColor: '#000',
-        opacity: 0.2,
-        borderBottomRightRadius: 65
-    },
-    imageContainer: {
-        paddingTop: 50,
-        paddingLeft: 16
-    },
-    UserGreat: {
-        fontSize: 38,
-        fontWeight: 'bold',
-        color: 'white',
-    },
-    userText: {
-        fontSize: 16,
-        fontWeight: 'normal',
-        color: 'white',
-    },
-
-    boxContainer: {
-        alignContent: 'center',
-        alignItems: "center",
-
-    },
-
-    boxTextContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-
-    },
-
-    boxText1: {
-
-        fontWeight: 'bold',
-        fontSize: 15
-
-    },
-
-    boxText2: {
-
-        fontSize: 15
-    },
-
-
-    Tittle: {
-        fontSize: 15,
-        fontWeight: 'bold',
-        alignSelf: 'center',
-        marginBottom: 10,
-        marginTop: 15,
-    },
-
-    ibge: {
-        fontStyle: 'italic',
-        fontSize: 10,
-        alignSelf: 'center',
-        marginTop: 10,
-        marginBottom: 10
-    },
-
-
-
-})

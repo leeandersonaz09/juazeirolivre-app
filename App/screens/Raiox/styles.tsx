@@ -1,95 +1,108 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../styles';
+import { colors, fonts } from '../../styles';
+
+// fonts size of import fonts
+/* 
+    regular: 15,
+    medium: 12,
+    small: 11,
+    tiny: 10,
+    headerTittle: 20,
+    big: 38
+
+    header: '#333333',
+    primary: '#3B3B3B',
+    gray: '#d8d8d8',
+    white: '#fff',
+    yellow: "#ffcc00",
+    black: '#000'
+*/
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.white,
-},
-backgrounImage:{
-    width:'100%',
-    height:270,
     
-},
-darkOverlay: {
-    position:'absolute',
-    top:0,
-    right: 0,
-    left:0,
-    height:270,
-    backgroundColor:colors.black,
-    opacity:0.2,
-    borderBottomRightRadius:65
-},
-imageContainer:{
-    paddingTop:50,
-    paddingLeft:16
-},
-UserGreat:{
-    fontSize:38,
-    fontWeight:'bold',
-    color:'white',
-},
-userText: {
-    fontSize:16,
-    fontWeight:'normal',
-    color: colors.white,
-},
+    container: {
+        flex: 1,
+        backgroundColor: colors.white,
+    },
 
-contentContainer: {
-    padding: 15,
+    backgrounImage: {
+        width: '100%',
+        height: 270,
 
-},
+    },
 
-headerTitle: {
-    fontSize: 20,
-    color: colors.white,
-    fontWeight: "bold",
-},
+    darkOverlay: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        left: 0,
+        height: 270,
+        backgroundColor: colors.black,
+        opacity: 0.2,
+        borderBottomRightRadius: 65
+    },
+
+    imageContainer: {
+        paddingTop: 50,
+        paddingLeft: 16
+    },
+
+    UserGreat: {
+        fontSize: fonts.big,
+        fontWeight: 'bold',
+        color: colors.white,
+    },
+
+    userText: {
+        fontSize: fonts.regular,
+        fontWeight: 'normal',
+        color: colors.white,
+    },
+
+    contentContainer: {
+        padding: 15,
+    },
+
+    headerTitle: {
+        fontSize: fonts.headerTittle,
+        color: colors.white,
+        fontWeight: "bold",
+    },
 
 
-boxContainer: {
-    alignContent: 'center',
-    alignItems: "center",
-    textAlign: 'justify'
+    boxContainer: {
+        alignContent: 'center',
+        alignItems: "center",
+        textAlign: 'justify'
 
-},
+    },
 
-boxTextContainer: {
-    flexDirection: 'row',
+    boxTextContainer: {
+        flexDirection: 'row',
 
-},
+    },
 
-boxText1: {
-    paddingRight: 50,
-    paddingLeft: "15%",
-    backgroundColor: colors.gray,
-    borderWidth: 1,
-    fontWeight: 'bold'
+    Text: {
+        textAlign: "justify",
+        fontSize: fonts.regular,
+    },
 
-},
 
-boxText2: {
-    paddingRight: 50,
-    paddingLeft: 50,
-    borderWidth: 1
+    Tittle: {
+        fontSize: fonts.headerTittle,
+        marginBottom: 15,
+        fontWeight: 'bold',
+        alignSelf: 'center',
+    },
 
-},
+    ibge: {
+        fontStyle: 'italic',
+        fontSize: fonts.tiny,
+        alignSelf: 'center',
+        marginTop: 10,
+        marginBottom: 10
+    },
 
-Tittle: {
-    fontSize: 20,
-    marginBottom:15,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-},
+});
 
-ibge: {
-    fontStyle: 'italic',
-    fontSize: 10,
-    alignSelf: 'center',
-    marginTop: 10,
-    marginBottom: 10
-},
-  });
-  
-  export default styles;
+export default styles;

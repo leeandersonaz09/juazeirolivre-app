@@ -18,7 +18,8 @@ const raiox = () => {
     const [data, setData] = useState([
         { key: '1', text: 'Apenas 17,2% da população trabalha com carteira assinada.'},
         { key: '2', text: 'O salário médio mensal desses trabalhadores é de 2.1 salários mínimos.'},
-        { key: '3', text: '41,7% da população recebe até meio salário mínimo.'},
+        { key: '3', text: '41,7% da população recebe até meio salário mínimo.' },
+        { key: '4', tittle: 'Crise Econômica em Juazeiro no ano de 2020.', text: 'De acordo com a CDL, 30% das empresas encerraram ou encerrarão suas atividades, aproximadamente 9.000 demissões e 40% das empresas de microempreendedor individual, encerraram suas operações, 2.400 trabalhadores prejudicados.'},
     ]);
 
     return (
@@ -26,6 +27,7 @@ const raiox = () => {
             <Header>
                 <Text style={styles.headerTitle}>Raio-X da Cidade</Text>
             </Header>
+            <ScrollView>
             <ImageBackground 
                 source={require('../../img/carteira_de_trabalho.jpeg')}
                 style={styles.backgrounImage}
@@ -39,7 +41,7 @@ const raiox = () => {
 
             </ImageBackground>
             <Container>
-                <ScrollView>
+             
                     <View style={styles.contentContainer}>
 
                         <FlatList
@@ -49,7 +51,8 @@ const raiox = () => {
                                 return (
                                     <>
                                         <Card>
-                                            <Text style={{ fontSize: 15, }}> {item.text} </Text>
+                                       { item.tittle ? (<Text style={styles.Tittle}> {item.tittle} </Text>) : null}
+                                            <Text style={styles.Text}> {item.text} </Text>
                                         </Card>
 
                                     </>
@@ -60,8 +63,9 @@ const raiox = () => {
 
                         <Text style={styles.ibge}>Fonte: Instituto Brasileiro de Geografia e Estatística - IBGE</Text>
                     </View>
-                </ScrollView>
-            </Container>
+               
+                </Container>
+            </ScrollView>
         </SafeAreaView>
     )
 

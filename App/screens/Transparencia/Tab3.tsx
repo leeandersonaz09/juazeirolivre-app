@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
     View,
-    StyleSheet,
     Text,
     SafeAreaView,
     ScrollView,
@@ -9,6 +8,7 @@ import {
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import Card from '../../components/Card'
+import styles from './styles';
 
 const Tab3 = () => {
 
@@ -85,89 +85,3 @@ const Tab3 = () => {
 
 }
 export default Tab3;
-
-const styles = StyleSheet.create({
-
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-    },
-
-    backgrounImage:{
-        width:'100%',
-        height:240,
-        
-    },
-    darkOverlay: {
-        position:'absolute',
-        top:0,
-        right: 0,
-        left:0,
-        height:240,
-        backgroundColor:'#000',
-        opacity:0.2,
-        borderBottomRightRadius:65
-    },
-    imageContainer:{
-        paddingTop:50,
-        paddingLeft:16
-    },
-    UserGreat:{
-        fontSize:38,
-        fontWeight:'bold',
-        color:'white',
-    },
-    userText: {
-        fontSize:16,
-        fontWeight:'normal',
-        color:'white',
-    },
-
-    contentContainer: {
-        padding: 15,
-        elevation:1
-
-    },
-
-    boxContainer: {
-        alignContent: 'center',
-        alignItems: "center",
-
-    },
-
-    boxTextContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-
-    },
-
-    boxText1: {
-
-        fontWeight: 'bold',
-        fontSize: 15
-
-    },
-
-    boxText2: {
-
-        fontSize: 15
-    },
-
-    Tittle: {
-        fontSize: 15,
-        fontWeight: 'bold',
-        alignSelf: 'center',
-        marginBottom: 20,
-    },
-
-    ibge: {
-        fontStyle: 'italic',
-        fontSize: 10,
-        alignSelf: 'center',
-        marginTop: 10,
-        marginBottom: 10
-    },
-
-
-
-})

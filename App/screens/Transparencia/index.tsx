@@ -16,14 +16,14 @@ const Transparencia = () => {
             <Text style={styles.headerTitle}>Prefeitura Transparente</Text>
         </Header>
 
-            <Tabs >
-                <Tab heading={<TabHeading><Icon style={styles.TabIcon}  name="md-school" /><Text style={styles.TabText} >Educação</Text></TabHeading>}>
+            <Tabs tabBarUnderlineStyle={{backgroundColor: colors.yellow}}>
+                <Tab heading={<TabHeading style={{backgroundColor: colors.primary}}><Icon style={styles.TabIcon}  name="md-school" /><Text style={styles.TabText} >Educação</Text></TabHeading>}>
                     <Tab2 />
                 </Tab>
-                <Tab heading={ <TabHeading><Icon style={styles.TabIcon}  name="logo-usd" /><Text style={styles.TabText} >Orçamento</Text></TabHeading>}>
+                <Tab heading={ <TabHeading style={{backgroundColor: colors.primary}}><Icon style={styles.TabIcon}  name="ios-people" /><Text style={styles.TabText} >Vereadores</Text></TabHeading>}>
                     <Tab3 />
                 </Tab>
-                <Tab heading={ <TabHeading><Icon style={styles.TabIcon} name="ios-medkit" /><Text style={styles.TabText} >Saúde</Text></TabHeading>}>
+                <Tab heading={ <TabHeading style={{backgroundColor: colors.primary}}><Icon style={styles.TabIcon} name="ios-medkit" /><Text style={styles.TabText} >Saúde</Text></TabHeading>}>
                     <Tab4 />
                 </Tab>
             </Tabs>

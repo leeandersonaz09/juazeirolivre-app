@@ -313,7 +313,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
                     style={styles.headerImage}
                     source={require('../../../assets/home-img.png')}
                 />
-                <View style={styles.contentContainer}><Text style={styles.Tittle}>Postagens Recentes</Text>
+                <View style={styles.contentContainer}><Text style={styles.Tittle}>Bem Vindo!!!</Text>
                     <View style={styles.cardContainer}>
                         {loading ? LoadingAnimation() :
                             (<FlatList
