@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
 
-
     boxContainer: {
         alignContent: 'center',
         alignItems: "center",
