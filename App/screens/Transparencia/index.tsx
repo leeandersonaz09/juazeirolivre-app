@@ -13,7 +13,7 @@ const Transparencia = () => {
     return (
         <>
         <Header>
-            <Text style={styles.headerTitle}>Prefeitura Transparente</Text>
+            <Text style={styles.headerTitle}>Juazeiro Transparente</Text>
         </Header>
 
             <Tabs tabBarUnderlineStyle={{backgroundColor: colors.yellow}}>

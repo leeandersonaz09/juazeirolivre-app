@@ -4,7 +4,8 @@ import {
     Text,
     SafeAreaView,
     ScrollView,
-    ImageBackground
+    ImageBackground,
+    Image
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import Card from '../../components/Card'
@@ -13,18 +14,15 @@ import styles from './styles';
 const Tab3 = () => {
 
     const [dataEducacao, setDataEducacao] = useState([
-        { key: '1', ano: '2009', valor: 'R$   38.443.291,41' },
-        { key: '2', ano: '2010', valor: 'R$   67.171.693,99' },
-        { key: '3', ano: '2011', valor: 'R$   76.498.189,07' },
-        { key: '4', ano: '2012', valor: 'R$   93.743.320,58' },
-        { key: '5', ano: '2013', valor: 'R$ 102.988.317,18' },
-        { key: '6', ano: '2014', valor: 'R$ 109.747.808,96' },
-        { key: '7', ano: '2015', valor: 'R$ 120.515.678,94' },
-        { key: '8', ano: '2016', valor: 'R$ 132.793.569,09' },
-        { key: '9', ano: '2017', valor: 'R$ 135.095.422,60' },
-        { key: '10', ano: '2018', valor: 'R$ 153.930.652,41' },
-        { key: '11', ano: '2019', valor: 'R$ 167.146.283,84' },
-
+        {
+            key: '1',
+            texto: 'A FOLHA DE PAGAMENTO DA CÂMARA DE VEREADORES, TEM 33 PÁGINAS. A CÂMARA DE VEREADORES TEM 360 FUNCIONÁRIOS. A FOLHA DE PAGAMENTO DA CÂMARA DE VEREADORES, GERA UMA DESPESA MENSAL DE QUASE 1 MILHÃO DE REAIS, PARA O CONTRIBUINTE.'
+        },
+        { key: '2', texto: 'CADA VEREADOR DE JUAZEIRO GANHA POR MÊS: R$ 12.661,00.' },
+        { key: '3', texto: 'CADA VEREADOR DE JUAZEIRO GANHA POR ANO: R$ 164.593,00.' },
+        { key: '4', img:'https://0201.nccdn.net/1_2/000/000/0c7/545/IMG-20200301-WA0008-960x430.jpg', texto: 'CADA VEREADOR DE JUAZEIRO GANHA POR MANDATO MAIS DE MEIO MILHÃO DE REAIS (R$ 658.372,00)' },
+        { key: '5', texto: 'Quem tem dois mandatos recebeu, aproximadamente, R$ 1.316.744,00' },
+        { key: '6', texto: 'Quem tem três mandatos recebeu, aproximadamente, R$ 1.975.116,00.' },
     ]);
 
     return (
@@ -46,34 +44,23 @@ const Tab3 = () => {
                 </ImageBackground>
                 <View style={styles.contentContainer}>
 
-                    <Card>
-
-                        <View style={styles.boxTextContainer}>
-
-                            <Text style={styles.boxText1}>Ano</Text>
-                            <Text style={styles.boxText2}>Valor do Orçamento</Text>
-
-                        </View>
-
-                    </Card>
-                    <Card>
                         <FlatList
                             data={dataEducacao}
                             keyExtractor={item => item.key}
                             renderItem={({ item }) => {
                                 return (
-                                    <>
-                                        <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
-                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color:'#f56' }}> {item.ano} </Text>
-                                            <Text style={{ textAlign: 'left' }}>{item.valor}</Text>
+                                    <><Card>
+                                        <View >
+                                            <Text style={{ textAlign: 'justify', paddingHorizontal: 5 }}> {item.texto} </Text>
+                                            <Image source={item.img}/>
                                         </View>
-
+                                        </Card>
                                     </>
                                 );
                             }}
 
                         />
-                    </Card>
+                 
                     <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia</Text>
 
 
