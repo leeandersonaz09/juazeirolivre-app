@@ -1,5 +1,23 @@
 import { StyleSheet } from 'react-native';
-import { general, fonts, colors } from '../../styles';
+import { fonts, colors } from '../../styles';
+
+// fonts size and colors of import fonts
+/* 
+    regular: 15,
+    medium: 12,
+    small: 11,
+    tiny: 10,
+    headerTittle: 20,
+    big: 38
+
+    header: '#333333',
+    primary: '#3B3B3B',
+    gray: '#d8d8d8',
+    white: '#fff',
+    yellow: "#ffcc00",
+    black: '#000'
+
+*/
 
 const styles = StyleSheet.create({
 
@@ -113,7 +131,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         alignSelf: "center",
         color: colors.primary,
-        fontSize: 20
+        fontSize: fonts.headerTittle
     },
 
     subTittle: {

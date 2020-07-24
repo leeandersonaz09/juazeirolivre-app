@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     backgrounImage: {
         width: '100%',
         height: 270,
-
     },
 
     darkOverlay: {
@@ -73,7 +72,6 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         alignItems: "center",
         textAlign: 'justify'
-
     },
 
     boxTextContainer: {

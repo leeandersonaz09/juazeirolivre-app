@@ -7,23 +7,39 @@ import {
     ImageBackground,
     Image
 } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
-import Card from '../../components/Card'
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
+import ImageView from "react-native-image-viewing";
+import Card from '../../components/Card';
 import styles from './styles';
 
 const Tab3 = () => {
-
-    const [dataEducacao, setDataEducacao] = useState([
+    const [visible, setIsVisible] = useState(false);
+    const [data, setData] = useState([
         {
             key: '1',
-            texto: 'A FOLHA DE PAGAMENTO DA CÂMARA DE VEREADORES, TEM 33 PÁGINAS. A CÂMARA DE VEREADORES TEM 360 FUNCIONÁRIOS. A FOLHA DE PAGAMENTO DA CÂMARA DE VEREADORES, GERA UMA DESPESA MENSAL DE QUASE 1 MILHÃO DE REAIS, PARA O CONTRIBUINTE.'
+            texto: `A folha de pagamento da câmara de vereadores, tem 33 páginas. A câmara de vereadores tem 360 funcionários. A folha de pagamento da câmara de vereadores, gera uma despesa mensal de quase 1 milhão de reais, para o contribuinte.`
         },
-        { key: '2', texto: 'CADA VEREADOR DE JUAZEIRO GANHA POR MÊS: R$ 12.661,00.' },
-        { key: '3', texto: 'CADA VEREADOR DE JUAZEIRO GANHA POR ANO: R$ 164.593,00.' },
-        { key: '4', img:'https://0201.nccdn.net/1_2/000/000/0c7/545/IMG-20200301-WA0008-960x430.jpg', texto: 'CADA VEREADOR DE JUAZEIRO GANHA POR MANDATO MAIS DE MEIO MILHÃO DE REAIS (R$ 658.372,00)' },
-        { key: '5', texto: 'Quem tem dois mandatos recebeu, aproximadamente, R$ 1.316.744,00' },
-        { key: '6', texto: 'Quem tem três mandatos recebeu, aproximadamente, R$ 1.975.116,00.' },
+        {
+            key: '2',
+            texto: `Cada vereador de juazeiro ganha R$ 12.661,00 por mês, R$ 164.593,00 por ano e mais de meio milhão de reais (R$ 658.372,00) por mandato.`
+        },
+        {
+            key: '3',
+            texto: `Quem tem dois mandatos recebeu, aproximadamente, R$ 1.316.744,00 e quem tem três mandatos recebeu, aproximadamente, R$ 1.975.116,00.`
+        },
+        {
+            key: '4',
+            texto: 'A câmara de vereadores tem HGU Saúde e plano odontológico.',
+            img: "https://0201.nccdn.net/1_2/000/000/0c7/545/IMG-20200301-WA0008-960x430.jpg"
+        },
+
     ]);
+    
+    const images = [
+        {
+            uri: "https://0201.nccdn.net/1_2/000/000/0c7/545/IMG-20200301-WA0008-960x430.jpg",
+        }
+    ];
 
     return (
         <SafeAreaView style={styles.container}>
@@ -37,30 +53,39 @@ const Tab3 = () => {
                 >
                     <View style={styles.darkOverlay}></View>
                     <View style={styles.imageContainer}>
-                        <Text style={styles.UserGreat}>Orçamentos da Educação</Text>
+                        <Text style={styles.UserGreat}>A câmara mais cara da história</Text>
                         <Text style={styles.userText}>Segundo o Tribunal de Contas da Bahia</Text>
                     </View>
 
                 </ImageBackground>
                 <View style={styles.contentContainer}>
 
-                        <FlatList
-                            data={dataEducacao}
-                            keyExtractor={item => item.key}
-                            renderItem={({ item }) => {
-                                return (
-                                    <><Card>
-                                        <View >
-                                            <Text style={{ textAlign: 'justify', paddingHorizontal: 5 }}> {item.texto} </Text>
-                                            <Image source={item.img}/>
-                                        </View>
-                                        </Card>
-                                    </>
-                                );
-                            }}
+                    <FlatList
+                        data={data}
+                        keyExtractor={item => item.key}
+                        renderItem={({ item }) => {
+                            return (
+                                <><Card>
+                                    <View >
+                                        <Text style={styles.Textcard}> {item.texto} </Text>
+                                        <TouchableOpacity onPress={() => { setIsVisible(true) }} >
+                                            {item.img ? (<Image resizeMode="contain" style={styles.Img} source={{ uri: item.img }} />) : null}
+                                        </TouchableOpacity>
+                                        <ImageView
+                                            images={images}
+                                            imageIndex={0}
+                                            visible={visible}
+                                            animationType="fade"
+                                            onRequestClose={() => setIsVisible(false)}
+                                        />
+                                    </View>
+                                </Card>
+                                </>
+                            );
+                        }}
 
-                        />
-                 
+                    />
+
                     <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia</Text>
 
 

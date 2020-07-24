@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
-import { View, StyleSheet, Dimensions, AsyncStorage, Image } from "react-native";
+import { View, StyleSheet, Dimensions, AsyncStorage, Image, StatusBar } from "react-native";
 import { interpolateColor, useScrollHandler } from "react-native-redash";
 
 import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
-
+import { colors } from '../../styles';
 import Subslide from "./Subslide";
 import Dot from '../../components/Dot';
 
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: "#ffff",
+        backgroundColor: colors.white,
     },
     underlay: {
         ...StyleSheet.absoluteFillObject,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
     footerContent: {
         flex: 1,
-        backgroundColor: "#ffff",
+        backgroundColor: colors.white,
 
         borderTopLeftRadius: BORDER_RADIUS
     },
@@ -54,7 +54,7 @@ const slides = [
         title: "Juazeiro Livre",
         subtitle: "Juazeiro na palma da mão!",
         description: "Um aplicativo idealizado pelo professor Cléber Jesus, para dar acesso a informação com transparência sobre o município de Juazeiro.",
-        color: "#BFEAF5",
+        color: "#1e213d",
         picture: {
             src: require("./assets/01.webp"),
             width: 2160,
@@ -62,10 +62,10 @@ const slides = [
         },
     },
     {
-        title: "Feed",
-        subtitle: "Feed de notícias",
-        description: "Você terá um feed de notícias na sua tela inicial para poder se manter sempre atualizado sobre nossas novidades.",
-        color: "#BEECC4",
+        title: "Fiscalização",
+        subtitle: "Fiscalização",
+        description: "Um trabalho de fiscalização nunca feito na cidade.",
+        color: '#1e213d',
         picture: {
             src: require("./assets/02.webp"),
             width: 2160,
@@ -74,9 +74,9 @@ const slides = [
     },
     {
         title: "Transparência",
-        subtitle: "Gastos da Prefeitura",
-        description: "Gastos da prefeitura. Mais transparência e informação na palma da mão do cidadão de Juazeiro!",
-        color: "#FFE4D9",
+        subtitle: "Gastos de prefeitos e vereadores",
+        description: "Gastos da prefeitura e da câmara. Mais transparência e informação na palma da mão do cidadão de Juazeiro!",
+        color: '#1e213d',
         picture: {
             src: require("./assets/03.webp"),
             width: 2160,
@@ -86,8 +86,8 @@ const slides = [
     {
         title: "Preparado",
         subtitle: "Vamos começar?",
-        description: "Agora, vamos aplicativo Juazeiro livre! Nos siga nas redes sociais... Let's Go!",
-        color: "#FFDDDD",
+        description: "Agora, vamos ao aplicativo Juazeiro livre! Nos siga nas redes sociais e acesse nosso site www.juazeirolivre.com... Let's Go!",
+        color: "#1e213d",
         picture: {
             src: require("./assets/04.webp"),
             width: 2160,
@@ -96,11 +96,11 @@ const slides = [
     }
 ]
 type Props = {
-  navigation: StackNavigationProp<StackParamList, 'Tabs'>;  
+    navigation: StackNavigationProp<StackParamList, 'Tabs'>;
 }
 
 const Welcome: React.FC<Props> = ({ navigation }) => {
-    
+
     const scroll = useRef<Animated.ScrollView>(null);
     const { scrollHandler, x } = useScrollHandler();
     const backgroundColor = interpolateColor(x, {
@@ -111,14 +111,21 @@ const Welcome: React.FC<Props> = ({ navigation }) => {
     const submit = async () => {
         // Saves to storage as a JSON-string
         await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true))
-        .then(()=>{ 
-            navigation.navigate('Tabs');
-        });
+            .then(() => {
+                navigation.navigate('Tabs');
+            });
 
     }
 
     return (
         <View style={styles.container}>
+
+            <StatusBar
+                hidden={true}
+                translucent={true}
+                animated={true}
+            />
+
             <Animated.View style={[styles.slider, { backgroundColor }]}>
                 {slides.map(({ picture }, index) => {
                     const opacity = interpolate(x, {
@@ -189,8 +196,8 @@ const Welcome: React.FC<Props> = ({ navigation }) => {
                                                 submit();
                                             } else {
                                                 scroll.current
-                                                ?.getNode()
-                                                .scrollTo({ x: width * (index + 1), animated: true })
+                                                    ?.getNode()
+                                                    .scrollTo({ x: width * (index + 1), animated: true })
                                             }
 
 

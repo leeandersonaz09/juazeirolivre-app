@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     },
 
     cardContent: {
-        marginHorizontal:18,
+        marginHorizontal:12,
         marginVertical: 10
     }
 

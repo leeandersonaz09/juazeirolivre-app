@@ -6,21 +6,21 @@ import {
     SafeAreaView,
     Share,
     TextInput,
-    Dimensions, AsyncStorage
-} from 'react-native';
+    Dimensions
+}from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { Card, Title } from 'react-native-paper';
-import { Content, CardItem, Thumbnail, Button, Text, Icon, Left, Right, Body } from 'native-base';
+import { Content, CardItem, Thumbnail, Button, Text, Icon, Left, Body } from 'native-base';
 import Header from '../../components/Header';
 import * as firebase from 'firebase';
 import LoadingComponent from '../../components/defaultLoading/lottieLoading';
 import Loading from '../../loaders/13255-loader.json';
 const WIDTH = Dimensions.get('screen').width;
+import { fonts, colors } from '../../styles';
 import styles from './styles';
 import Shimmer from '../../components/Shimmer';
 import { StackParamList } from '../../config/navigation';
 import { StackNavigationProp } from '@react-navigation/stack';
-const MY_STORAGE_KEY = 'LikeGived';
 
 interface RenderListProps {
     by: string;
@@ -46,7 +46,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
     const [barIcon, setbarIcon] = useState('https://img.icons8.com/ios/100/000000/search--v1.png');
     const [dataBackup, setdataBackup] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [pageSize, setpageSize] = useState(5);
+    const [pageSize, setpageSize] = useState(3);
 
     useEffect(() => {
 
@@ -80,7 +80,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
                         like
                     });
                 });
-                
+
                 setdataBackup(list);
                 setData(list);
                 setTimeout(() => {
@@ -92,39 +92,41 @@ const Home: React.FC<Props> = ({ navigation }) => {
 
     }
 
-    const giveLike = async (id, like) => {
-    
-        var sum;
-         // Retrieves from storage as boolean
-         await AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
-            if (err) {
-                console.log(err)
-            } else {
-                const result = JSON.parse(value) // boolean false
-
-                if (result == false) {
-                    AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true));
-                    sum = like + 1;
+    /*
+        const giveLike = async (id, like) => {
+        
+            var sum;
+             // Retrieves from storage as boolean
+             await AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
+                if (err) {
+                    console.log(err)
                 } else {
-                    if (like > 0) {
-                        AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false));
-                        sum = like - 1;
-                    } 
+                    const result = JSON.parse(value) // boolean false
+    
+                    if (result == false) {
+                        AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true));
+                        sum = like + 1;
+                    } else {
+                        if (like > 0) {
+                            AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false));
+                            sum = like - 1;
+                        } 
+                    }
                 }
-            }
-        })
-
-        await firebase.firestore().collection('post').doc(id).update({
-            like: sum,
-        })
-            .then(ref => {
-                console.log(ref);
             })
-            .catch(error => {
-                console.log(error);
-            });
-    }
-
+    
+            await firebase.firestore().collection('post').doc(id).update({
+                like: sum,
+            })
+                .then(ref => {
+                    console.log(ref);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    */
+    
     const loadMore = () => {
         var items = pageSize + 5;
         setpageSize(items);
@@ -133,7 +135,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
     const LoadingAnimation = () => {
         return (
             <View style={styles.container}>
-                <Card style={{ borderWidth: 0.1, borderColor: "#d8d8d8", marginBottom: 10 }}></Card>
+                <Card style={{ borderWidth: 0.1, borderColor: colors.gray, marginBottom: 10 }}></Card>
                 <View style={styles.header2}>
                     <View style={styles.avatar}>
                         <Shimmer width={60} height={60} />
@@ -157,13 +159,12 @@ const Home: React.FC<Props> = ({ navigation }) => {
 
             </View>
         )
-        
+
     }
 
     //SearchBar 
     const filterItem = (event) => {
         var text = event.nativeEvent.text
-        console.log(text);
 
         if (text == '') {
             setbarIcon('https://img.icons8.com/ios/100/000000/search--v1.png');
@@ -200,14 +201,13 @@ const Home: React.FC<Props> = ({ navigation }) => {
             const result = await Share.share({
                 message: `Por uma Juazeiro livre e transparente, compartilhe a causa, divulge com seus amigos e conhecidos, junte-se a luta e tenha acesso a uma prefeitura mais transparente, justa e acessível para todos! http://www.juazeirolivre.com/`,
                 title: "Por uma Juazeiro Livre e transparente",
-                url: "http://www.juazeirolivre.com/"
+                url: "https://play.google.com/store/apps/details?id=com.juazeirolivre.juazeirolivreapp&hl=pt_BR"
             });
 
             if (result.action === Share.sharedAction) {
-             
+
             } else if (result.action === Share.dismissedAction) {
                 // dismissed
-                alert("Ocorreu um erro!")
             }
         } catch (error) {
             alert(error.message);
@@ -230,7 +230,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
                         by: by
                     })
                 }}>
-                    <Card style={{ borderWidth: 1, borderColor: "#d8d8d8", marginBottom: 10 }}>
+                    <Card style={{ borderWidth: 1, borderColor: colors.gray, marginBottom: 10 }}>
 
                         <CardItem>
                             <Left>
@@ -248,7 +248,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
                             <Title>{tittle}</Title>
 
                             <Body>
-                                <Text numberOfLines={3} style={styles.Text}>{text}</Text>
+                                <Text numberOfLines={5} style={styles.Text}>{text}</Text>
                                 <Text style={{ fontStyle: 'italic', color: "#808080", textAlign: 'center', marginTop: 10 }}>
                                     {ref}
                                 </Text>
@@ -258,17 +258,11 @@ const Home: React.FC<Props> = ({ navigation }) => {
                         </Card.Content>
                         <CardItem>
                             <Left>
-                                <Button transparent onPress={() => giveLike(id, like)}>
-                                    <Icon active name="thumbs-up" style={{ fontSize: 28 }} />
-                                    <Text>{like ? like : '0'}</Text>
-                                </Button>
-                            </Left>
-                            <Right>
                                 <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
                                     <Icon name="md-share" />
                                     <Text>Compartilhar</Text>
                                 </Button>
-                            </Right>
+                            </Left>
                         </CardItem>
 
                     </Card>
@@ -313,7 +307,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
                     style={styles.headerImage}
                     source={require('../../../assets/home-img.png')}
                 />
-                <View style={styles.contentContainer}><Text style={styles.Tittle}>Bem Vindo!!!</Text>
+                <View style={styles.contentContainer}><Text style={[styles.Tittle, { textAlign: 'center', marginHorizontal: 5, marginTop: -20 }]}>Bem-vindo! Essa é a ferramenta de fiscalização e transparência do povo de Juazeiro.</Text>
                     <View style={styles.cardContainer}>
                         {loading ? LoadingAnimation() :
                             (<FlatList

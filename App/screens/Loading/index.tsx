@@ -17,11 +17,12 @@ function Loading({ navigation }) {
     <View style={{
       flex: 1,
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      backgroundColor: colors.primary
     }}>
       <StatusBar
         hidden={true}
-        translucent={false}
+        translucent={true}
         animated={true}
       />
       <Lottie
@@ -32,7 +33,7 @@ function Loading({ navigation }) {
         }}
         autoPlay loop
       />
-    <Text style={{ color: colors.primary, fontWeight: 'bold', fontSize: 12, marginVertical: 20}}>Aguarde enquanto arrumamos tudo para você!</Text>
+    <Text style={{ color: colors.white, fontWeight: 'bold', fontSize: 12, marginVertical: 20}}>Aguarde enquanto arrumamos tudo para você!</Text>
         <ActivityIndicator size="small" color={colors.yellow} />
     </View>
 

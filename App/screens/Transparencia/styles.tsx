@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, fonts } from '../../styles';
+import { colors, fonts, metrics} from '../../styles';
 
 // fonts size and colors of import fonts
 /* 
@@ -18,6 +18,7 @@ import { colors, fonts } from '../../styles';
     black: '#000'
 
 */
+
 const styles = StyleSheet.create({
 
   container: {
@@ -61,6 +62,7 @@ const styles = StyleSheet.create({
     opacity: 0.2,
     borderBottomRightRadius: 65
   },
+
   imageContainer: {
     paddingTop: 50,
     paddingLeft: 16
@@ -106,6 +108,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'center',
     textAlign: 'center',
+    marginBottom: 10
   },
 
   ibge: {
@@ -115,6 +118,20 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10
   },
+
+  //Tab3
+
+  Img: {
+    flex: 1,
+    width: metrics.screenWidth - 70,
+    resizeMode:"contain",
+    height: 200,
+  },
+
+  Textcard: {
+    textAlign: 'justify',
+    fontSize: fonts.regular
+  }
 
 })
 

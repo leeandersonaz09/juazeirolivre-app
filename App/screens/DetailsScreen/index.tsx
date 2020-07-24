@@ -61,7 +61,6 @@ function DetailsScreen({ route, navigation }) {
     <SafeAreaView style={styles.container}>
       <Container>
         <Header >
-          <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
           <Left>
             <Button transparent onPress={backHome}>
               <Icon name='arrow-back' />

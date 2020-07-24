@@ -12,7 +12,7 @@ interface ButtonProps {
 
 const Button = ({ variant, label, onPress }: ButtonProps) => {
 
-    const backgroundColor = variant === "primary" ? "#2CB9B0" : "rgba(12, 13, 52, 0.05)";
+    const backgroundColor = variant === "primary" ? "#1e213d" : "rgba(12, 13, 52, 0.05)";
     const color = variant === "primary" ? "#ffff" : "#0c0d34";
 
     return (
