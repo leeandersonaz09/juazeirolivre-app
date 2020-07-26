@@ -118,6 +118,15 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
 
+  //Tab2 
+
+  separatorContainer:{
+    borderTopWidth: 1,
+    borderColor:'#C0C0C0',
+    marginTop:6,
+    padding: 10
+  },
+  
   //Tab3
 
   Img: {
