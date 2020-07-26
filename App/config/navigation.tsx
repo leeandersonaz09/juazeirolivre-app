@@ -53,7 +53,7 @@ const AppTabsScreen = () => (
     initialRouteName="home"
     activeColor={colors.yellow}
     inactiveColor={colors.white}
-    barStyle={{ backgroundColor:colors.primary }}>
+    barStyle={{ backgroundColor: colors.primary }}>
 
     <AppTabs.Screen
       name="Tab1"
@@ -130,17 +130,18 @@ const RootStackScreen = () => {
       ...Ionicons.font,
     }).then(() => {
       setfontsLoaded(true);
-      // Retrieves from storage as boolean
-      AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
-        if (err) {
-          console.log(err)
-        } else {
-          const result = JSON.parse(value) // boolean false
-          result ? setisNew(false) : setisNew(true);
-
-        }
-      })
     });
+    
+    // Retrieves from storage as boolean
+    await AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
+      if (err) {
+        console.log(err)
+      } else {
+        const result = JSON.parse(value) // boolean false
+        result ? setisNew(false) : setisNew(true);
+
+      }
+    })
 
 
   }
