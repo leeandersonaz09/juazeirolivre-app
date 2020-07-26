@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
     View,
-    StyleSheet,
     Text,
     SafeAreaView,
     ImageBackground,
@@ -9,6 +8,7 @@ import {
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import Card from '../../components/Card';
+import Separator from '../../components/Separator';
 
 import styles from './styles';
 
@@ -48,40 +48,40 @@ const Tab2 = () => {
                 <View style={styles.contentContainer}>
                     <Card>
                         <Text style={styles.Tittle}>APANHADO GERAL</Text>
-                        <Text>62 escolas na zona urbana.</Text>
-                        <Text>72 escolas na zona rural.</Text>
-                        <Text>34.437 alunos matriculados em 2018.</Text>
+                        <Text>• 62 escolas na zona urbana.</Text>
+                        <Text>• 72 escolas na zona rural.</Text>
+                        <Text>• 34.437 alunos matriculados em 2018.</Text>
                         <Text style={styles.ibge}>Fonte: Portal da Educação/Rede Municipal de Juazeiro.</Text>
-                        <Text>35.385 alunos matriculados no Ensino Fundamental em 2018.</Text>
-                        <Text>11.491 alunos matriculados no Ensino Médio em 2018.</Text>
-                        <Text>1.604 professores do Ensino Fundamental em 2018.</Text>
-                        <Text>796 professores do Ensino Médio em 2018.</Text>
+                        <Separator />
+                        <Text style={styles.normalText}>• 35.385 alunos matriculados no Ensino Fundamental em 2018.</Text>
+                        <Text style={styles.normalText}>• 11.491 alunos matriculados no Ensino Médio em 2018.</Text>
+                        <Text style={styles.normalText}>• 1.604 professores do Ensino Fundamental em 2018.</Text>
+                        <Text style={styles.normalText}>• 796 professores do Ensino Médio em 2018.</Text>
                         <Text style={styles.ibge}>Fonte: Instituto Brasileiro de Geografia e Estatística - IBGE</Text>
 
                     </Card>
                     <Card>
                         <Text style={styles.Tittle}>CADÊ O DINHEIRO?</Text>
 
-                        <Text>No período de fevereiro a junho de 2019, a secretaria de educação recebeu um total de R$ 63.634.862,41.</Text>
-                        <Text>No período de fevereiro a junho de 2020, a secretaria de educação recebeu um total de R$ 65.298.750,27.</Text>
-                        <Text>Em 2020 recebeu R$ 1.663.887,86 a mais do que em 2019.</Text>
+                        <Text style={styles.normalText}>No período de fevereiro a junho de 2019, a secretaria de educação recebeu um total de R$ 63.634.862,41.</Text>
+                        <Separator />
+                        <Text style={styles.normalText}>No período de fevereiro a junho de 2020, a secretaria de educação recebeu um total de R$ 65.298.750,27.</Text>
+                        <Separator />
+                        <Text style={styles.normalText}>Em 2020 recebeu R$ 1.663.887,86 a mais do que em 2019.</Text>
                         <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia.</Text>
                     </Card>
                     <Card>
-                        
+
                         <Text style={styles.Tittle}>Entre 2009 e 2019 a cidade de Juazeiro recebeu, apenas para educação, R$1.198.074.228,07.</Text>
-
-                    </Card>
-                    <Card>
-
+                        <Separator />
                         <View style={styles.boxTextContainer}>
 
                             <Text style={styles.boxText1}>Ano</Text>
                             <Text style={styles.boxText2}>Valor do Orçamento</Text>
 
                         </View>
-
                     </Card>
+
 
                     <Card>
                         <FlatList
@@ -92,7 +92,7 @@ const Tab2 = () => {
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                                             <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#1e213d' }}> {item.ano} </Text>
-                                            <Text style={{ textAlign: 'left', color: '#1e213d'}}>{item.valor}</Text>
+                                            <Text style={{ textAlign: 'left', color: '#1e213d' }}>{item.valor}</Text>
                                         </View>
 
                                     </>
@@ -101,12 +101,12 @@ const Tab2 = () => {
 
                         />
                     </Card>
-                    <Text style={{ fontWeight: 'bold', alignSelf: 'center', marginTop: 15 }}>ORÇAMENTO APROVADO PARA 2020: R$ 188.220.380,00</Text>
-                <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia</Text>
+                    <Text style={{ fontWeight: 'bold', textAlign: 'center', marginTop: 15 }}>ORÇAMENTO APROVADO PARA 2020: R$ 188.220.380,00</Text>
+                    <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia</Text>
 
 
                 </View>
-                
+
             </ScrollView>
         </SafeAreaView >
     )

@@ -10,6 +10,7 @@ import {
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import ImageView from "react-native-image-viewing";
 import Card from '../../components/Card';
+import Separator from '../../components/Separator';
 import styles from './styles';
 
 const Tab3 = () => {
@@ -78,14 +79,14 @@ const Tab3 = () => {
                             gera uma despesa mensal de quase 1 milhão de reais, para o contribuinte.
                     </Text>
 
-                        <View style={styles.separatorContainer} />
+                        <Separator/>
 
                         <Text style={styles.Textcard}>
                             Cada vereador de juazeiro ganha R$ 12.661,00 por mês, R$ 164.593,00 por ano e
                             mais de meio milhão de reais (R$ 658.372,00) por mandato.
                     </Text>
 
-                        <View style={styles.separatorContainer} />
+                        <Separator/>
 
                         <Text style={styles.Textcard}>
                             Quem tem dois mandatos recebeu, aproximadamente, R$ 1.316.744,00 e
@@ -95,7 +96,7 @@ const Tab3 = () => {
                     </Card>
                     <Card>
                         <Text>A câmara de vereadores tem HGU Saúde e plano odontológico.</Text>
-                        <View style={styles.separatorContainer} />
+                        <Separator/>
                         <TouchableOpacity onPress={() => { setIsVisible(true) }} >
                             <Image
                                 resizeMode="contain"
@@ -121,7 +122,7 @@ const Tab3 = () => {
                             e terceiro, respectivamente, que o vereador que faltar um terço das sessões ordinárias,
                             sem justificativa, perderá o mandato.
                         </Text>
-                        <View style={styles.separatorContainer} />
+                        <Separator/>
                         <Text style={styles.Tittle}>Lei orgânica do Município:</Text>
 
                         <Text style={[styles.Textcard, {marginBottom:10}]}>
@@ -158,7 +159,7 @@ const Tab3 = () => {
                             <Text style={styles.boxText1}>Vereador(a)</Text>
                             <Text style={styles.boxText2}>Faltas</Text>
                         </View>
-                        <View style={styles.separatorContainer} />
+                        <Separator/>
 
                         <FlatList
                             data={data2017}
@@ -187,7 +188,7 @@ const Tab3 = () => {
                             <Text style={styles.boxText1}>Vereador(a)</Text>
                             <Text style={styles.boxText2}>Faltas</Text>
                         </View>
-                        <View style={styles.separatorContainer} />
+                        <Separator/>
 
                         <FlatList
                             data={data2018}
@@ -218,7 +219,7 @@ const Tab3 = () => {
                             <Text style={styles.boxText1}>Vereador(a)</Text>
                             <Text style={styles.boxText2}>Faltas</Text>
                         </View>
-                        <View style={styles.separatorContainer} />
+                        <Separator/>
 
                         <FlatList
                             data={data2019}
@@ -227,7 +228,7 @@ const Tab3 = () => {
                                 return (
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginLeft: 5 }}>
-                                            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1e213d' }}> {item.nome} </Text>
+                                            <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#1e213d' }}> {item.nome} </Text>
                                             <Text style={{ textAlign: 'left', color: '#1e213d', fontSize: 14}}>{item.faltas}</Text>
                                         </View>
 
@@ -237,19 +238,19 @@ const Tab3 = () => {
 
                         />
 
-                        <View style={styles.separatorContainer} />
+                        <Separator/>
                         <Text style={styles.Textcard}>
                             Os vereadores Maria Aparecida Gama (Cida Gama) e Justiniano Felix (Tiano)
                             apenas participaram de uma sessão no ano de 2018, sessão realizada no dia 20/03/2018.
                         </Text>
-                        <View style={styles.separatorContainer} />
+                        <Separator/>
                         <Text style={styles.Textcard}>
                             Os vereadores Anderson da Cruz (Iluminação) e Maria Aparecida Gama (Cida Gama)
                             não têm presença em nenhuma sessão realizada na câmara de vereadores no ano de 2017.
                         </Text>
-                        <View style={styles.separatorContainer} />
+                        <Separator/>
                         <Text style={styles.Textcard}>
-                            A vereadora cida gama não tem nenhuma presença no ano de 2019
+                            A vereadora cida gama não tem nenhuma presença no ano de 2019.
                         </Text>
                     </Card>
 

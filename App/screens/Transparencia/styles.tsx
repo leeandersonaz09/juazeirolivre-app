@@ -114,19 +114,13 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     fontSize: fonts.tiny,
     alignSelf: 'center',
-    marginTop: 10,
+    marginTop: 15,
     marginBottom: 10
   },
 
-  //Tab2 
-
-  separatorContainer:{
-    borderTopWidth: 1,
-    borderColor:'#C0C0C0',
-    marginTop:6,
-    padding: 10
+  normalText: {
+    textAlign: 'justify'
   },
-  
   //Tab3
 
   Img: {

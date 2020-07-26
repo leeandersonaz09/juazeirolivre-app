@@ -9,7 +9,7 @@ import {
 import { FlatList } from 'react-native-gesture-handler';
 import Card from '../../components/Card';
 import styles from './styles';
-
+import Separator from '../../components/Separator';
 const Tab4 = () => {
 
     const [dataEducacao, setDataEducacao] = useState([
@@ -46,17 +46,19 @@ const Tab4 = () => {
 
 
                     <Card>
-
-                        <Text style={{textAlign:'justify'}}>Em 10 anos, o município de Juazeiro-BA, gastou em saúde o valor de R$ 1.261.621.796,97 bilhão.</Text>
-                        <Text style={{textAlign:'justify'}}>No mesmo período, o governo municipal fechou três hospitais: Santa Casa de Misericórdia, Só Baby e Semec.</Text>
-                        <Text style={{textAlign:'justify'}}>Entre o ano de 2009 e 2019, o governo federal repassou ao município de Juazeiro-BA, o valor de R$ 888.426.003,66, apenas para a área da saúde.</Text>
-                        <Text style={{textAlign:'justify'}}>Orçamentos de recursos próprios gastos na área da saúde nos últimos 10 anos:</Text>
+                        <Text style={styles.Tittle}>APANHADO GERAL</Text>
+                        <Text style={styles.normalText}>Em 10 anos, o município de Juazeiro-BA, gastou em saúde o valor de R$ 1.261.621.796,97 bilhão.</Text>
+                        <Separator />
+                        <Text style={styles.normalText}>No mesmo período, o governo municipal fechou três hospitais: Santa Casa de Misericórdia, Só Baby e Semec.</Text>
+                        <Separator />
+                        <Text style={styles.normalText}>Entre o ano de 2009 e 2019, o governo federal repassou ao município de Juazeiro-BA, o valor de R$ 888.426.003,66, apenas para a área da saúde.</Text>
                         <Text style={styles.ibge}>Fonte: Portal da Educação/Rede Municipal de Juazeiro.</Text>
 
                     </Card>
                     <Card>
+                        <Text style={styles.Tittle}>Orçamentos de recursos próprios gastos na área da saúde nos últimos 10 anos:</Text>
+                        <Separator />
                         <View style={styles.boxTextContainer}>
-
                             <Text style={styles.boxText1}>Ano</Text>
                             <Text style={styles.boxText2}>Valor do Orçamento</Text>
 
@@ -72,7 +74,7 @@ const Tab4 = () => {
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginLeft: 5 }}>
                                             <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#1e213d' }}> {item.ano} </Text>
-                                            <Text style={{ textAlign: 'left', color: '#1e213d'}}>{item.valor}</Text>
+                                            <Text style={{ textAlign: 'left', color: '#1e213d' }}>{item.valor}</Text>
                                         </View>
 
                                     </>
@@ -81,7 +83,7 @@ const Tab4 = () => {
 
                         />
                     </Card>
-                    <Text style={{ fontWeight: 'bold', alignSelf: 'center', marginTop: 15 }}>TOTAL GERAL: 373.195.793,31</Text>
+                    <Text style={{ fontWeight: 'bold', alignSelf: 'center', marginTop: 15 }}>TOTAL GERAL: R$ 373.195.793,31.</Text>
                     <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia</Text>
 
 
