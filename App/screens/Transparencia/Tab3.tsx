@@ -168,7 +168,7 @@ const Tab3 = () => {
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginLeft: 5 }}>
                                             <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#1e213d' }}> {item.nome} </Text>
-                                            <Text style={{ textAlign: 'left', color: '#1e213d' }}>{item.faltas}</Text>
+                                            <Text style={{ textAlign: 'left', color: '#1e213d', fontSize:14}}>{item.faltas}</Text>
                                         </View>
 
                                     </>
@@ -197,7 +197,7 @@ const Tab3 = () => {
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginLeft: 5 }}>
                                             <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#1e213d' }}> {item.nome} </Text>
-                                            <Text style={{ textAlign: 'left', color: '#1e213d' }}>{item.faltas}</Text>
+                                            <Text style={{ textAlign: 'left', color: '#1e213d', fontSize:14}}>{item.faltas}</Text>
                                         </View>
 
                                     </>
@@ -227,8 +227,8 @@ const Tab3 = () => {
                                 return (
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginLeft: 5 }}>
-                                            <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#1e213d' }}> {item.nome} </Text>
-                                            <Text style={{ textAlign: 'left', color: '#1e213d' }}>{item.faltas}</Text>
+                                            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1e213d' }}> {item.nome} </Text>
+                                            <Text style={{ textAlign: 'left', color: '#1e213d', fontSize: 14}}>{item.faltas}</Text>
                                         </View>
 
                                     </>
