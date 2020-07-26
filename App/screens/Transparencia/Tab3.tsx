@@ -124,24 +124,24 @@ const Tab3 = () => {
                         <View style={styles.separatorContainer} />
                         <Text style={styles.Tittle}>Lei orgânica do Município:</Text>
 
-                        <Text style={styles.Textcard}>
+                        <Text style={[styles.Textcard, {marginBottom:10}]}>
                             Art. 34 - Perde o Mandado o Vereador que:
                         </Text>
 
-                        <Text style={styles.Textcard}>
+                        <Text style={[styles.Textcard, {marginBottom:10}]}>
                             V – deixar de comparecer, em cada sessão legislativa,
                             à terça parte das sessões ordinárias da Câmera, salvo licença por ela autorizada;
                         </Text>
 
-                        <Text style={styles.Textcard}>
+                        <Text style={[styles.Textcard, {marginBottom:10}]}>
                             Regimento interno da câmara de vereadores
                         </Text>
 
-                        <Text style={styles.Textcard}>
+                        <Text style={[styles.Textcard, {marginBottom:10}]}>
                             Art. 64. Perderá o mandato o Vereador:
                         </Text>
 
-                        <Text style={styles.Textcard}>
+                        <Text style={[styles.Textcard, {marginBottom:10}]}>
                             III – que deixar de comparecer, em cada sessão legislativa,
                             à terça parte das sessões ordinárias da Casa, salvo licença ou missão por ela autorizada;
                         </Text>
@@ -152,7 +152,7 @@ const Tab3 = () => {
                     <Card>
                         <Text style={styles.Tittle}>Em 2017, foram 69 sessões ordinárias, sendo que um terço
                         de faltas seria referente a vinte e três ausências. Esses são os vereadores mais faltosos do ano:</Text>
-                        <View style={styles.separatorContainer} />
+                        
 
                         <View style={styles.boxTextContainer}>
                             <Text style={styles.boxText1}>Vereador(a)</Text>
@@ -182,7 +182,6 @@ const Tab3 = () => {
                     <Card>
                         <Text style={styles.Tittle}>Em 2018, foram 72 sessões ordinárias, sendo que um terço de faltas seria
                          referente a vinte e quatro ausências. Esses são os vereadores mais faltosos do ano:</Text>
-                        <View style={styles.separatorContainer} />
 
                         <View style={styles.boxTextContainer}>
                             <Text style={styles.boxText1}>Vereador(a)</Text>
@@ -214,7 +213,6 @@ const Tab3 = () => {
                             Em 2019, foram 67 sessões ordinárias, sendo que um terço
                             de faltas seria referente a vinte e duas ausências. Esses são os vereadores mais faltosos:
                         </Text>
-                        <View style={styles.separatorContainer} />
 
                         <View style={styles.boxTextContainer}>
                             <Text style={styles.boxText1}>Vereador(a)</Text>
