@@ -16,7 +16,7 @@ import * as firebase from 'firebase';
 import LoadingComponent from '../../components/defaultLoading/lottieLoading';
 import Loading from '../../loaders/13255-loader.json';
 const WIDTH = Dimensions.get('screen').width;
-import { fonts, colors } from '../../styles';
+import { colors } from '../../styles';
 import styles from './styles';
 import Shimmer from '../../components/Shimmer';
 import { StackParamList } from '../../config/navigation';

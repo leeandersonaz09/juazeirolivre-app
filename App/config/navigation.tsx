@@ -51,8 +51,8 @@ const AppTabsScreen = () => (
 
   <AppTabs.Navigator
     initialRouteName="home"
-    activeColor="#ffcc00"
-    inactiveColor="#fff"
+    activeColor={colors.yellow}
+    inactiveColor={colors.white}
     barStyle={{ backgroundColor:colors.primary }}>
 
     <AppTabs.Screen

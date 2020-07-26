@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
-import { Tabs, Tab, TabHeading, Icon } from 'native-base';
+import { Tabs, Tab, TabHeading, Icon, View } from 'native-base';
 import Tab2 from './Tab2';
 import Tab3 from './Tab3';
 import Tab4 from './Tab4';
@@ -12,8 +12,10 @@ const Transparencia = () => {
 
     return (
         <>
-        <Header>
-            <Text style={styles.headerTitle}>Juazeiro Transparente</Text>
+            <Header>
+                <View style={{ marginBottom: 20 }}>
+                    <Text style={styles.headerTitle}>Juazeiro Transparente</Text>
+                </View>
         </Header>
 
             <Tabs tabBarUnderlineStyle={{backgroundColor: colors.yellow}}>

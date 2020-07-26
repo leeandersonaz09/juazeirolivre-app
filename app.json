@@ -34,7 +34,7 @@
       },
       "permissions" : [],
       "package": "com.juazeirolivre.juazeirolivreapp",
-      "versionCode": 4
+      "versionCode": 5
     },
     "androidStatusBar": {
       "barStyle": "light-content",

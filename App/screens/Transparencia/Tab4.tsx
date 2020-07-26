@@ -71,8 +71,8 @@ const Tab4 = () => {
                                 return (
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginLeft: 5 }}>
-                                            <Text style={{ fontSize: 12, fontWeight: 'bold', color: '#f56' }}> {item.ano} </Text>
-                                            <Text style={{ textAlign: 'left' }}>{item.valor}</Text>
+                                            <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#1e213d' }}> {item.ano} </Text>
+                                            <Text style={{ textAlign: 'left', color: '#1e213d'}}>{item.valor}</Text>
                                         </View>
 
                                     </>

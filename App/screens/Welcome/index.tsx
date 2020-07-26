@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { View, StyleSheet, Dimensions, AsyncStorage, Image, StatusBar } from "react-native";
+import React, { useRef, useState } from "react";
+import { View, StyleSheet, Dimensions, AsyncStorage, Image, StatusBar} from "react-native";
 import { interpolateColor, useScrollHandler } from "react-native-redash";
 
 import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
@@ -107,11 +107,13 @@ const Welcome: React.FC<Props> = ({ navigation }) => {
         inputRange: slides.map((_, i) => i * width),
         outputRange: slides.map(slide => slide.color),
     });
+    const [bar, setBar] = useState(true);
 
     const submit = async () => {
         // Saves to storage as a JSON-string
         await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true))
             .then(() => {
+                setBar(false);
                 navigation.navigate('Tabs');
             });
 
@@ -121,8 +123,8 @@ const Welcome: React.FC<Props> = ({ navigation }) => {
         <View style={styles.container}>
 
             <StatusBar
-                hidden={true}
-                translucent={true}
+                hidden={bar}
+                translucent={bar}
                 animated={true}
             />
 

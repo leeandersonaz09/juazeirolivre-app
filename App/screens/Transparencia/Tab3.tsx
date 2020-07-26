@@ -32,6 +32,29 @@ const Tab3 = () => {
             texto: 'A câmara de vereadores tem HGU Saúde e plano odontológico.',
             img: "https://0201.nccdn.net/1_2/000/000/0c7/545/IMG-20200301-WA0008-960x430.jpg"
         },
+        {
+            key: '5',
+            tittle: 'Frequência',
+
+            texto: `No que tange à frequência dos legisladores nas sessões ordinárias, a lei orgânica do município de Juazeiro-BA, no seu artigo 34, e o regimento interno da câmara de vereadores, no seu artigo 64, destaca no seu inciso quinto, e terceiro, respectivamente, que o vereador que faltar um terço das sessões ordinárias, sem justificativa, perderá o mandato.
+
+Lei orgânica do Município:
+            
+Art. 34 - Perde o Mandado o Vereador que:
+            
+V – deixar de comparecer, em cada sessão legislativa, à terça parte das sessões ordinárias da Câmera, salvo licença por ela autorizada;  
+            
+Regimento interno da câmara de vereadores
+            
+Art. 64. Perderá o mandato o Vereador:
+                        
+III – que deixar de comparecer, em cada sessão legislativa, à terça parte das sessões ordinárias da Casa, salvo licença ou missão por ela autorizada;`
+}, 
+{
+    key: '6',
+    tittle: 'Em 2017, foram 69 sessões ordinárias, sendo que um terço de faltas seria referente a vinte e três ausências. Esses são os vereadores mais faltosos do ano:',
+    faltas: 'true'
+}
 
     ]);
     
@@ -65,20 +88,32 @@ const Tab3 = () => {
                         keyExtractor={item => item.key}
                         renderItem={({ item }) => {
                             return (
-                                <><Card>
-                                    <View >
-                                        <Text style={styles.Textcard}> {item.texto} </Text>
-                                        <TouchableOpacity onPress={() => { setIsVisible(true) }} >
-                                            {item.img ? (<Image resizeMode="contain" style={styles.Img} source={{ uri: item.img }} />) : null}
-                                        </TouchableOpacity>
-                                        <ImageView
-                                            images={images}
-                                            imageIndex={0}
-                                            visible={visible}
-                                            animationType="fade"
-                                            onRequestClose={() => setIsVisible(false)}
-                                        />
-                                    </View>
+                                <>
+                                    <Card>
+                                        <View >
+                                            {item.tittle ? <Text style={styles.Tittle}>{item.tittle}</Text> : null}
+                                            <Text style={styles.Textcard}> {item.texto} </Text>
+
+                                            <TouchableOpacity onPress={() => { setIsVisible(true) }} >
+                                                {item.img
+                                                    ? (
+                                                        <Image
+                                                        resizeMode="contain"
+                                                        style={styles.Img}
+                                                        source={{ uri: item.img }} />
+                                                    ) : null
+                                                }
+                                                
+                                            </TouchableOpacity>
+                                            <ImageView
+                                                images={images}
+                                                imageIndex={0}
+                                                visible={visible}
+                                                animationType="fade"
+                                                onRequestClose={() => setIsVisible(false)}
+                                            />
+                                            
+                                        </View>
                                 </Card>
                                 </>
                             );

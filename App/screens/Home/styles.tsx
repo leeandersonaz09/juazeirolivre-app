@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
       textLine: {marginTop: 8, marginHorizontal:8 },
 
     headerTitle: {
-        fontSize: fonts.headerTittle,
+        fontSize: fonts.header,
         color: colors.white,
         fontWeight: "bold",
     },

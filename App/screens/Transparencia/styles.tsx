@@ -28,9 +28,8 @@ const styles = StyleSheet.create({
 
   //index.jsx
   headerTitle: {
-    fontSize: 20,
+    fontSize: fonts.header,
     color: colors.white,
-    marginTop: 25,
     fontWeight: "bold",
   },
   TabText: {
