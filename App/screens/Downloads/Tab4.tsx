@@ -14,13 +14,6 @@ import Separator from '../../components/Separator';
 
 const Tab4 = () => {
 
-    const data = [
-        { key: '1', uri: './assets/04.jpg'},
-        { key: '2', uri: './assets/04.jpg'},
-        { key: '3', uri: './assets/04.jpg'},
-        { key: '4', uri: './assets/04.jpg' }
-    ];
-
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
@@ -38,25 +31,46 @@ const Tab4 = () => {
                 </ImageBackground>
                 <View style={styles.contentContainer}>
 
-                    <FlatList
-                        data={data}
-                        keyExtractor={item => item.key}
-                        renderItem={({ item }) => {
-                            return (
-                                <>
-                                    <View style={styles.card}>
-                                        <View style={styles.cardContent}>
-                                            <Image
-                                                resizeMode="contain"
-                                                style={styles.Img}
-                                                source={require(item.uri)}
-                                            />
-                                        </View>
-                                    </View>
-                                </>
-                            );
-                        }}
-                    />
+
+                    <View style={styles.card}>
+                        <View style={styles.cardContent}>
+                            <Image
+                                resizeMode="contain"
+                                style={styles.Img}
+                                source={require('./assets/01.jpg')}
+                            />
+                        </View>
+                    </View>
+
+                    <View style={styles.card}>
+                        <View style={styles.cardContent}>
+                            <Image
+                                resizeMode="contain"
+                                style={styles.Img}
+                                source={require('./assets/02.jpg')}
+                            />
+                        </View>
+                    </View>
+
+                    <View style={styles.card}>
+                        <View style={styles.cardContent}>
+                            <Image
+                                resizeMode="contain"
+                                style={styles.Img}
+                                source={require('./assets/03.jpg')}
+                            />
+                        </View>
+                    </View>
+
+                    <View style={styles.card}>
+                        <View style={styles.cardContent}>
+                            <Image
+                                resizeMode="contain"
+                                style={styles.Img}
+                                source={require('./assets/04.jpg')}
+                            />
+                        </View>
+                    </View>
 
                 </View>
             </ScrollView>
