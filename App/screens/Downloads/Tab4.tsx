@@ -18,7 +18,7 @@ const Tab4 = () => {
         { key: '1', uri: '../../assets/01.jpg' },
         { key: '2', uri: '../../assets/02.jpg' },
         { key: '3', uri: '../../assets/03.jpg' },
-        { key: '4', uri: '../../assets/04.jpg' }
+        { key: '4', uri: '' }
     ];
 
     return (
@@ -49,14 +49,13 @@ const Tab4 = () => {
                                             <Image
                                                 resizeMode="contain"
                                                 style={styles.Img}
-                                                source={{uri:item.uri}}
+                                                source={require('../../assets/01.jpg')}
                                             />
                                         </View>
                                     </View>
                                 </>
                             );
                         }}
-
                     />
 
                 </View>
