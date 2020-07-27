@@ -16,7 +16,7 @@ import styles from './styles';
 const Tab3 = () => {
     const [visible, setIsVisible] = useState(false);
     const B = (props) => <Text style={{ fontWeight: 'bold' }}>{props.children}</Text>
-    
+
     const [data2017] = useState([
 
         { key: '1', nome: 'FÁBIO (FABINHO DE PINHÕES)', faltas: '28' },
@@ -62,7 +62,7 @@ const Tab3 = () => {
 
             <ScrollView>
                 <ImageBackground
-                    source={{uri:'https://www.investmentexecutive.com/wp-content/uploads/sites/3/2018/04/800x600-supervision-oversight-regulation-compliance-aleutie-50508424.jpg'}}
+                    source={{ uri: 'https://www.investmentexecutive.com/wp-content/uploads/sites/3/2018/04/800x600-supervision-oversight-regulation-compliance-aleutie-50508424.jpg' }}
                     style={styles.backgrounImage}
                     imageStyle={styles.imageStyle}
                 >
@@ -74,11 +74,16 @@ const Tab3 = () => {
 
                 </ImageBackground>
                 <View style={styles.contentContainer}>
-                    <Card>
-                        
+                    <View style={styles.card}>
+                        <View style={styles.cardContent}>
+                            <Image
+                                resizeMode="contain"
+                                style={styles.Img}
+                                source={require('../../assets/ed03.jpg')}
+                            />
+                        </View>
+                    </View>
 
-                    </Card>
-                    
                 </View>
             </ScrollView>
         </SafeAreaView>

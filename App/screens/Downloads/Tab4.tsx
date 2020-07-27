@@ -4,7 +4,8 @@ import {
     Text,
     SafeAreaView,
     ImageBackground,
-    ScrollView
+    ScrollView,
+    Image
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import Card from '../../components/Card';
@@ -13,11 +14,18 @@ import Separator from '../../components/Separator';
 
 const Tab4 = () => {
 
+    const data = [
+        { key: '1', uri: '../../assets/01.jpg' },
+        { key: '2', uri: '../../assets/02.jpg' },
+        { key: '3', uri: '../../assets/03.jpg' },
+        { key: '4', uri: '../../assets/04.jpg' }
+    ];
+
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
                 <ImageBackground
-                    source={{uri: 'https://cdn.pixabay.com/photo/2019/07/04/17/17/hand-4316948_960_720.jpg'}}
+                    source={{ uri: 'https://cdn.pixabay.com/photo/2019/07/04/17/17/hand-4316948_960_720.jpg' }}
                     style={styles.backgrounImage}
                     imageStyle={styles.imageStyle}
                 >
@@ -30,12 +38,26 @@ const Tab4 = () => {
                 </ImageBackground>
                 <View style={styles.contentContainer}>
 
+                    <FlatList
+                        data={data}
+                        keyExtractor={item => item.key}
+                        renderItem={({ item }) => {
+                            return (
+                                <>
+                                    <View style={styles.card}>
+                                        <View style={styles.cardContent}>
+                                            <Image
+                                                resizeMode="contain"
+                                                style={styles.Img}
+                                                source={{uri:item.uri}}
+                                            />
+                                        </View>
+                                    </View>
+                                </>
+                            );
+                        }}
 
-                    <Card>
-
-                    </Card>
-                  
-
+                    />
 
                 </View>
             </ScrollView>

@@ -132,15 +132,34 @@ const styles = StyleSheet.create({
 
   Img: {
     flex: 1,
-    width: metrics.screenWidth - 70,
+    width: metrics.screenWidth - 10 * 100,
     resizeMode:"contain",
-    height: 200,
+    height: metrics.screenHeight - 400,
+    justifyContent: 'center',
+    alignItems:'center'
   },
 
   Textcard: {
     textAlign: 'justify',
     fontSize: fonts.regular
-  }
+  },
+  card: {
+    borderRadius: 6,
+    elevation: 3,
+    backgroundColor:'#fff',
+    shadowOffset: {width:1, height:1},
+    shadowColor:'#333',
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    marginHorizontal: 4,
+    marginVertical: 6
+},
+
+cardContent: {
+    marginHorizontal:12,
+    marginVertical: 10,
+    padding: 5
+}
 
 })
 

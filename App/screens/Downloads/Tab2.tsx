@@ -4,7 +4,8 @@ import {
     Text,
     SafeAreaView,
     ImageBackground,
-    ScrollView
+    ScrollView,
+    Image
 } from 'react-native';
 import Card from '../../components/Card';
 import Separator from '../../components/Separator';
@@ -18,7 +19,7 @@ const Tab2 = () => {
 
             <ScrollView>
                 <ImageBackground
-                    source={{uri:'https://i2.wp.com/ricardobanana.com.br/wp-content/uploads/2017/09/C%C3%A2mara-de-Juazeiro-ba.jpg?fit=620%2C465&ssl=1'}}
+                    source={{ uri: 'https://i2.wp.com/ricardobanana.com.br/wp-content/uploads/2017/09/C%C3%A2mara-de-Juazeiro-ba.jpg?fit=620%2C465&ssl=1' }}
                     style={styles.backgrounImage}
                     imageStyle={styles.imageStyle}
                 >
@@ -31,11 +32,16 @@ const Tab2 = () => {
                 </ImageBackground>
 
                 <View style={styles.contentContainer}>
-                    <Card>
-                        
 
-                    </Card>
-              
+                    <View style={styles.card}>
+                        <View style={styles.cardContent}>
+                            <Image
+                                resizeMode="contain"
+                                style={styles.Img}
+                                source={require('../../assets/ed01.jpg')}
+                            />
+                        </View>
+                    </View>
 
                 </View>
 

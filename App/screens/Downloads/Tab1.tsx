@@ -4,7 +4,8 @@ import {
     Text,
     SafeAreaView,
     ImageBackground,
-    ScrollView
+    ScrollView,
+    Image
 } from 'react-native';
 import Card from '../../components/Card';
 import Separator from '../../components/Separator';
@@ -18,7 +19,7 @@ const Tab1 = () => {
 
             <ScrollView>
                 <ImageBackground
-                    source={{uri: 'https://cdn.pixabay.com/photo/2015/12/15/06/42/kids-1093758_960_720.jpg'}}
+                    source={{ uri: 'https://cdn.pixabay.com/photo/2015/12/15/06/42/kids-1093758_960_720.jpg' }}
                     style={styles.backgrounImage}
                     imageStyle={styles.imageStyle}
                 >
@@ -31,13 +32,20 @@ const Tab1 = () => {
                 </ImageBackground>
 
                 <View style={styles.contentContainer}>
-                    <Card>
-                        
 
-                    </Card>
-              
+                    <View style={styles.card}>
+                        <View style={styles.cardContent}>
+                            <Image
+                                resizeMode="contain"
+                                style={styles.Img}
+                                source={require('../../assets/ed02.jpg')}
+                            />
+                        </View>
+                    </View>
+
 
                 </View>
+
 
             </ScrollView>
         </SafeAreaView >
