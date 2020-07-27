@@ -121,7 +121,7 @@ const RootStackScreen = () => {
 
 
   const loadFonts = async () => {
-
+    
     await Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
@@ -138,6 +138,7 @@ const RootStackScreen = () => {
         console.log(err)
       } else {
         const result = JSON.parse(value) // boolean false
+        //console.log('STORAGE KEY VALUE' + result)
         result ? setisNew(false) : setisNew(true);
 
       }
