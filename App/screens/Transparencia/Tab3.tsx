@@ -15,6 +15,8 @@ import styles from './styles';
 
 const Tab3 = () => {
     const [visible, setIsVisible] = useState(false);
+    const B = (props) => <Text style={{ fontWeight: 'bold' }}>{props.children}</Text>
+    
     const [data2017] = useState([
 
         { key: '1', nome: 'FÁBIO (FABINHO DE PINHÕES)', faltas: '28' },
@@ -62,7 +64,7 @@ const Tab3 = () => {
                 <ImageBackground
                     source={require('../../img/money-1632055_960_720.webp')}
                     style={styles.backgrounImage}
-                    imageStyle={{ borderBottomRightRadius: 65 }}
+                    imageStyle={styles.imageStyle}
                 >
                     <View style={styles.darkOverlay}></View>
                     <View style={styles.imageContainer}>
@@ -240,23 +242,31 @@ const Tab3 = () => {
 
                         <Separator/>
                         <Text style={styles.Textcard}>
-                            Os vereadores Maria Aparecida Gama (Cida Gama) e Justiniano Felix (Tiano)
+                            Os vereadores <B>Maria Aparecida Gama (Cida Gama)</B> e <B>Justiniano Felix (Tiano), </B>
                             apenas participaram de uma sessão no ano de 2018, sessão realizada no dia 20/03/2018.
                         </Text>
                         <Separator/>
                         <Text style={styles.Textcard}>
-                            Os vereadores Anderson da Cruz (Iluminação) e Maria Aparecida Gama (Cida Gama)
+                            Os vereadores <B>Anderson da Cruz (Iluminação)</B> e <B>Maria Aparecida Gama (Cida Gama) </B>
                             não têm presença em nenhuma sessão realizada na câmara de vereadores no ano de 2017.
                         </Text>
                         <Separator/>
                         <Text style={styles.Textcard}>
-                            A vereadora cida gama não tem nenhuma presença no ano de 2019.
+                            A vereadora <B>Maria Aparecida Gama (Cida Gama) </B> não tem nenhuma presença no ano de 2019.
+                        </Text>
+                        <Separator/>
+                        <Text style={styles.Textcard}>
+                            <B>NENHUMA FALTA É DESCONTADA DO SALÁRIO DOS VEREADORES.</B>
+                        </Text>
+                        <Separator/>
+                        <Text style={styles.Textcard}>
+                            <B>NÃO PUBLICAMOS NENHUMA JUSTIFICATIVA DE FALTA DOS VEREADORES PORQUE O PRESIDENTE DA CÂMARA NÃO TORNOU PÚBLICA ESSA INFORMAÇÃO, APESAR DA LEI DE TRANSPARÊNCIA.</B> 
                         </Text>
                     </Card>
 
-                    <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia</Text>
-
-
+                    <Text style={[styles.ibge]} >Fontes: Atas das sessões extraordinárias da câmara municipal de Juazeiro</Text>
+                    <Text style={[styles.ibge, { marginTop: -10 }]}>Tribunal de Contas dos Municípios do Estado da Bahia</Text>
+                    
                 </View>
             </ScrollView>
         </SafeAreaView>

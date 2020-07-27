@@ -8,7 +8,7 @@ import {colors} from '../../styles'
 import Header from '../../components/Header';
 console.disableYellowBox = true;
 
-const Transparencia = () => {
+const downloads = () => {
 
     return (
         <>
@@ -38,7 +38,7 @@ const Transparencia = () => {
 
 }
 
-export default Transparencia;
+export default downloads;
 
 const styles = StyleSheet.create({
 

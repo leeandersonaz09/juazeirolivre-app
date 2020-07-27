@@ -33,7 +33,7 @@ const Tab4 = () => {
                 <ImageBackground
                     source={require('../../img/stethoscope-dollar-banknotes_1150-18243.jpg')}
                     style={styles.backgrounImage}
-                    imageStyle={{ borderBottomRightRadius: 65 }}
+                    imageStyle={styles.imageStyle}
                 >
                     <View style={styles.darkOverlay}></View>
                     <View style={styles.imageContainer}>

@@ -36,7 +36,7 @@ const Tab2 = () => {
                 <ImageBackground
                     source={require('../../img/digits-4014181_960_720.webp')}
                     style={styles.backgrounImage}
-                    imageStyle={{ borderBottomRightRadius: 65 }}
+                    imageStyle={styles.imageStyle}
                 >
                     <View style={styles.darkOverlay}></View>
                     <View style={styles.imageContainer}>

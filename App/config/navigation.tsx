@@ -92,9 +92,9 @@ const AppTabsScreen = () => (
       name="Tab4"
       component={Downloads}
       options={{
-        tabBarLabel: 'Downloads',
+        tabBarLabel: 'Raiox do Governo',
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="cloud-download" color={color} size={24} />
+          <MaterialCommunityIcons name="lightbulb-on" color={color} size={24} />
         ),
       }}
     />
@@ -139,7 +139,7 @@ const RootStackScreen = () => {
       } else {
         const result = JSON.parse(value) // boolean false
         //console.log('STORAGE KEY VALUE' + result)
-        result ? setisNew(false) : setisNew(true);
+        result ? setisNew(false) : setisNew(false);
 
       }
     })
