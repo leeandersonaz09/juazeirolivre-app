@@ -15,10 +15,10 @@ import Separator from '../../components/Separator';
 const Tab4 = () => {
 
     const data = [
-        { key: '1', uri: '../../assets/01.jpg' },
-        { key: '2', uri: '../../assets/02.jpg' },
-        { key: '3', uri: '../../assets/03.jpg' },
-        { key: '4', uri: '' }
+        { key: '1', uri: './assets/04.jpg'},
+        { key: '2', uri: './assets/04.jpg'},
+        { key: '3', uri: './assets/04.jpg'},
+        { key: '4', uri: './assets/04.jpg' }
     ];
 
     return (
@@ -49,7 +49,7 @@ const Tab4 = () => {
                                             <Image
                                                 resizeMode="contain"
                                                 style={styles.Img}
-                                                source={require('../../assets/01.jpg')}
+                                                source={require(item.uri)}
                                             />
                                         </View>
                                     </View>
