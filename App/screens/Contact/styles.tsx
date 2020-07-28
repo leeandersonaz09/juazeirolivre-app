@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
     width:metrics.screenWidth,
     backgroundColor:colors.primary
   },
+  svgCurve: {
+    position: 'absolute',
+    width: metrics.screenWidth
+  },
   Content: {
     marginHorizontal: 10,
     marginTop: -50,
