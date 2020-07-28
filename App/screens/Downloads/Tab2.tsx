@@ -38,7 +38,7 @@ const Tab2 = () => {
                             <Image
                                 resizeMode="contain"
                                 style={styles.Img}
-                                source={require('./assets/ed01.jpg')}
+                                source={require('./assets/ed03.jpg')}
                             />
                         </View>
                     </View>
