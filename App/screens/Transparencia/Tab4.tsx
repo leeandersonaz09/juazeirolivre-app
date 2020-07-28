@@ -4,7 +4,7 @@ import {
     Text,
     SafeAreaView,
     ImageBackground,
-    ScrollView, 
+    ScrollView,
     Image
 } from 'react-native';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
@@ -13,7 +13,7 @@ import ImageView from "react-native-image-viewing";
 import styles from './styles';
 
 const Tab4 = () => {
-
+    const [index, setIndex] = useState(0);
     const B = (props) => <Text style={{ fontWeight: 'bold' }}>{props.children}</Text>
     const [visible, setIsVisible] = useState(false);
     const [dataEducacao, setDataEducacao] = useState([
@@ -33,7 +33,10 @@ const Tab4 = () => {
 
     const images = [
         {
-            uri: './assets/covid.jpg',
+            uri: 'https://firebasestorage.googleapis.com/v0/b/juazeirolivre-3924b.appspot.com/o/posts%2Fcovid.jpg?alt=media&token=07d3f1b2-b999-4714-8488-30f412e96cc1',
+        },
+        {
+            uri: 'https://firebasestorage.googleapis.com/v0/b/juazeirolivre-3924b.appspot.com/o/posts%2Fprintcovid.jpg?alt=media&token=3842064a-b739-4d03-b82b-05ac6961ccb1',
         }
     ];
 
@@ -92,39 +95,47 @@ const Tab4 = () => {
                             }}
 
                         />
+                        <Separator />
                         <Text style={{ fontWeight: 'bold', alignSelf: 'center', marginTop: 15 }}>TOTAL GERAL: R$ 373.195.793,31.</Text>
                         <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia</Text>
                     </Card>
                     <Card>
-    
+
                         <Text style={styles.normalText}>Para combate à pandemia da COVID-19, a cidade de Juazeiro recebeu do Governo Federal o valor de<B> R$ 19.556.828,29</B></Text>
                         <Text style={styles.ibge}>Fonte: AGÊNCIA SENADO</Text>
                         <Separator />
                         <Text style={styles.normalText}>Além da quantia de <B>R$ 370.000,00</B>, destinados em ação movido pelo Ministério Público do Trabalho.</Text>
-                        <Text style={[styles.ibge, {textAlign:'center'}]}>Fonte: ASSOCIAÇÃO DE COMUNICAÇÃO DO MINISTÉRIO PÚBLICO DO TRABALHO.</Text>
+                        <Text style={[styles.ibge, { textAlign: 'center' }]}>Fonte: ASSOCIAÇÃO DE COMUNICAÇÃO DO MINISTÉRIO PÚBLICO DO TRABALHO.</Text>
 
                     </Card>
 
                     <Card>
-                        <Text>A câmara de vereadores tem HGU Saúde e plano odontológico.</Text>
-                        <Separator/>
-                        <TouchableOpacity onPress={() => { setIsVisible(true) }} >
+
+                        <TouchableOpacity onPress={() => { setIndex(0), setIsVisible(true)}} >
                             <Image
                                 resizeMode="contain"
                                 style={styles.Img}
                                 source={require('./assets/covid.jpg')}
                             />
                         </TouchableOpacity>
+                        <Separator />
+                        <TouchableOpacity onPress={() => { setIndex(1), setIsVisible(true) }} >
+                            <Image
+                                resizeMode="contain"
+                                style={styles.Img}
+                                source={require('./assets/printcovid.jpg')}
+                            />
+                        </TouchableOpacity>
                         <ImageView
                             images={images}
-                            imageIndex={0}
+                            imageIndex={index}
                             visible={visible}
                             animationType="fade"
                             onRequestClose={() => setIsVisible(false)}
                         />
 
                     </Card>
-
+                
                 </View>
             </ScrollView>
         </SafeAreaView>
