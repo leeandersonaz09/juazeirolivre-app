@@ -15,7 +15,7 @@ const Transparencia = () => {
         <>
             <Header>
                 <View style={{ marginBottom: 20 }}>
-                    <Text style={styles.headerTitle}>Conheça nossas ideias</Text>
+                    <Text style={styles.headerTitle}>Conheça Nossas Ideias</Text>
                 </View>
         </Header>
 
