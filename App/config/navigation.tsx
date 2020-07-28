@@ -17,6 +17,7 @@ import Downloads from '../screens/Downloads';
 import DetailsScreen from '../screens/DetailsScreen';
 import Loading from "../screens/Loading";
 import Welcome from "../screens/Welcome";
+import Contact from "../screens/Contact"
 import { colors } from '../styles';
 //para novos uruários serem redirecionados para tela welcome
 const MY_STORAGE_KEY = 'WelcomeFirst';
@@ -92,9 +93,20 @@ const AppTabsScreen = () => (
       name="Tab4"
       component={Downloads}
       options={{
-        tabBarLabel: 'Raiox do Governo',
+        tabBarLabel: 'Idéias',
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons name="lightbulb-on" color={color} size={24} />
+        ),
+      }}
+    />
+
+    <AppTabs.Screen
+      name="Tab5"
+      component={Contact}
+      options={{
+        tabBarLabel: 'Contato',
+        tabBarIcon: ({ color }) => (
+          <MaterialCommunityIcons name="contacts" color={color} size={24} />
         ),
       }}
     />
