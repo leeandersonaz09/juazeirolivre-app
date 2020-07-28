@@ -151,7 +151,7 @@ const RootStackScreen = () => {
       } else {
         const result = JSON.parse(value) // boolean false
         //console.log('STORAGE KEY VALUE' + result)
-        result ? setisNew(false) : setisNew(false);
+        result ? setisNew(false) : setisNew(true);
 
       }
     })
