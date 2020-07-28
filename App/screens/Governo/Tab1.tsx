@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     View,
     Text,
@@ -7,25 +7,23 @@ import {
     ScrollView,
     Image
 } from 'react-native';
-import Card from '../../components/Card';
-import Separator from '../../components/Separator';
 
 import styles from './styles';
 
-const Tab2 = () => {
+const Tab1 = () => {
 
     return (
         <SafeAreaView style={styles.container}>
 
             <ScrollView>
                 <ImageBackground
-                    source={{ uri: 'https://i2.wp.com/ricardobanana.com.br/wp-content/uploads/2017/09/C%C3%A2mara-de-Juazeiro-ba.jpg?fit=620%2C465&ssl=1' }}
+                    source={{ uri: 'https://cdn.pixabay.com/photo/2015/12/15/06/42/kids-1093758_960_720.jpg' }}
                     style={styles.backgrounImage}
                     imageStyle={styles.imageStyle}
                 >
                     <View style={styles.darkOverlay}></View>
                     <View style={styles.imageContainer}>
-                        <Text style={styles.UserGreat}>Atuação na Câmara</Text>
+                        <Text style={styles.UserGreat}>Atuação na Educação</Text>
                         <Text style={styles.userText}>Segundo o IBGE</Text>
                     </View>
 
@@ -38,12 +36,14 @@ const Tab2 = () => {
                             <Image
                                 resizeMode="contain"
                                 style={styles.Img}
-                                source={require('./assets/ed03.jpg')}
+                                source={require('./assets/ed02.jpg')}
                             />
                         </View>
                     </View>
 
+
                 </View>
+
 
             </ScrollView>
         </SafeAreaView >
@@ -51,4 +51,4 @@ const Tab2 = () => {
 
 
 }
-export default Tab2;
+export default Tab1;

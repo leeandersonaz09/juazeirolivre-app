@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { Tabs, Tab, TabHeading, Icon, View } from 'native-base';
 import Tab2 from './Tab2';
 import Tab3 from './Tab3';
 import Tab4 from './Tab4';
 import {colors} from '../../styles'
-import Header from '../../components/Header';
+import {Header} from '../../components';
 console.disableYellowBox = true;
 
 const downloads = () => {

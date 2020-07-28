@@ -4,14 +4,18 @@ import {
     Text,
     SafeAreaView,
     ImageBackground,
-    ScrollView
+    ScrollView, 
+    Image
 } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
-import Card from '../../components/Card';
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
+import { Separator, Card } from '../../components';
+import ImageView from "react-native-image-viewing";
 import styles from './styles';
-import Separator from '../../components/Separator';
+
 const Tab4 = () => {
 
+    const B = (props) => <Text style={{ fontWeight: 'bold' }}>{props.children}</Text>
+    const [visible, setIsVisible] = useState(false);
     const [dataEducacao, setDataEducacao] = useState([
         { key: '1', ano: '2009', valor: 'R$ 13.332.999,97' },
         { key: '2', ano: '2010', valor: 'R$ 20.793.632,28' },
@@ -26,6 +30,12 @@ const Tab4 = () => {
         { key: '11', ano: '2019', valor: 'R$ 57.318.624,04' },
 
     ]);
+
+    const images = [
+        {
+            uri: './assets/covid.jpg',
+        }
+    ];
 
     return (
         <SafeAreaView style={styles.container}>
@@ -82,10 +92,38 @@ const Tab4 = () => {
                             }}
 
                         />
+                        <Text style={{ fontWeight: 'bold', alignSelf: 'center', marginTop: 15 }}>TOTAL GERAL: R$ 373.195.793,31.</Text>
+                        <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia</Text>
                     </Card>
-                    <Text style={{ fontWeight: 'bold', alignSelf: 'center', marginTop: 15 }}>TOTAL GERAL: R$ 373.195.793,31.</Text>
-                    <Text style={styles.ibge} >Fonte: Tribunal de Contas dos Municípios do Estado da Bahia</Text>
+                    <Card>
+    
+                        <Text style={styles.normalText}>Para combate à pandemia da COVID-19, a cidade de Juazeiro recebeu do Governo Federal o valor de<B> R$ 19.556.828,29</B></Text>
+                        <Text style={styles.ibge}>Fonte: AGÊNCIA SENADO</Text>
+                        <Separator />
+                        <Text style={styles.normalText}>Além da quantia de <B>R$ 370.000,00</B>, destinados em ação movido pelo Ministério Público do Trabalho.</Text>
+                        <Text style={[styles.ibge, {textAlign:'center'}]}>Fonte: ASSOCIAÇÃO DE COMUNICAÇÃO DO MINISTÉRIO PÚBLICO DO TRABALHO.</Text>
 
+                    </Card>
+
+                    <Card>
+                        <Text>A câmara de vereadores tem HGU Saúde e plano odontológico.</Text>
+                        <Separator/>
+                        <TouchableOpacity onPress={() => { setIsVisible(true) }} >
+                            <Image
+                                resizeMode="contain"
+                                style={styles.Img}
+                                source={require('./assets/covid.jpg')}
+                            />
+                        </TouchableOpacity>
+                        <ImageView
+                            images={images}
+                            imageIndex={0}
+                            visible={visible}
+                            animationType="fade"
+                            onRequestClose={() => setIsVisible(false)}
+                        />
+
+                    </Card>
 
                 </View>
             </ScrollView>

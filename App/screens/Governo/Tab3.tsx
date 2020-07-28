@@ -7,10 +7,7 @@ import {
     ImageBackground,
     Image
 } from 'react-native';
-import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
-import ImageView from "react-native-image-viewing";
-import Card from '../../components/Card';
-import Separator from '../../components/Separator';
+
 import styles from './styles';
 
 const Tab3 = () => {

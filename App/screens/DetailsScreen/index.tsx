@@ -11,7 +11,7 @@ import ImageView from "react-native-image-viewing";
 //Dimensins get
 import styles from './styles';
 import {metrics, colors} from '../../styles'
-import Header from '../../components/Header';
+import {Header} from '../../components';
 
 function DetailsScreen({ route, navigation }) {
 

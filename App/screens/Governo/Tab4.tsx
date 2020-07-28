@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     View,
     Text,
@@ -7,10 +7,7 @@ import {
     ScrollView,
     Image
 } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
-import Card from '../../components/Card';
 import styles from './styles';
-import Separator from '../../components/Separator';
 
 const Tab4 = () => {
 

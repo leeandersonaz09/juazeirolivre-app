@@ -11,14 +11,13 @@ import {
 import { FlatList } from 'react-native-gesture-handler';
 import { Card, Title } from 'react-native-paper';
 import { Content, CardItem, Thumbnail, Button, Text, Icon, Left, Body } from 'native-base';
-import Header from '../../components/Header';
+import {Header, Shimmer} from '../../components';
 import * as firebase from 'firebase';
 import LoadingComponent from '../../components/defaultLoading/lottieLoading';
 import Loading from '../../loaders/13255-loader.json';
 const WIDTH = Dimensions.get('screen').width;
 import { colors } from '../../styles';
 import styles from './styles';
-import Shimmer from '../../components/Shimmer';
 import { StackParamList } from '../../config/navigation';
 import { StackNavigationProp } from '@react-navigation/stack';
 

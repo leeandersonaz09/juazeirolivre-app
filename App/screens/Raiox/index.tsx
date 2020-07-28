@@ -9,8 +9,7 @@ import {
 } from 'react-native';
 import { Container} from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
-import Header from '../../components/Header';
-import Card from '../../components/Card';
+import {Header, Card} from '../../components';
 import styles from './styles';
 
 const raiox = () => {

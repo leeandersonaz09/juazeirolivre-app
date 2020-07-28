@@ -7,8 +7,7 @@ import {
     ScrollView
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import Card from '../../components/Card';
-import Separator from '../../components/Separator';
+import {Separator, Card} from '../../components';
 
 import styles from './styles';
 

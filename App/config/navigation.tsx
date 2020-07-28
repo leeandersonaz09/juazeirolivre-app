@@ -13,7 +13,7 @@ import * as Font from 'expo-font';
 import HomeScreen from "../screens/Home";
 import Transparencia from "../screens/Transparencia";
 import Raiox from '../screens/Raiox';
-import Downloads from '../screens/Downloads';
+import Governo from '../screens/Governo';
 import DetailsScreen from '../screens/DetailsScreen';
 import Loading from "../screens/Loading";
 import Welcome from "../screens/Welcome";
@@ -91,7 +91,7 @@ const AppTabsScreen = () => (
 
     <AppTabs.Screen
       name="Tab4"
-      component={Downloads}
+      component={Governo}
       options={{
         tabBarLabel: 'Idéias',
         tabBarIcon: ({ color }) => (
