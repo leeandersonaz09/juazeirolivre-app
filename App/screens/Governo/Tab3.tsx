@@ -74,7 +74,6 @@ const Tab3 = () => {
                     <View style={styles.darkOverlay}></View>
                     <View style={styles.imageContainer}>
                         <Text style={styles.UserGreat}>Fiscalização e Transparência</Text>
-                        <Text style={styles.userText}>Segundo o Tribunal de Contas da Bahia</Text>
                     </View>
 
                 </ImageBackground>

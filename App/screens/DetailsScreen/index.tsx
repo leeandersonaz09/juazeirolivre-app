@@ -6,12 +6,12 @@ import {
   Share,
   TouchableOpacity
 } from 'react-native';
-import { Container, Content, CardItem, Thumbnail, Text, Button, Icon, Left, Body} from 'native-base';
+import { Container, Content, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
 import ImageView from "react-native-image-viewing";
 //Dimensins get
 import styles from './styles';
-import {metrics, colors} from '../../styles'
-import {Header} from '../../components';
+import { metrics, colors } from '../../styles'
+import { Header, WaveSvg} from '../../components';
 
 function DetailsScreen({ route, navigation }) {
 
@@ -58,22 +58,24 @@ function DetailsScreen({ route, navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
+
       <Container>
         <Header style={styles.header}>
-          <View style={{flexDirection:'row', marginRight: (metrics.screenWidth / 2) - metrics.screenWidth / 6}}>
-          <Left>
-            <Button transparent onPress={backHome}>
-              <Icon style={{color:colors.white}} name='arrow-back' />
-            </Button>
-          </Left>
-          <Body>
-            <Text style={styles.headerTitle}>Juazeiro Livre</Text>
-          </Body>
-</View>
+          <View style={{ flexDirection: 'row', marginRight: (metrics.screenWidth / 2) - metrics.screenWidth / 6 }}>
+            <Left>
+              <Button transparent onPress={backHome}>
+                <Icon style={{ color: colors.white }} name='arrow-back' />
+              </Button>
+            </Left>
+            <Body>
+              <Text style={styles.headerTitle}>Juazeiro Livre</Text>
+            </Body>
+          </View>
         </Header>
+        
 
         <Content>
-
+    
           <CardItem>
             <Left>
               <Thumbnail source={{ uri: avatar }} />
@@ -96,7 +98,7 @@ function DetailsScreen({ route, navigation }) {
               <Image resizeMode="contain" source={{ uri: img }} style={styles.Img} />
             </TouchableOpacity>
           </View>
-          <Body>
+          <Body style={{paddingHorizontal:20}}>
             <Text style={styles.Text}>{text}</Text>
             <Text style={styles.Ref}>
               "{ref}"

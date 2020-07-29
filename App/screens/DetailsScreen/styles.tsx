@@ -1,11 +1,15 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { colors, fonts } from '../../styles';
+import { colors, fonts, metrics} from '../../styles';
 const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
+  },
+  svgCurve: {
+    position: 'absolute',
+    width: metrics.screenWidth
   },
   //Shimmer
   header: {
@@ -28,7 +32,8 @@ const styles = StyleSheet.create({
   flex: 1,
   width: width,
   height: 200,
-  marginBottom: 20
+  marginBottom: 20,
+  
 },
   zoomWrapper: {
   flex: 1,
@@ -47,12 +52,10 @@ const styles = StyleSheet.create({
 },
   Text: {
   textAlign: 'justify',
-  alignContent: 'center',
   marginTop: 10,
   marginBottom: 15,
-  marginHorizontal: 10,
   fontFamily: "SFProDisplay_regular",
-  fontSize: 18,
+  fontSize: 20,
 
 },
   Ref: {
