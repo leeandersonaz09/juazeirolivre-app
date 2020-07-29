@@ -3,7 +3,7 @@ import React from 'react';
 import { View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-export default function WavySVG({
+export default function WaveSVG({
   customStyles,
   customHeight,
   customTop,

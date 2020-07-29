@@ -8,24 +8,31 @@ import {
     Image
 } from 'react-native';
 
-
+import { WaveSvg } from '../../components';
 import styles from './styles';
+import { colors } from '../../styles';
 
 const Tab2 = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-
+            <WaveSvg
+                customStyles={styles.svgCurve}
+                customHeight={320}
+                customTop={260}
+                customBgColor={colors.yellow}
+                customWavePattern="M0,288L1440,32L1440,0L0,0Z"
+            />
             <ScrollView>
                 <ImageBackground
-                    source={{ uri: 'https://i2.wp.com/ricardobanana.com.br/wp-content/uploads/2017/09/C%C3%A2mara-de-Juazeiro-ba.jpg?fit=620%2C465&ssl=1' }}
+                    source={require('./assets/camara.jpg')}
                     style={styles.backgrounImage}
                     imageStyle={styles.imageStyle}
                 >
                     <View style={styles.darkOverlay}></View>
                     <View style={styles.imageContainer}>
                         <Text style={styles.UserGreat}>Atuação na Câmara</Text>
-                        <Text style={styles.userText}>Segundo o IBGE</Text>
+                        
                     </View>
 
                 </ImageBackground>

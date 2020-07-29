@@ -8,7 +8,7 @@
       "android"
     ],
     "privacy": "public",
-    "version": "1.4",
+    "version": "1.4.1",
     "sdkVersion": "37.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -34,7 +34,7 @@
       },
       "permissions" : [],
       "package": "com.juazeirolivre.juazeirolivreapp",
-      "versionCode": 10
+      "versionCode": 11
     },
     "androidStatusBar": {
       "barStyle": "light-content",

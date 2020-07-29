@@ -7,24 +7,30 @@ import {
     ScrollView,
     Image
 } from 'react-native';
-
+import { WaveSvg } from '../../components';
 import styles from './styles';
-
+import { colors } from '../../styles';
 const Tab1 = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-
+            <WaveSvg
+                customStyles={styles.svgCurve}
+                customHeight={320}
+                customTop={260}
+                customBgColor={colors.yellow}
+                customWavePattern="M0,288L1440,32L1440,0L0,0Z"
+            />
             <ScrollView>
                 <ImageBackground
-                    source={{ uri: 'https://cdn.pixabay.com/photo/2015/12/15/06/42/kids-1093758_960_720.jpg' }}
+                    source={require('./assets/educacao.webp')}
                     style={styles.backgrounImage}
                     imageStyle={styles.imageStyle}
                 >
                     <View style={styles.darkOverlay}></View>
                     <View style={styles.imageContainer}>
                         <Text style={styles.UserGreat}>Atuação na Educação</Text>
-                        <Text style={styles.userText}>Segundo o IBGE</Text>
+
                     </View>
 
                 </ImageBackground>

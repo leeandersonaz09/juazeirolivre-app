@@ -8,7 +8,9 @@ import {
     Image
 } from 'react-native';
 
+import { WaveSvg } from '../../components';
 import styles from './styles';
+import { colors } from '../../styles';
 
 const Tab3 = () => {
     const [visible, setIsVisible] = useState(false);
@@ -55,11 +57,17 @@ const Tab3 = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-
+            <WaveSvg
+                customStyles={styles.svgCurve}
+                customHeight={320}
+                customTop={260}
+                customBgColor={colors.yellow}
+                customWavePattern="M0,288L1440,32L1440,0L0,0Z"
+            />
 
             <ScrollView>
                 <ImageBackground
-                    source={{ uri: 'https://www.investmentexecutive.com/wp-content/uploads/sites/3/2018/04/800x600-supervision-oversight-regulation-compliance-aleutie-50508424.jpg' }}
+                    source={require('./assets/fiscalizacao.jpg')}
                     style={styles.backgrounImage}
                     imageStyle={styles.imageStyle}
                 >

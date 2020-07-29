@@ -33,15 +33,21 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontWeight: "bold",
   },
+
   TabText: {
     color: colors.white,
   },
+
   TabIcon: {
     padding: 10,
     color: colors.yellow,
   },
 
   //Tabs communs style for Tab2, Tab3 and Tab4
+  svgCurve: {
+    position: 'absolute',
+    width: metrics.screenWidth
+  },
 
   contentContainer: {
     padding: 10,
@@ -62,6 +68,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.black,
     opacity: 0.2,
     borderBottomRightRadius: 60,
+
   },
 
   imageContainer: {

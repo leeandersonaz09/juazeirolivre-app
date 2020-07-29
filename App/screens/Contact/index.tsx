@@ -31,7 +31,7 @@ const Contact = () => {
             <Thumbnail source={require('../../../assets/avatar.png')} />
             <View style={styles.TextContent}>
               <Text style={styles.tittle}>Cléber Jesus</Text>
-              <Text>Professor, músico, idealizador e mantentor do projeto Juazeiro Livre.</Text>
+              <Text style={styles.text}>Professor, músico, idealizador e mantendedor do projeto Juazeiro Livre.</Text>
             </View>
           </View>
         </Card>
@@ -47,7 +47,7 @@ const Contact = () => {
               <Icon style={[styles.Icon, { color: colors.red }]} name="ios-mail-open" />
               <View style={styles.TextContent}>
                 <Text style={styles.tittle}>Email</Text>
-                <Text>contato@juazeirolivre.com</Text>
+                <Text style={styles.text}>contato@juazeirolivre.com</Text>
               </View>
             </View>
           </Button>
@@ -63,7 +63,7 @@ const Contact = () => {
               <Icon style={styles.Icon} name="ios-globe" />
               <View style={styles.TextContent}>
                 <Text style={styles.tittle}>Website</Text>
-                <Text>www.juazeirolivre.com</Text>
+                <Text style={styles.text}>www.juazeirolivre.com</Text>
               </View>
             </View>
           </Button>
@@ -80,7 +80,7 @@ const Contact = () => {
               <Icon style={[styles.Icon, { color: colors.facebook }]} name="logo-facebook" />
               <View style={styles.TextContent}>
                 <Text style={styles.tittle}>Facebook</Text>
-                <Text>www.facebook.com/juazeirobalivre</Text>
+                <Text style={styles.text}>@juazeirobalivre</Text>
               </View>
             </View>
 
@@ -98,7 +98,7 @@ const Contact = () => {
               <Icon style={[styles.Icon, { color: colors.red }]} name="logo-instagram" />
               <View style={styles.TextContent}>
                 <Text style={styles.tittle}>Instagram</Text>
-                <Text>@juazeirobalivre</Text>
+                <Text style={styles.text}>@juazeirobalivre</Text>
               </View>
             </View>
 
