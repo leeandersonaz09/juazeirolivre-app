@@ -29,7 +29,6 @@ function DetailsScreen({ route, navigation }) {
   const images = [
     {
       uri: img,
-
     },
   ];
 
