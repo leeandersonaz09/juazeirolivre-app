@@ -159,7 +159,6 @@ const RootStackScreen = () => {
       }
     })
 
-
   }
 
   useEffect(() => {
@@ -194,8 +193,8 @@ const RootStackScreen = () => {
 
 export default () => {
 
-  const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
   const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
 
   const CustomDefaultTheme = {
     ...NavigationDefaultTheme,

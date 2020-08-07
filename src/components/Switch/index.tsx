@@ -1,22 +1,18 @@
 import * as React from 'react';
-import { Switch } from 'react-native-paper';
+import { TouchableOpacity } from 'react-native';
+import { Icon } from 'native-base';
 
-interface SubslideProps {
-    subtitle: string;
-    description: string;
-    last?: boolean;
-    onValueChange: () => void;
+interface SwitchButtonProps {
+  onPress: () => void;
 }
 
-const SwitchButton = () => {
-  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+const SwitchButton = ({ onPress }: SwitchButtonProps ) => {
 
-  const onToggleSwitch = () => {
-    setIsSwitchOn(!isSwitchOn);
-
-  };
-
-  return <Switch value={isSwitchOn} onValueChange={onToggleSwitch} />;
+  return (
+    <TouchableOpacity  {...{onPress}}>
+      <Icon style={{ fontSize: 25, color:'#fff' }} name="contrast" />
+    </TouchableOpacity>
+  );
 };
 
 export default SwitchButton;

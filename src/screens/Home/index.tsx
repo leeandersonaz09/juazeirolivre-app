@@ -6,6 +6,7 @@ import {
     SafeAreaView,
     Share,
     TextInput,
+    AsyncStorage
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { Card, Title } from 'react-native-paper';
@@ -19,6 +20,8 @@ import LoadingComponent from '../../components/defaultLoading/lottieLoading';
 import Loading from '../../loaders/13255-loader.json';
 import { colors, metrics } from '../../styles';
 import styles from './styles';
+
+const MY_STORAGE_KEY = 'isDarkTheme';
 
 interface RenderListProps {
     by: string;
@@ -45,9 +48,20 @@ const Home: React.FC<Props> = ({ navigation }) => {
     const [dataBackup, setdataBackup] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pageSize, setpageSize] = useState(3);
+    const [isDarkTheme, setIsDarkTheme] = useState(false);
 
     useEffect(() => {
-
+        // Retrieves from storage as boolean
+     AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
+        if (err) {
+          console.log(err)
+        } else {
+          const result = JSON.parse(value) // boolean false
+          //console.log('STORAGE KEY VALUE' + result)
+            setIsDarkTheme(result);
+        }
+    })
+        
         const subscriber = getData();
         // Unsubscribe from events when no longer in use
         return () => subscriber;
@@ -178,6 +192,23 @@ const Home: React.FC<Props> = ({ navigation }) => {
 
     };
 
+    const switchTheme = async () => {
+        
+        if (isDarkTheme == true) {
+         // Saves to storage as a JSON-string
+         await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true))
+         .then(() => {
+             setIsDarkTheme(true);
+         });
+        } else {
+            // Saves to storage as a JSON-string
+         await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false))
+         .then(() => {
+             setIsDarkTheme(false);
+         });
+        }
+    }
+
     const renderList = ({ by, data, img, ref, text, tittle, id, avatar, like }: RenderListProps) => {
         return (
             <>
@@ -247,7 +278,6 @@ const Home: React.FC<Props> = ({ navigation }) => {
                     <View style={{ flexDirection: 'row', marginTop: 5, alignSelf:'flex-end', marginRight:15, flex:1  }}>
                         <Left/>
                         <SwitchButton />
-                        <Text style={{ color: colors.white }}>Dark</Text>
                     </View></View>
             </Header>
             <Content>
