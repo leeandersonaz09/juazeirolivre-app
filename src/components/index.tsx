@@ -6,5 +6,6 @@ import Separator from './Separator';
 import Shimmer from './Shimmer';
 import defaultLoading from './defaultLoading/lottieLoading';
 import WaveSvg from './WaveSVG';
+import SwitchButton from './Switch';
 
-export { Button, Header, Card, Dot, Separator, Shimmer, defaultLoading, WaveSvg};
+export { Button, Header, Card, Dot, Separator, Shimmer, defaultLoading, WaveSvg, SwitchButton};

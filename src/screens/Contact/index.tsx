@@ -31,7 +31,7 @@ const Contact = () => {
             <Thumbnail source={require('../../../assets/avatar.png')} />
             <View style={styles.TextContent}>
               <Text style={styles.tittle}>Cléber Jesus</Text>
-              <Text style={styles.text}>Professor, músico, idealizador e mantendedor do projeto Juazeiro Livre.</Text>
+              <Text style={styles.text}>Professor, músico, idealizador e mantenedor do projeto Juazeiro Livre.</Text>
             </View>
           </View>
         </Card>

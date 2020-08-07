@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'center',
     textAlign: 'center',
-    marginBottom: 10
+    marginBottom: metrics.baseMargin
   },
 
   ibge: {
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     fontSize: fonts.tiny,
     alignSelf: 'center',
     marginTop: 15,
-    marginBottom: 10
+    marginBottom: metrics.baseMargin
   },
 
   normalText: {
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 6,
     elevation: 3,
-    backgroundColor:'#fff',
+    backgroundColor: colors.white,
     shadowOffset: {width:1, height:1},
     shadowColor:'#333',
     shadowOpacity: 0.3,
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
 
 cardContent: {
     marginHorizontal:7,
-    marginVertical: 12,
+    marginVertical: metrics.meedleBaseMargin,
     padding: 5
 }
 

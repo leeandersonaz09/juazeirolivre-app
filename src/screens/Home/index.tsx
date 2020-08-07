@@ -6,20 +6,19 @@ import {
     SafeAreaView,
     Share,
     TextInput,
-    Dimensions
-}from 'react-native';
+} from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { Card, Title } from 'react-native-paper';
 import { Content, CardItem, Thumbnail, Button, Text, Icon, Left, Body } from 'native-base';
-import {Header, Shimmer} from '../../components';
 import * as firebase from 'firebase';
-import LoadingComponent from '../../components/defaultLoading/lottieLoading';
-import Loading from '../../loaders/13255-loader.json';
-const WIDTH = Dimensions.get('screen').width;
-import { colors } from '../../styles';
-import styles from './styles';
 import { StackParamList } from '../../config/navigation';
 import { StackNavigationProp } from '@react-navigation/stack';
+
+import { Header, Shimmer, SwitchButton } from '../../components';
+import LoadingComponent from '../../components/defaultLoading/lottieLoading';
+import Loading from '../../loaders/13255-loader.json';
+import { colors, metrics } from '../../styles';
+import styles from './styles';
 
 interface RenderListProps {
     by: string;
@@ -91,41 +90,6 @@ const Home: React.FC<Props> = ({ navigation }) => {
 
     }
 
-    /*
-        const giveLike = async (id, like) => {
-        
-            var sum;
-             // Retrieves from storage as boolean
-             await AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
-                if (err) {
-                    console.log(err)
-                } else {
-                    const result = JSON.parse(value) // boolean false
-    
-                    if (result == false) {
-                        AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true));
-                        sum = like + 1;
-                    } else {
-                        if (like > 0) {
-                            AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false));
-                            sum = like - 1;
-                        } 
-                    }
-                }
-            })
-    
-            await firebase.firestore().collection('post').doc(id).update({
-                like: sum,
-            })
-                .then(ref => {
-                    console.log(ref);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        }
-    */
-    
     const loadMore = () => {
         var items = pageSize + 5;
         setpageSize(items);
@@ -148,7 +112,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
                         </View>
                     </View>
                 </View>
-                <Shimmer width={WIDTH} height={140} />
+                <Shimmer width={metrics.screenWidth} height={140} />
                 <View style={styles.textLine}>
                     <Shimmer width={'100%'} height={14} />
                 </View>
@@ -276,7 +240,15 @@ const Home: React.FC<Props> = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
 
             <Header>
-                <Text style={styles.headerTitle}>Juazeiro Livre</Text>
+                <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                    <View style={{alignContent:'center', justifyContent:'center', alignItems:'center', marginLeft: (metrics.screenWidth *0.65) / 2}}>
+                        <Text style={styles.headerTitle}>Juazeiro Livre</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', marginTop: 5, alignSelf:'flex-end', marginRight:15, flex:1  }}>
+                        <Left/>
+                        <SwitchButton />
+                        <Text style={{ color: colors.white }}>Dark</Text>
+                    </View></View>
             </Header>
             <Content>
                 <View style={styles.header}>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { AsyncStorage } from "react-native";
 import 'react-native-gesture-handler';
+import { Provider as PaperProvider, DarkTheme as PaperDarkTheme, DefaultTheme as PaperDefaultTheme } from 'react-native-paper';
 //import navigators
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DarkTheme as NavigationDarkTheme, DefaultTheme as NavigationDefaultTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 //icons and fonts
@@ -17,7 +18,7 @@ import Governo from '../screens/Governo';
 import DetailsScreen from '../screens/DetailsScreen';
 import Loading from "../screens/Loading";
 import Welcome from "../screens/Welcome";
-import Contact from "../screens/Contact"
+import Contact from "../screens/Contact";
 import { colors } from '../styles';
 //para novos uruários serem redirecionados para tela welcome
 const MY_STORAGE_KEY = 'WelcomeFirst';
@@ -124,6 +125,7 @@ const WelcomeStackScreen = () => (
   </WelcomeStack.Navigator>
 );
 
+
 //Root Navigator
 const RootStackScreen = () => {
 
@@ -132,8 +134,9 @@ const RootStackScreen = () => {
   const [isnew, setisNew] = useState(true);
 
 
+
   const loadFonts = async () => {
-    
+
     await Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
@@ -143,7 +146,7 @@ const RootStackScreen = () => {
     }).then(() => {
       setfontsLoaded(true);
     });
-    
+
     // Retrieves from storage as boolean
     await AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
       if (err) {
@@ -190,10 +193,38 @@ const RootStackScreen = () => {
 };
 
 export default () => {
+
+  const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  const CustomDefaultTheme = {
+    ...NavigationDefaultTheme,
+    ...PaperDefaultTheme,
+    colors: {
+      ...NavigationDefaultTheme.colors,
+      ...PaperDefaultTheme.colors,
+      background: '#ffffff',
+      text: '#333333'
+    }
+  }
+
+  const CustomDarkTheme = {
+    ...NavigationDarkTheme,
+    ...PaperDarkTheme,
+    colors: {
+      ...NavigationDarkTheme.colors,
+      ...PaperDarkTheme.colors,
+      background: '#333333',
+      text: '#ffffff'
+    }
+  }
+
   return (
-    <NavigationContainer>
-      <RootStackScreen />
-    </NavigationContainer>
+    <PaperProvider theme={theme}>
+        <NavigationContainer theme={theme}>
+          <RootStackScreen />
+        </NavigationContainer>
+    </PaperProvider>
   );
 };
 
