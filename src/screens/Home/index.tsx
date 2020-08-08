@@ -99,9 +99,6 @@ const Home: React.FC<Props> = ({ navigation }) => {
                     setLoading(false);
                 }, 2000);
             });
-
-
-
     }
 
     const loadMore = () => {
@@ -194,17 +191,17 @@ const Home: React.FC<Props> = ({ navigation }) => {
 
     const switchTheme = async () => {
         
-        if (isDarkTheme == true) {
+         if (isDarkTheme == true) {
          // Saves to storage as a JSON-string
-         await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true))
-         .then(() => {
-             setIsDarkTheme(true);
-         });
-        } else {
-            // Saves to storage as a JSON-string
          await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false))
          .then(() => {
              setIsDarkTheme(false);
+         });
+        } else {
+            // Saves to storage as a JSON-string
+         await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true))
+         .then(() => {
+             setIsDarkTheme(true);
          });
         }
     }
@@ -277,7 +274,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5, alignSelf:'flex-end', marginRight:15, flex:1  }}>
                         <Left/>
-                        <SwitchButton />
+                        <SwitchButton onPress={() => switchTheme() }/>
                     </View></View>
             </Header>
             <Content>

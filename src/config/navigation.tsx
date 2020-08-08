@@ -22,12 +22,13 @@ import Contact from "../screens/Contact";
 import { colors } from '../styles';
 //para novos uruários serem redirecionados para tela welcome
 const MY_STORAGE_KEY = 'WelcomeFirst';
+const MY_DARKTHEME_KEY = 'isDarkTheme';
 //instancing navigators
 const AppTabs = createMaterialBottomTabNavigator();
 const RootStack = createStackNavigator();
 const WelcomeStack = createStackNavigator()
 const HomeStack = createStackNavigator();
-
+var isDarkTheme = false;
 //stack navigator Home
 const HomeStackScreen = () => (
   <HomeStack.Navigator
@@ -128,7 +129,7 @@ const WelcomeStackScreen = () => (
 
 //Root Navigator
 const RootStackScreen = () => {
-
+ 
   const [isLoading, setIsLoading] = useState(true);
   const [fontsLoaded, setfontsLoaded] = useState(false);
   const [isnew, setisNew] = useState(true);
@@ -155,6 +156,20 @@ const RootStackScreen = () => {
         const result = JSON.parse(value) // boolean false
         //console.log('STORAGE KEY VALUE' + result)
         result ? setisNew(false) : setisNew(false);
+
+      }
+    })
+
+    // Retrieves from storage as boolean
+    await AsyncStorage.getItem(MY_DARKTHEME_KEY, (err, value) => {
+      if (err) {
+        console.log(err)
+      } else {
+        const result = JSON.parse(value) // boolean false
+        //console.log('STORAGE KEY VALUE' + result)
+        console.log('ASYNCSTORAGE >>>' + result)
+        isDarkTheme = result;
+        console.log('TEMA >>>' + isDarkTheme);
 
       }
     })
@@ -193,9 +208,6 @@ const RootStackScreen = () => {
 
 export default () => {
 
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
-
   const CustomDefaultTheme = {
     ...NavigationDefaultTheme,
     ...PaperDefaultTheme,
@@ -218,6 +230,8 @@ export default () => {
     }
   }
 
+  const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
+  
   return (
     <PaperProvider theme={theme}>
         <NavigationContainer theme={theme}>
