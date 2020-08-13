@@ -6,22 +6,20 @@ import {
     SafeAreaView,
     Share,
     TextInput,
-    AsyncStorage
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { Card, Title } from 'react-native-paper';
+import { Card, Title} from 'react-native-paper';
 import { Content, CardItem, Thumbnail, Button, Text, Icon, Left, Body } from 'native-base';
 import * as firebase from 'firebase';
 import { StackParamList } from '../../config/navigation';
 import { StackNavigationProp } from '@react-navigation/stack';
-
+import{ ThemeContext } from '../../config/ThemeContext';
 import { Header, Shimmer, SwitchButton } from '../../components';
 import LoadingComponent from '../../components/defaultLoading/lottieLoading';
 import Loading from '../../loaders/13255-loader.json';
-import { colors, metrics } from '../../styles';
+import { colors as color, metrics } from '../../styles';
 import styles from './styles';
-
-const MY_STORAGE_KEY = 'isDarkTheme';
+import { useTheme } from '@react-navigation/native';
 
 interface RenderListProps {
     by: string;
@@ -40,28 +38,20 @@ type Props = {
 }
 
 const Home: React.FC<Props> = ({ navigation }) => {
-
+    const { colors } = useTheme();
     const dataRef = firebase.firestore().collection('post');
     const [data, setData] = useState([]);
     const [query, setQuery] = useState(null);
-    const [barIcon, setbarIcon] = useState('https://img.icons8.com/ios/100/000000/search--v1.png');
+    const [barIcon, setbarIcon] = useState('ios-search');
     const [dataBackup, setdataBackup] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pageSize, setpageSize] = useState(3);
     const [isDarkTheme, setIsDarkTheme] = useState(false);
+    const paperTheme = useTheme();
+    const { toggleTheme } = React.useContext(ThemeContext);
 
     useEffect(() => {
-        // Retrieves from storage as boolean
-     AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
-        if (err) {
-          console.log(err)
-        } else {
-          const result = JSON.parse(value) // boolean false
-          //console.log('STORAGE KEY VALUE' + result)
-            setIsDarkTheme(result);
-        }
-    })
-        
+
         const subscriber = getData();
         // Unsubscribe from events when no longer in use
         return () => subscriber;
@@ -109,7 +99,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
     const LoadingAnimation = () => {
         return (
             <View style={styles.container}>
-                <Card style={{ borderWidth: 0.1, borderColor: colors.gray, marginBottom: 10 }}></Card>
+                <Card style={{ borderWidth: 0.1, borderColor: color.gray, marginBottom: 10 }}></Card>
                 <View style={styles.header2}>
                     <View style={styles.avatar}>
                         <Shimmer width={60} height={60} />
@@ -141,9 +131,9 @@ const Home: React.FC<Props> = ({ navigation }) => {
         var text = event.nativeEvent.text
 
         if (text == '') {
-            setbarIcon('https://img.icons8.com/ios/100/000000/search--v1.png');
+            setbarIcon('ios-search');
         } else {
-            setbarIcon('https://img.icons8.com/ios/50/000000/left.png');
+            setbarIcon('ios-arrow-round-back');
         }
 
         setQuery(text);
@@ -161,8 +151,8 @@ const Home: React.FC<Props> = ({ navigation }) => {
 
     const searchIconBack = () => {
 
-        if (barIcon == 'https://img.icons8.com/ios/50/000000/left.png') {
-            setbarIcon('https://img.icons8.com/ios/100/000000/search--v1.png')
+        if (barIcon == 'ios-arrow-round-back') {
+            setbarIcon('ios-search')
             setQuery(null)
             getData();
         }
@@ -189,23 +179,6 @@ const Home: React.FC<Props> = ({ navigation }) => {
 
     };
 
-    const switchTheme = async () => {
-        
-         if (isDarkTheme == true) {
-         // Saves to storage as a JSON-string
-         await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(false))
-         .then(() => {
-             setIsDarkTheme(false);
-         });
-        } else {
-            // Saves to storage as a JSON-string
-         await AsyncStorage.setItem(MY_STORAGE_KEY, JSON.stringify(true))
-         .then(() => {
-             setIsDarkTheme(true);
-         });
-        }
-    }
-
     const renderList = ({ by, data, img, ref, text, tittle, id, avatar, like }: RenderListProps) => {
         return (
             <>
@@ -221,14 +194,14 @@ const Home: React.FC<Props> = ({ navigation }) => {
                         by: by
                     })
                 }}>
-                    <Card style={{ borderWidth: 1, borderColor: colors.gray, marginBottom: 10 }}>
+                    <Card style={{ borderWidth: 1, borderColor: color.gray, marginBottom: 10, backgroundColor:colors.background }}>
 
-                        <CardItem>
+                        <CardItem style={{backgroundColor:colors.background }} >
                             <Left>
                                 <Thumbnail source={{ uri: avatar }} />
                                 <Body>
-                                    <Text>{by}</Text>
-                                    <Text note>{data}</Text>
+                                    <Text style={{color: colors.text }}>{by}</Text>
+                                    <Text style={{color: colors.text }} note>{data}</Text>
                                 </Body>
                             </Left>
                         </CardItem>
@@ -239,19 +212,18 @@ const Home: React.FC<Props> = ({ navigation }) => {
                             <Title>{tittle}</Title>
 
                             <Body>
-                                <Text numberOfLines={5} style={styles.Text}>{text}</Text>
-                                <Text style={{ fontStyle: 'italic', color: "#808080", textAlign: 'center', marginTop: 10 }}>
+                                <Text numberOfLines={5} style={[styles.Text, {color: colors.text}]}>{text}</Text>
+                                <Text style={{ fontStyle: 'italic', textAlign: 'center', marginTop: 10 }}>
                                     {ref}
                                 </Text>
-
                             </Body>
 
                         </Card.Content>
-                        <CardItem>
+                        <CardItem style={{backgroundColor:colors.background }}>
                             <Left>
                                 <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
                                     <Icon name="md-share" />
-                                    <Text>Compartilhar</Text>
+                                    <Text style={[{color: colors.text}]}>Compartilhar</Text>
                                 </Button>
                             </Left>
                         </CardItem>
@@ -265,7 +237,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, {backgroundColor: colors.background}]}>
 
             <Header>
                 <View style={{ flexDirection: 'row', marginTop: 5 }}>
@@ -274,19 +246,15 @@ const Home: React.FC<Props> = ({ navigation }) => {
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 5, alignSelf:'flex-end', marginRight:15, flex:1  }}>
                         <Left/>
-                        <SwitchButton onPress={() => switchTheme() }/>
-                    </View></View>
+                        <SwitchButton onPress={() => {toggleTheme()} }/>
+                    </View>
+                </View>
             </Header>
             <Content>
                 <View style={styles.header}>
-                    <View style={styles.SectionStyle}>
+                    <View style={[styles.SectionStyle, {backgroundColor:colors.background}]}>
                         <TouchableOpacity onPress={() => searchIconBack()}>
-                            <Image
-                                //We are showing the Image from online
-                                source={{ uri: barIcon }}
-                                //Image Style
-                                style={styles.ImageStyle}
-                            />
+                            <Icon style={{ fontSize: 28, color: colors.text, marginLeft: metrics.baseMargin }} name={barIcon} />
                         </TouchableOpacity>
                         <TextInput
                             underlineColorAndroid="transparent"
@@ -297,7 +265,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
                                 filterItem(value);
                                 //filterItem(event.target.value);
                             }}
-                            style={styles.input}
+                            style={[styles.input, {backgroundColor:colors.background, color:colors.text}]}
                         />
                     </View>
                 </View>
@@ -305,7 +273,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
                     style={styles.headerImage}
                     source={require('../../../assets/home-img.png')}
                 />
-                <View style={styles.contentContainer}><Text style={[styles.Tittle, { textAlign: 'center', marginHorizontal: 5, marginTop: -20 }]}>Bem-vindo! Essa é a ferramenta de fiscalização e transparência do povo de Juazeiro.</Text>
+                <View style={[styles.contentContainer, {backgroundColor: colors.background}]}><Text style={[styles.Tittle, { color: colors.text,textAlign: 'center', marginHorizontal: 5, marginTop: -20 }]}>Bem-vindo! Essa é a ferramenta de fiscalização e transparência do povo de Juazeiro.</Text>
                     <View style={styles.cardContainer}>
                         {loading ? LoadingAnimation() :
                             (<FlatList

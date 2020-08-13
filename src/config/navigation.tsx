@@ -4,7 +4,7 @@ import 'react-native-gesture-handler';
 import { Provider as PaperProvider, DarkTheme as PaperDarkTheme, DefaultTheme as PaperDefaultTheme } from 'react-native-paper';
 //import navigators
 import { NavigationContainer, DarkTheme as NavigationDarkTheme, DefaultTheme as NavigationDefaultTheme } from "@react-navigation/native";
-import ThemeContext from './themeContext';
+import { ThemeContext } from './ThemeContext';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 //icons and fonts
@@ -23,13 +23,13 @@ import Contact from "../screens/Contact";
 import { colors } from '../styles';
 //para novos uruários serem redirecionados para tela welcome
 const MY_STORAGE_KEY = 'WelcomeFirst';
-const MY_DARKTHEME_KEY = 'isDarkTheme';
+
 //instancing navigators
 const AppTabs = createMaterialBottomTabNavigator();
 const RootStack = createStackNavigator();
 const WelcomeStack = createStackNavigator()
 const HomeStack = createStackNavigator();
-var isDarkTheme = false;
+
 //stack navigator Home
 const HomeStackScreen = () => (
   <HomeStack.Navigator
@@ -65,7 +65,7 @@ const AppTabsScreen = () => (
       options={{
         tabBarLabel: 'Início',
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="home" color={color} size={25} />
+          <MaterialCommunityIcons name="home" color={color} size={26} />
         ),
       }}
     />
@@ -76,7 +76,7 @@ const AppTabsScreen = () => (
       options={{
         tabBarLabel: 'Transparência',
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="eye" color={color} size={25} />
+          <MaterialCommunityIcons name="eye" color={color} size={26} />
         ),
       }}
     />
@@ -98,7 +98,7 @@ const AppTabsScreen = () => (
       options={{
         tabBarLabel: 'Idéias',
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="lightbulb-on" color={color} size={24} />
+          <MaterialCommunityIcons name="lightbulb-on" color={color} size={26} />
         ),
       }}
     />
@@ -109,7 +109,7 @@ const AppTabsScreen = () => (
       options={{
         tabBarLabel: 'Contato',
         tabBarIcon: ({ color }) => (
-          <MaterialCommunityIcons name="contacts" color={color} size={24} />
+          <MaterialCommunityIcons name="contacts" color={color} size={26} />
         ),
       }}
     />
@@ -130,12 +130,10 @@ const WelcomeStackScreen = () => (
 
 //Root Navigator
 const RootStackScreen = () => {
- 
+
   const [isLoading, setIsLoading] = useState(true);
   const [fontsLoaded, setfontsLoaded] = useState(false);
   const [isnew, setisNew] = useState(true);
-
-
 
   const loadFonts = async () => {
 
@@ -157,20 +155,6 @@ const RootStackScreen = () => {
         const result = JSON.parse(value) // boolean false
         //console.log('STORAGE KEY VALUE' + result)
         result ? setisNew(false) : setisNew(false);
-
-      }
-    })
-
-    // Retrieves from storage as boolean
-    await AsyncStorage.getItem(MY_DARKTHEME_KEY, (err, value) => {
-      if (err) {
-        console.log(err)
-      } else {
-        const result = JSON.parse(value) // boolean false
-        //console.log('STORAGE KEY VALUE' + result)
-        console.log('ASYNCSTORAGE >>>' + result)
-        isDarkTheme = result;
-        console.log('TEMA >>>' + isDarkTheme);
 
       }
     })
@@ -207,7 +191,10 @@ const RootStackScreen = () => {
   );
 };
 
+
 export default () => {
+
+  const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
   const CustomDefaultTheme = {
     ...NavigationDefaultTheme,
@@ -216,7 +203,7 @@ export default () => {
       ...NavigationDefaultTheme.colors,
       ...PaperDefaultTheme.colors,
       background: '#ffffff',
-      text: '#333333'
+      text: '#333'
     }
   }
 
@@ -226,18 +213,27 @@ export default () => {
     colors: {
       ...NavigationDarkTheme.colors,
       ...PaperDarkTheme.colors,
-      background: '#333333',
+      background: '#000',
       text: '#ffffff'
     }
   }
 
+  const themeContext = React.useMemo(() => ({
+
+    toggleTheme: () => {
+      setIsDarkTheme(isDarkTheme => !isDarkTheme);
+    }
+  }), []);
+
   const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
-  
+
   return (
     <PaperProvider theme={theme}>
+      <ThemeContext.Provider value={themeContext}>
         <NavigationContainer theme={theme}>
           <RootStackScreen />
         </NavigationContainer>
+      </ThemeContext.Provider>
     </PaperProvider>
   );
 };

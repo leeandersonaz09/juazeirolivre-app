@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
     
     container: {
         flex: 1,
-        backgroundColor: colors.white,
       },
     //Shimmer
     header2: {
@@ -110,7 +109,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 3,
         paddingTop: 40,
-        backgroundColor: colors.white
     },
 
     cardContainer: {
@@ -130,7 +128,6 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginBottom: 5,
         alignSelf: "center",
-        color: colors.primary,
         fontSize: fonts.headerTittle
     },
 

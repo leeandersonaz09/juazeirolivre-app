@@ -8,13 +8,15 @@ import {
 } from 'react-native';
 import { Container, Content, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
 import ImageView from "react-native-image-viewing";
+import { useTheme } from '@react-navigation/native';
 //Dimensins get
 import styles from './styles';
-import { metrics, colors } from '../../styles'
+import { metrics, colors as color } from '../../styles'
 import { Header } from '../../components';
 
 function DetailsScreen({ route, navigation }) {
 
+  const { colors } = useTheme();
   /* 2. Get the param */
   const { id } = route.params;
   const { tittle } = route.params;
@@ -56,14 +58,14 @@ function DetailsScreen({ route, navigation }) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, {backgroundColor: colors.background}]}>
 
-      <Container>
+      <Container style={{backgroundColor: colors.background}}>
         <Header style={styles.header}>
           <View style={{ flexDirection: 'row', marginRight: (metrics.screenWidth / 2) - metrics.screenWidth / 6 }}>
             <Left>
               <Button transparent onPress={backHome}>
-                <Icon style={{ color: colors.white }} name='arrow-back' />
+                <Icon style={{ color: color.white }} name='arrow-back' />
               </Button>
             </Left>
             <Body>
@@ -75,16 +77,16 @@ function DetailsScreen({ route, navigation }) {
 
         <Content>
     
-          <CardItem>
+          <CardItem style={{backgroundColor: colors.background}}>
             <Left>
               <Thumbnail source={{ uri: avatar }} />
               <Body>
-                <Text>{by}</Text>
-                <Text note>{data}</Text>
+                <Text style={{color:colors.text}}>{by}</Text>
+                <Text style={{color:colors.text}} note>{data}</Text>
               </Body>
             </Left>
           </CardItem>
-          <Text style={styles.tittle}>{tittle}</Text>
+          <Text style={[styles.tittle, {color:colors.text}]}>{tittle}</Text>
           <ImageView
             images={images}
             imageIndex={0}
@@ -98,15 +100,15 @@ function DetailsScreen({ route, navigation }) {
             </TouchableOpacity>
           </View>
           <Body style={{paddingHorizontal:20}}>
-            <Text style={styles.Text}>{text}</Text>
-            <Text style={styles.Ref}>
+            <Text style={[styles.Text, {color:colors.text}]}>{text}</Text>
+            <Text style={[, {color:colors.text}]}>
               "{ref}"
               </Text>
-            <CardItem>
+            <CardItem style={{backgroundColor: colors.background}}>
               <Left>
                 <Button onPress={() => shareContent()} transparent textStyle={{ color: '#87838B' }}>
                   <Icon name="md-share" />
-                  <Text>Compartilhar</Text>
+                  <Text style={{color:colors.text}}>Compartilhar</Text>
                 </Button>
               </Left>
             </CardItem>
