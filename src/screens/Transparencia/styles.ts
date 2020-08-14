@@ -22,9 +22,7 @@ import { colors, fonts, metrics} from '../../styles';
 const styles = StyleSheet.create({
 
   container: {
-    flex: 1,
-    backgroundColor: colors.white,
-    
+    flex: 1,    
   },
 
   //index.jsx
@@ -121,8 +119,8 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     fontSize: fonts.tiny,
     alignSelf: 'center',
-    marginTop: 15,
-    marginBottom: 10
+    marginTop: 10,
+    marginBottom: 1
   },
 
   normalText: {

@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
 import {
     View,
-    Text,
+    Text as TittleText,
     SafeAreaView,
     ImageBackground,
     ScrollView,
     Image
 } from 'react-native';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
-import { Separator, Card } from '../../components';
+import { Separator, Card, Text, View as MyView} from '../../components';
 import ImageView from "react-native-image-viewing";
 import styles from './styles';
+import { useTheme } from '@react-navigation/native';
 
 const Tab4 = () => {
     const [index, setIndex] = useState(0);
     const B = (props) => <Text style={{ fontWeight: 'bold' }}>{props.children}</Text>
     const [visible, setIsVisible] = useState(false);
+    const { colors } = useTheme();
+    const theme = useTheme();
+
     const [dataEducacao, setDataEducacao] = useState([
         { key: '1', ano: '2009', valor: 'R$ 13.332.999,97' },
         { key: '2', ano: '2010', valor: 'R$ 20.793.632,28' },
@@ -41,7 +45,7 @@ const Tab4 = () => {
     ];
 
     return (
-        <SafeAreaView style={styles.container}>
+        <MyView style={styles.container}>
             <ScrollView>
                 <ImageBackground
                     source={require('../../img/stethoscope-dollar-banknotes_1150-18243.jpg')}
@@ -50,12 +54,12 @@ const Tab4 = () => {
                 >
                     <View style={styles.darkOverlay}></View>
                     <View style={styles.imageContainer}>
-                        <Text style={styles.UserGreat}>Orçamentos da Saúde</Text>
-                        <Text style={styles.userText}>Segundo o Tribunal de Contas da Bahia</Text>
+                        <TittleText style={styles.UserGreat}>Orçamentos da Saúde</TittleText>
+                        <TittleText style={styles.userText}>Segundo o Tribunal de Contas da Bahia</TittleText>
                     </View>
 
                 </ImageBackground>
-                <View style={styles.contentContainer}>
+                <View style={[styles.contentContainer, ]}>
 
 
                     <Card>
@@ -86,8 +90,8 @@ const Tab4 = () => {
                                 return (
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginLeft: 5 }}>
-                                            <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#1e213d' }}> {item.ano} </Text>
-                                            <Text style={{ textAlign: 'left', color: '#1e213d' }}>{item.valor}</Text>
+                                            <Text style={{ fontSize: 14, fontWeight: 'bold'}}> {item.ano} </Text>
+                                            <Text style={{ textAlign: 'left'}}>{item.valor}</Text>
                                         </View>
 
                                     </>
@@ -138,7 +142,7 @@ const Tab4 = () => {
                 
                 </View>
             </ScrollView>
-        </SafeAreaView>
+        </MyView>
     )
 
 

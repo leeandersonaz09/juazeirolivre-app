@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import {
     View,
     Text,
-    SafeAreaView,
     ScrollView,
     ImageBackground,
     Image
 } from 'react-native';
-
-import { WaveSvg } from '../../components';
+import { colors as color } from '../../styles';
+import { useTheme } from '@react-navigation/native';
+import { WaveSvg, View as MyView } from '../../components';
 import styles from './styles';
-import { colors } from '../../styles';
 
 const Tab3 = () => {
     const [visible, setIsVisible] = useState(false);
     const B = (props) => <Text style={{ fontWeight: 'bold' }}>{props.children}</Text>
+    const { colors } = useTheme();
 
     const [data2017] = useState([
 
@@ -56,12 +56,12 @@ const Tab3 = () => {
     ];
 
     return (
-        <SafeAreaView style={styles.container}>
+        <MyView style={styles.container}>
             <WaveSvg
                 customStyles={styles.svgCurve}
                 customHeight={320}
                 customTop={260}
-                customBgColor={colors.yellow}
+                customBgColor={color.yellow}
                 customWavePattern="M0,288L1440,32L1440,0L0,0Z"
             />
 
@@ -78,7 +78,7 @@ const Tab3 = () => {
 
                 </ImageBackground>
                 <View style={styles.contentContainer}>
-                    <View style={styles.card}>
+                    <View style={[styles.card, { backgroundColor: colors.background }]}>
                         <View style={styles.cardContent}>
                             <Image
                                 resizeMode="contain"
@@ -90,7 +90,7 @@ const Tab3 = () => {
 
                 </View>
             </ScrollView>
-        </SafeAreaView>
+        </MyView>
     )
 
 

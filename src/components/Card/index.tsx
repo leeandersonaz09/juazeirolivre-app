@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native'
-import { metrics } from '../../styles'
+import { View, StyleSheet } from 'react-native';
+import { metrics } from '../../styles';
 import { useTheme } from '@react-navigation/native';
 
 export default function Card (props) {
     const { colors } = useTheme();
     return (
 
-        <View style={[styles.card, { backgroundColor: colors.background,}]}>
+        <View style={[styles.card, { backgroundColor: colors.background}]}>
             <View style={styles.cardContent}>
                 {props.children}
             </View>

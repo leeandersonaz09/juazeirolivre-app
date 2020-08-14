@@ -43,12 +43,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'SFProDisplay_bold',
     fontSize: fonts.header,
-    color: colors.black
   },
 
   text: {
     fontFamily: 'SFProDisplay_regular', 
-    color: colors.primary,  
   },
 
   Icon: {

@@ -228,13 +228,13 @@ export default () => {
   const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
 
   return (
+    <ThemeContext.Provider value={themeContext}>
     <PaperProvider theme={theme}>
-      <ThemeContext.Provider value={themeContext}>
         <NavigationContainer theme={theme}>
           <RootStackScreen />
         </NavigationContainer>
-      </ThemeContext.Provider>
     </PaperProvider>
+    </ThemeContext.Provider >
   );
 };
 

@@ -2,23 +2,25 @@ import React from 'react';
 import {
     View,
     Text,
-    SafeAreaView,
     ImageBackground,
     ScrollView,
     Image
 } from 'react-native';
-import { WaveSvg } from '../../components';
+import { WaveSvg, View as MyView } from '../../components';
+import { useTheme } from '@react-navigation/native';
 import styles from './styles';
-import { colors } from '../../styles';
+import { colors as color } from '../../styles';
 const Tab1 = () => {
 
+    const { colors } = useTheme();
+
     return (
-        <SafeAreaView style={styles.container}>
+        <MyView style={styles.container}>
             <WaveSvg
                 customStyles={styles.svgCurve}
                 customHeight={320}
                 customTop={260}
-                customBgColor={colors.yellow}
+                customBgColor={color.yellow}
                 customWavePattern="M0,288L1440,32L1440,0L0,0Z"
             />
             <ScrollView>
@@ -30,14 +32,13 @@ const Tab1 = () => {
                     <View style={styles.darkOverlay}></View>
                     <View style={styles.imageContainer}>
                         <Text style={styles.UserGreat}>Atuação na Educação</Text>
-
                     </View>
 
                 </ImageBackground>
 
                 <View style={styles.contentContainer}>
 
-                    <View style={styles.card}>
+                    <View style={[styles.card, {backgroundColor: colors.background}]}>
                         <View style={styles.cardContent}>
                             <Image
                                 resizeMode="contain"
@@ -50,9 +51,8 @@ const Tab1 = () => {
 
                 </View>
 
-
             </ScrollView>
-        </SafeAreaView >
+        </MyView >
     )
 
 

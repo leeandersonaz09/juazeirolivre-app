@@ -14,7 +14,7 @@ import * as firebase from 'firebase';
 import { StackParamList } from '../../config/navigation';
 import { StackNavigationProp } from '@react-navigation/stack';
 import{ ThemeContext } from '../../config/ThemeContext';
-import { Header, Shimmer, SwitchButton } from '../../components';
+import { Header, Shimmer, SwitchButton} from '../../components';
 import LoadingComponent from '../../components/defaultLoading/lottieLoading';
 import Loading from '../../loaders/13255-loader.json';
 import { colors as color, metrics } from '../../styles';
@@ -46,8 +46,6 @@ const Home: React.FC<Props> = ({ navigation }) => {
     const [dataBackup, setdataBackup] = useState([]);
     const [loading, setLoading] = useState(false);
     const [pageSize, setpageSize] = useState(3);
-    const [isDarkTheme, setIsDarkTheme] = useState(false);
-    const paperTheme = useTheme();
     const { toggleTheme } = React.useContext(ThemeContext);
 
     useEffect(() => {

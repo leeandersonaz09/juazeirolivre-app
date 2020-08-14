@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import {
     View,
-    Text,
-    SafeAreaView,
+    Text as TittleText,
     ImageBackground,
     ScrollView
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import {Separator, Card} from '../../components';
+import { Separator, Card, Text, View as MyView } from '../../components';
+import { useTheme } from '@react-navigation/native';
 
 import styles from './styles';
 
 const Tab2 = () => {
-
     const [dataEducacao, setDataEducacao] = useState([
         { key: '1', ano: '2009', valor: 'R$   38.443.291,41' },
         { key: '2', ano: '2010', valor: 'R$   67.171.693,99' },
@@ -29,7 +28,7 @@ const Tab2 = () => {
     ]);
 
     return (
-        <SafeAreaView style={styles.container}>
+        <MyView style={styles.container}>
 
             <ScrollView>
                 <ImageBackground
@@ -39,17 +38,17 @@ const Tab2 = () => {
                 >
                     <View style={styles.darkOverlay}></View>
                     <View style={styles.imageContainer}>
-                        <Text style={styles.UserGreat}>Educação Municipal em Números</Text>
-                        <Text style={styles.userText}>Segundo o IBGE</Text>
+                        <TittleText style={styles.UserGreat}>Educação Municipal em Números</TittleText>
+                        <TittleText style={styles.userText}>Segundo o IBGE</TittleText>
                     </View>
 
                 </ImageBackground>
-                <View style={styles.contentContainer}>
+                <View style={[styles.contentContainer]}>
                     <Card>
                         <Text style={styles.Tittle}>APANHADO GERAL</Text>
-                        <Text>• 62 escolas na zona urbana.</Text>
-                        <Text>• 72 escolas na zona rural.</Text>
-                        <Text>• 34.437 alunos matriculados em 2018.</Text>
+                        <Text >• 62 escolas na zona urbana.</Text>
+                        <Text >• 72 escolas na zona rural.</Text>
+                        <Text >• 34.437 alunos matriculados em 2018.</Text>
                         <Text style={styles.ibge}>Fonte: Portal da Educação/Rede Municipal de Juazeiro.</Text>
                         <Separator />
                         <Text style={styles.normalText}>• 35.385 alunos matriculados no Ensino Fundamental em 2018.</Text>
@@ -90,8 +89,8 @@ const Tab2 = () => {
                                 return (
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                                            <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#1e213d' }}> {item.ano} </Text>
-                                            <Text style={{ textAlign: 'left', color: '#1e213d' }}>{item.valor}</Text>
+                                            <Text style={{ fontSize: 14, fontWeight: 'bold', }}> {item.ano} </Text>
+                                            <Text style={{ textAlign: 'left',}}>{item.valor}</Text>
                                         </View>
 
                                     </>
@@ -107,7 +106,7 @@ const Tab2 = () => {
                 </View>
 
             </ScrollView>
-        </SafeAreaView >
+        </MyView >
     )
 
 

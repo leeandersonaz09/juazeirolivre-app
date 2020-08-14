@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import {
     View,
-    Text,
-    SafeAreaView,
+    Text as TittleText,
     ScrollView,
     ImageBackground,
     Image
 } from 'react-native';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import ImageView from "react-native-image-viewing";
-import {Separator, Card} from '../../components';
+import {Separator, Card, Text, View as MyView} from '../../components';
 import styles from './styles';
 
 const Tab3 = () => {
     const [visible, setIsVisible] = useState(false);
     const B = (props) => <Text style={{ fontWeight: 'bold' }}>{props.children}</Text>
-    
+
     const [data2017] = useState([
 
         { key: '1', nome: 'FÁBIO (FABINHO DE PINHÕES)', faltas: '28' },
@@ -56,8 +55,7 @@ const Tab3 = () => {
     ];
 
     return (
-        <SafeAreaView style={styles.container}>
-
+        <MyView style={styles.container}>
 
             <ScrollView>
                 <ImageBackground
@@ -67,12 +65,12 @@ const Tab3 = () => {
                 >
                     <View style={styles.darkOverlay}></View>
                     <View style={styles.imageContainer}>
-                        <Text style={styles.UserGreat}>A câmara mais cara da história</Text>
-                        <Text style={styles.userText}>Segundo o Tribunal de Contas da Bahia</Text>
+                        <TittleText style={styles.UserGreat}>A câmara mais cara da história</TittleText>
+                        <TittleText style={styles.userText}>Segundo o Tribunal de Contas da Bahia</TittleText>
                     </View>
 
                 </ImageBackground>
-                <View style={styles.contentContainer}>
+                <View style={[styles.contentContainer ]}>
                     <Card>
                         <Text style={styles.Textcard}>
                             A folha de pagamento da câmara de vereadores, tem 33 páginas.
@@ -169,8 +167,8 @@ const Tab3 = () => {
                                 return (
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginLeft: 5 }}>
-                                            <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#1e213d' }}> {item.nome} </Text>
-                                            <Text style={{ textAlign: 'left', color: '#1e213d', fontSize:14}}>{item.faltas}</Text>
+                                            <Text style={{ fontSize: 14, fontWeight: 'bold'}}> {item.nome} </Text>
+                                            <Text style={{ textAlign: 'left', fontSize:14}}>{item.faltas}</Text>
                                         </View>
 
                                     </>
@@ -198,8 +196,8 @@ const Tab3 = () => {
                                 return (
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginLeft: 5 }}>
-                                            <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#1e213d' }}> {item.nome} </Text>
-                                            <Text style={{ textAlign: 'left', color: '#1e213d', fontSize:14}}>{item.faltas}</Text>
+                                            <Text style={{ fontSize: 14, fontWeight: 'bold'}}> {item.nome} </Text>
+                                            <Text style={{ textAlign: 'left', fontSize:14}}>{item.faltas}</Text>
                                         </View>
 
                                     </>
@@ -229,8 +227,8 @@ const Tab3 = () => {
                                 return (
                                     <>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginLeft: 5 }}>
-                                            <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#1e213d' }}> {item.nome} </Text>
-                                            <Text style={{ textAlign: 'left', color: '#1e213d', fontSize: 14}}>{item.faltas}</Text>
+                                            <Text style={{ fontSize: 14, fontWeight: 'bold' }}> {item.nome} </Text>
+                                            <Text style={{ textAlign: 'left', fontSize: 14}}>{item.faltas}</Text>
                                         </View>
 
                                     </>
@@ -263,12 +261,12 @@ const Tab3 = () => {
                         </Text>
                     </Card>
 
-                    <Text style={[styles.ibge]} >Fontes: Atas das sessões extraordinárias da câmara municipal de Juazeiro</Text>
-                    <Text style={[styles.ibge, { marginTop: -10 }]}>Tribunal de Contas dos Municípios do Estado da Bahia</Text>
+                    <Text style={styles.ibge} >Fontes: Atas das sessões extraordinárias da câmara municipal de Juazeiro</Text>
+                    <Text style={styles.ibge}>Tribunal de Contas dos Municípios do Estado da Bahia</Text>
                     
                 </View>
             </ScrollView>
-        </SafeAreaView>
+        </MyView >
     )
 
 
