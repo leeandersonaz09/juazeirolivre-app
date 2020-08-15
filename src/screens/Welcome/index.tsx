@@ -11,7 +11,6 @@ import Animated, { multiply, divide, interpolate, Extrapolate } from "react-nati
 import { StackNavigationProp } from "@react-navigation/stack";
 import { StackParamList } from "../../config/navigation";
 const { width } = Dimensions.get("window");
-const CHECK_IS_NEW = 'WelcomeFirst';
 
 const styles = StyleSheet.create({
 
@@ -111,7 +110,7 @@ const Welcome: React.FC<Props> = ({ navigation }) => {
 
     const submit = async () => {
         // Saves to storage as a JSON-string
-        await AsyncStorage.setItem(CHECK_IS_NEW, JSON.stringify(true))
+        await AsyncStorage.setItem('isnew', JSON.stringify(true))
             .then(() => {
                 setBar(false);
                 navigation.navigate('Tabs');

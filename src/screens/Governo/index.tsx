@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { Tabs, Tab, TabHeading, Icon, View, ScrollableTab, Left } from 'native-base';
+import { Tabs, Tab, TabHeading, Icon, View, ScrollableTab } from 'native-base';
 import Tab1 from './Tab1';
 import Tab2 from './Tab2';
 import Tab3 from './Tab3';
 import Tab4 from './Tab4';
-import { colors, metrics } from '../../styles'
+import { colors } from '../../styles'
 import { Header, SwitchButton } from '../../components';
 import { ThemeContext } from '../../config/ThemeContext';
 
@@ -14,12 +14,12 @@ const Transparencia = () => {
     return (
         <>
             <Header>
-                <View style={{ flexDirection: 'row', marginTop: 5, marginBottom: 20 }}>
-                    <View style={{ alignContent: 'center', justifyContent: 'center', alignItems: 'center', marginLeft: (metrics.screenWidth * 0.50) / 2 }}>
-                        <Text style={styles.headerTitle}>Conheça Nossas Ideias</Text>
+                <View style={{ flexDirection: 'row', }}>
+
+                    <View style={{ flex: 1, alignContent: 'center', alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={[styles.headerTitle, {marginLeft:'10%'}]}>Conheça Nossas Ideias</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5, alignSelf: 'flex-end', marginRight: 15, flex: 1 }}>
-                        <Left />
+                    <View style={{marginTop:25, marginRight:25}}>
                         <SwitchButton onPress={() => { toggleTheme() }} />
                     </View>
                 </View>

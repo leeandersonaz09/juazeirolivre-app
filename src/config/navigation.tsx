@@ -22,7 +22,6 @@ import Welcome from "../screens/Welcome";
 import Contact from "../screens/Contact";
 import { colors } from '../styles';
 //para novos uruários serem redirecionados para tela welcome
-const CHECK_IS_NEW = 'WelcomeFirst';
 
 //instancing navigators
 const AppTabs = createMaterialBottomTabNavigator();
@@ -74,7 +73,7 @@ const AppTabsScreen = () => (
       name="Tab2"
       component={Transparencia}
       options={{
-        tabBarLabel: 'Transparência',
+        tabBarLabel: 'Fiscalizar',
         tabBarIcon: ({ color }) => (
           <MaterialCommunityIcons name="eye" color={color} size={26} />
         ),
@@ -138,15 +137,13 @@ const RootStackScreen = () => {
   const checkUserSignedIn = async () =>{
 
     try {
-       let value = await AsyncStorage.getItem(CHECK_IS_NEW);
-       if (value != null){
-          // do something 
+       let value = await AsyncStorage.getItem('isnew');
+
+       if (value !== null){
+          setisNew(false);
        }
        else {
-         // Retrieves from storage as boolean
-        const result = JSON.parse(value) // boolean false
-        //console.log('STORAGE KEY VALUE' + result)
-        result ? setisNew(false) : setisNew(false);
+         setisNew(true);
 
       }
     } catch (error) {

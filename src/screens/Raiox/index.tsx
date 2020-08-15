@@ -6,9 +6,7 @@ import {
 
 } from 'react-native';
 
-import { Left } from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
-import { metrics } from '../../styles'
 import { Header, Card, Text, SwitchButton, View as MyView } from '../../components';
 import { ThemeContext } from '../../config/ThemeContext';
 import styles from './styles';
@@ -27,16 +25,14 @@ const raiox = () => {
     return (
         <MyView style={styles.container}>
             <Header>
-                <View style={{ flexDirection: 'row', marginTop: 5}}>
-                    <View style={{ alignContent: 'center', justifyContent: 'center', alignItems: 'center', marginLeft: (metrics.screenWidth * 0.60) / 2 }}>
-                        <Text style={styles.headerTitle}>Raio-X da Cidade</Text>
+                <View style={{ flexDirection: 'row', }}>
+                    <View style={{ flex: 1, alignContent: 'center', alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={styles.headerTitle}>Raio-x da Cidade</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 5, alignSelf: 'flex-end', marginRight: 15, flex: 1 }}>
-                        <Left />
+                    <View style={{ marginTop: 5, marginRight: 25 }}>
                         <SwitchButton onPress={() => { toggleTheme() }} />
                     </View>
                 </View>
-
             </Header>
             <ScrollView>
                 <ImageBackground

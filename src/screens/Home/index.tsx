@@ -20,7 +20,7 @@ import Loading from '../../loaders/13255-loader.json';
 import { colors as color, metrics } from '../../styles';
 import styles from './styles';
 import { useTheme } from '@react-navigation/native';
-
+console.disableYellowBox = true;
 interface RenderListProps {
     by: string;
     data: string;

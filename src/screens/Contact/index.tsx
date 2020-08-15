@@ -1,17 +1,16 @@
 import React from 'react';
-import { View, Text as TittleText} from 'react-native';
-import { Icon, Thumbnail, Button, Left } from 'native-base';
+import { View } from 'react-native';
+import { Icon, Thumbnail, Button } from 'native-base';
 import * as Linking from 'expo-linking';
 import { Header, Card, WaveSvg, Text, SwitchButton, View as MyView } from '../../components';
 import styles from './styles';
-import { colors as color, metrics } from '../../styles';
+import { colors as color } from '../../styles';
 import { useTheme } from '@react-navigation/native';
 import { ThemeContext } from '../../config/ThemeContext';
 
 
 const Contact = () => {
   const { colors } = useTheme();
-  const theme = useTheme();
   const { toggleTheme } = React.useContext(ThemeContext);
   return (
     <MyView style={styles.Container}>
@@ -23,12 +22,11 @@ const Contact = () => {
         customWavePattern="M0,288L1440,32L1440,0L0,0Z"
       />
       <Header>
-        <View style={{ flexDirection: 'row', marginTop: 5}}>
-          <View style={{ alignContent: 'center', justifyContent: 'center', alignItems: 'center', marginLeft: (metrics.screenWidth * 0.60) / 2 }}>
-            <TittleText style={styles.headerTitle}>Fale com a Gente</TittleText>
+        <View style={{ flexDirection: 'row', }}>
+          <View style={{ flex: 1, alignContent: 'center', alignItems: 'center', justifyContent: 'center' }}>
+            <Text style={styles.headerTitle}>Fale Conosco</Text>
           </View>
-          <View style={{ flexDirection: 'row', marginTop: 5, alignSelf: 'flex-end', marginRight: 15, flex: 1 }}>
-            <Left />
+          <View style={{ marginTop: 5, marginRight: 25 }}>
             <SwitchButton onPress={() => { toggleTheme() }} />
           </View>
         </View>
