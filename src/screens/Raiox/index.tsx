@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
 import {
     View,
-    SafeAreaView,
     ScrollView,
     ImageBackground,
 
 } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+
 import { Left } from 'native-base';
 import { FlatList } from 'react-native-gesture-handler';
 import { metrics } from '../../styles'
-import { Header, Card, Text, SwitchButton } from '../../components';
+import { Header, Card, Text, SwitchButton, View as MyView } from '../../components';
 import { ThemeContext } from '../../config/ThemeContext';
 import styles from './styles';
 
 const raiox = () => {
-    const { colors } = useTheme();
-    const theme = useTheme();
+
     const { toggleTheme } = React.useContext(ThemeContext);
 
     const [data, setData] = useState([
@@ -27,7 +25,7 @@ const raiox = () => {
     ]);
 
     return (
-        <SafeAreaView style={[styles.container, { backgroundColor: theme ? '#333' : colors.background }]}>
+        <MyView style={styles.container}>
             <Header>
                 <View style={{ flexDirection: 'row', marginTop: 5}}>
                     <View style={{ alignContent: 'center', justifyContent: 'center', alignItems: 'center', marginLeft: (metrics.screenWidth * 0.60) / 2 }}>
@@ -75,7 +73,7 @@ const raiox = () => {
                     <Text style={styles.ibge}>Fonte: Instituto Brasileiro de Geografia e Estatística - IBGE</Text>
                 </View>
             </ScrollView>
-        </SafeAreaView>
+        </MyView>
     )
 
 

@@ -39,7 +39,7 @@ const Tab4 = () => {
                 <View style={styles.contentContainer}>
 
 
-                    <View style={[styles.card, {backgroundColor: colors.background}]}>
+                    <View style={[styles.card, {backgroundColor: colors.card}]}>
                         <View style={styles.cardContent}>
                             <Image
                                 resizeMode="contain"
@@ -49,7 +49,7 @@ const Tab4 = () => {
                         </View>
                     </View>
 
-                    <View style={[styles.card, {backgroundColor: colors.background}]}>
+                    <View style={[styles.card, {backgroundColor: colors.card}]}>
                         <View style={styles.cardContent}>
                             <Image
                                 resizeMode="contain"
@@ -59,7 +59,7 @@ const Tab4 = () => {
                         </View>
                     </View>
 
-                    <View style={[styles.card, {backgroundColor: colors.background}]}>
+                    <View style={[styles.card, {backgroundColor: colors.card}]}>
                         <View style={styles.cardContent}>
                             <Image
                                 resizeMode="contain"
@@ -69,7 +69,7 @@ const Tab4 = () => {
                         </View>
                     </View>
 
-                    <View style={[styles.card, {backgroundColor: colors.background}]}>
+                    <View style={[styles.card, {backgroundColor: colors.card}]}>
                         <View style={styles.cardContent}>
                             <Image
                                 resizeMode="contain"

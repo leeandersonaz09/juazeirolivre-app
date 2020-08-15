@@ -4,12 +4,9 @@ import { useTheme } from '@react-navigation/native';
 
 export default function View(props) {
   const { colors } = useTheme();
-  const theme = useTheme();
-  const color = theme ? "#444" : colors.background;
-
   return (
     <>
-      <MyView style={[{ backgroundColor: color , ...props.style }]}>
+      <MyView style={{ backgroundColor: colors.background, ...props.style }}>
         {props.children}
       </MyView>
     </>

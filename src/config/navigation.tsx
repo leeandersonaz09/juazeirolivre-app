@@ -22,7 +22,7 @@ import Welcome from "../screens/Welcome";
 import Contact from "../screens/Contact";
 import { colors } from '../styles';
 //para novos uruários serem redirecionados para tela welcome
-const MY_STORAGE_KEY = 'WelcomeFirst';
+const CHECK_IS_NEW = 'WelcomeFirst';
 
 //instancing navigators
 const AppTabs = createMaterialBottomTabNavigator();
@@ -135,6 +135,24 @@ const RootStackScreen = () => {
   const [fontsLoaded, setfontsLoaded] = useState(false);
   const [isnew, setisNew] = useState(true);
 
+  const checkUserSignedIn = async () =>{
+
+    try {
+       let value = await AsyncStorage.getItem(CHECK_IS_NEW);
+       if (value != null){
+          // do something 
+       }
+       else {
+         // Retrieves from storage as boolean
+        const result = JSON.parse(value) // boolean false
+        //console.log('STORAGE KEY VALUE' + result)
+        result ? setisNew(false) : setisNew(false);
+
+      }
+    } catch (error) {
+      console.log(error);
+    }
+}
   const loadFonts = async () => {
 
     await Font.loadAsync({
@@ -147,23 +165,12 @@ const RootStackScreen = () => {
       setfontsLoaded(true);
     });
 
-    // Retrieves from storage as boolean
-    await AsyncStorage.getItem(MY_STORAGE_KEY, (err, value) => {
-      if (err) {
-        console.log(err)
-      } else {
-        const result = JSON.parse(value) // boolean false
-        //console.log('STORAGE KEY VALUE' + result)
-        result ? setisNew(false) : setisNew(false);
-
-      }
-    })
-
   }
 
   useEffect(() => {
     if (!fontsLoaded) {
       loadFonts();
+      checkUserSignedIn();
     }
 
     setTimeout(() => {
@@ -202,8 +209,9 @@ export default () => {
     colors: {
       ...NavigationDefaultTheme.colors,
       ...PaperDefaultTheme.colors,
-      background: '#ffffff',
-      text: '#333'
+      background: '#fff',
+      text: '#000',
+      card: '#fff'
     }
   }
 
@@ -213,8 +221,9 @@ export default () => {
     colors: {
       ...NavigationDarkTheme.colors,
       ...PaperDarkTheme.colors,
-      background: '#000',
-      text: '#ffffff'
+      background: '#222',
+      text: '#fff',
+      card: '#000'
     }
   }
 
@@ -225,7 +234,7 @@ export default () => {
     }
   }), []);
 
-  const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
+ const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
 
   return (
     <ThemeContext.Provider value={themeContext}>

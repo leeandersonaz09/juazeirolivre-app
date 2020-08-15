@@ -78,7 +78,7 @@ const Tab3 = () => {
 
                 </ImageBackground>
                 <View style={styles.contentContainer}>
-                    <View style={[styles.card, { backgroundColor: colors.background }]}>
+                    <View style={[styles.card, { backgroundColor: colors.card }]}>
                         <View style={styles.cardContent}>
                             <Image
                                 resizeMode="contain"
