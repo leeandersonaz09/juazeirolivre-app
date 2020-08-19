@@ -4,7 +4,6 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web",
     "eject": "expo eject",
     "tsc": "tsc"
   },
@@ -46,8 +45,6 @@
     "react-native-screens": "~2.9.0",
     "react-native-shared-element": "0.7.0",
     "react-native-svg": "12.1.0",
-    "react-native-web": "~0.11.7",
-    "react-native-webview": "9.4.0",
     "react-navigation": "^4.0.10",
     "react-navigation-hooks": "^1.0.3",
     "react-navigation-shared-element": "^2.0.2",
