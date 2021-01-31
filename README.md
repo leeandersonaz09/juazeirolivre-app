@@ -118,4 +118,4 @@ Below you'll find information about performing common tasks.
 
 If you're interested about JuazeirolivreApp be sure to visit [Juazeiro Livre](https://www.juazeirolivre.com)!
 
-# DescontoFacilApp
+# JuazeiroLivreApp
