@@ -12,25 +12,29 @@
 
 ## Fiscalização e Transparência agora na palma da sua mão.
 
-Descontos e promoções de maneira fácil e intuitiva
+Nosso projeto se chama JUAZEIRO LIVRE e ele foi criado para defender e fiscalizar a nossa cidade. 
 
-Tenha um catalogo de cupons virtual para sua loja. Com ele, suas promoções podem atingir um publico ainda maior. O DescontoFacilApp é pensado para que seu cliente possa visualizar promoções e guardar cupons para uso posterior. Esses cupons podem ser validados diretamente no caixa, sem burocracia, sem complicações. O cliente fica satisfeito e o alcance do seu publico fica maior. 
+Um aplicativo idealizado pelo Juazeirense, músico, cristão de nascimento, decisão e paixão e professor Cléber Souza de Jesus, para dar acesso a informação com transparência e praticidade sobre a prefeitura do município de Juazeiro. Gastos, quantidades de sessões na câmara municipal e muito mais.
 
 ## Visite nosso site!!!
 [https://www.juazeirolivre.com](https://juazeirolivre.com)
 
-![](http://i.picasion.com/pic90/7c60b60f7840d1b3ccb97756871b8d46.gif)
-
+<p align="center">
+    <img alt="Catálogo Essência Feminina" src="https://i.picasion.com/pic90/c3f68ead1569d72ccd4a41254c4a0d52.gif" width="250">
+    <img alt="Catálogo Essência Feminina" title="#delicinha" src="screenshots/Screenshot_1595623461.png" width="250px" />
+    <img alt="Catálogo Essência Feminina" title="#delicinha" src="screenshots/Screenshot_1595623470.png" width="250px" />
+    <img alt="Catálogo Essência Feminina" title="#delicinha" src="screenshots/Screenshot_1594728902.png" width="250px" />
+</p>
 
 ## Functionality Implementention Sprints
 
 - [x] Screens
 - [x] SearchBar
-- [x] Firebase Integration - CRUD
+- [x] Firebase Integration
 - [x] Generate apk signed
 - [x] Upload PlayStore
 - [x] Tests
-- [ ] Dark Theme
+- [x] Dark Theme
 
 You'll need to have [Expo](https://expo.io/learn) installed on your machine in order to follow along.
 
@@ -112,6 +116,6 @@ Below you'll find information about performing common tasks.
   Like `yarn start`, but also attempts to open your app on a connected Android device or emulator. Requires an installation of Android build tools (see [React Native docs](https://facebook.github.io/react-native/docs/getting-started.html) for detailed setup).
 
 
-If you're interested about DescontoFacilApp be sure to visit [DescontoFacilApp](https://msfcampos05.wixsite.com/guiadecomprasapp)!
+If you're interested about JuazeirolivreApp be sure to visit [Juazeiro Livre](https://www.juazeirolivre.com)!
 
 # DescontoFacilApp
